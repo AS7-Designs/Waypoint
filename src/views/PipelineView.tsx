@@ -141,28 +141,28 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
         {/* Filters */}
         <div className="flex items-center gap-3 flex-wrap">
           <div className="relative">
-            <Search className="w-4 h-4 text-[#9CA3AF] absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-text-disabled absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Filter pipeline candidates..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-[36px] pl-9 pr-3 bg-white border border-[#ECECF3] rounded-full text-[13px] font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] shadow-sm"
+              className="h-[36px] pl-9 pr-3 bg-surface border border-border rounded-full text-caption-ui font-medium text-text-primary focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
             />
           </div>
 
-          <div className="flex items-center bg-white border border-[#ECECF3] rounded-full p-1 shadow-sm">
-            <span className="px-3 text-[12px] font-semibold text-[#6B7280] flex items-center gap-1">
+          <div className="flex items-center bg-surface border border-border rounded-full p-1 shadow-sm">
+            <span className="px-3 text-caption-ui font-semibold text-text-secondary flex items-center gap-1">
               <Filter className="w-3.5 h-3.5" /> Role:
             </span>
             {['All', 'Senior Product Designer', 'UX Researcher', 'Frontend Engineer'].map((role) => (
               <button
                 key={role}
                 onClick={() => setRoleFilter(role)}
-                className={`px-3 py-1 text-[12px] font-semibold rounded-full transition-all ${
+                className={`px-3 py-1 text-caption-ui font-semibold rounded-full transition-all ${
                   roleFilter === role
-                    ? 'bg-[#EEF0FD] text-[#4F46E5]'
-                    : 'text-[#6B7280] hover:text-[#111827]'
+                    ? 'bg-primary-tint text-primary'
+                    : 'text-text-secondary hover:text-text-primary'
                 }`}
               >
                 {role === 'All' ? 'All Roles' : role.split(' ')[0]}
@@ -187,16 +187,16 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
           const stageCandidates = filteredCandidates.filter((c) => c.stage === stage);
 
           return (
-            <div key={stage} className="bg-[#F8F9FC] p-3.5 rounded-[20px] border border-[#ECECF3] min-h-[500px]">
+            <div key={stage} className="bg-surface-muted p-3.5 rounded-card border border-border min-h-[500px]">
               {/* Column Header */}
-              <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#ECECF3]">
+              <div className="flex items-center justify-between mb-3 pb-2 border-b border-border">
                 <div className="flex items-center gap-2">
-                  <h3 className="text-[14px] font-bold text-[#111827]">{stage}</h3>
-                  <span className="w-5 h-5 rounded-full bg-[#EEF0FD] text-[#4F46E5] text-[12px] font-bold flex items-center justify-center">
+                  <h3 className="text-body-ui font-bold text-text-primary">{stage}</h3>
+                  <span className="w-5 h-5 rounded-full bg-primary-tint text-primary text-caption-ui font-bold flex items-center justify-center">
                     {stageCandidates.length}
                   </span>
                 </div>
-                <span className="text-[11px] font-medium text-[#9CA3AF]">
+                <span className="text-caption-ui font-medium text-text-disabled">
                   avg {avgDays}d
                 </span>
               </div>
@@ -206,17 +206,17 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                 {stageCandidates.map((candidate) => (
                   <div
                     key={candidate.id}
-                    className="bg-white p-4 rounded-[16px] border border-[#ECECF3] shadow-card hover:border-[#4F46E5]/40 transition-all cursor-pointer group"
+                    className="bg-surface p-4 rounded-element border border-border shadow-card hover:border-primary/40 transition-all cursor-pointer group"
                     onClick={() => handleCardClick(candidate)}
                   >
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div className="flex items-center gap-3">
                         <Avatar src={candidate.avatar} name={candidate.name} size="sm" />
                         <div>
-                          <h4 className="text-[14px] font-bold text-[#111827] group-hover:text-[#4F46E5] transition-colors">
+                          <h4 className="text-body-ui font-bold text-text-primary group-hover:text-primary transition-colors">
                             {candidate.name}
                           </h4>
-                          <p className="text-[12px] text-[#6B7280] font-medium">
+                          <p className="text-caption-ui text-text-secondary font-medium">
                             {candidate.role}
                           </p>
                         </div>
@@ -228,7 +228,7 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                       {candidate.tags.slice(0, 2).map((tag, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-0.5 bg-[#F3F4F6] text-[#6B7280] text-[11px] font-medium rounded-full"
+                          className="px-2 py-0.5 bg-status-neutralBg text-status-neutralText text-caption-ui font-medium rounded-full"
                         >
                           {tag}
                         </span>
@@ -243,9 +243,9 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                     )}
 
                     {/* Footer / Quick move stage dropdown */}
-                    <div className="flex items-center justify-between border-t border-[#ECECF3] pt-2 mt-2 text-[11px] text-[#6B7280]">
+                    <div className="flex items-center justify-between border-t border-border pt-2 mt-2 text-caption-ui text-text-secondary">
                       <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-[#9CA3AF]" />
+                        <Clock className="w-3 h-3 text-text-disabled" />
                         {candidate.daysInStage}d in stage
                       </span>
 
@@ -254,7 +254,7 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                           e.stopPropagation();
                           onSelectCandidate(candidate);
                         }}
-                        className="text-[#4F46E5] font-semibold hover:underline flex items-center gap-0.5"
+                        className="text-primary font-semibold hover:underline flex items-center gap-0.5"
                       >
                         Profile <ChevronRight className="w-3 h-3" />
                       </button>
@@ -299,8 +299,8 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
         >
           <div className="space-y-6">
             {/* Stage Quick Advancement */}
-            <div className="bg-[#F8F9FC] p-4 rounded-[16px] border border-[#ECECF3]">
-              <label className="text-[12px] font-semibold text-[#6B7280] uppercase block mb-2">
+            <div className="bg-surface-muted p-4 rounded-element border border-border">
+              <label className="text-caption-ui font-semibold text-text-secondary uppercase block mb-2">
                 Move Stage
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -308,10 +308,10 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                   <button
                     key={s.stage}
                     onClick={() => handleMoveStage(selectedCandidate.id, s.stage)}
-                    className={`py-1.5 px-2 text-[12px] font-semibold rounded-[10px] border transition-all ${
+                    className={`py-1.5 px-2 text-caption-ui font-semibold rounded-element border transition-all ${
                       selectedCandidate.stage === s.stage
-                        ? 'bg-[#4F46E5] text-white border-[#4F46E5]'
-                        : 'bg-white text-[#6B7280] border-[#ECECF3] hover:bg-[#EEF0FD]'
+                        ? 'bg-primary text-white border-primary'
+                        : 'bg-surface text-text-secondary border-border hover:bg-primary-tint'
                     }`}
                   >
                     {s.stage}
@@ -322,16 +322,16 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
 
             {/* Schedule Interview Section */}
             <div className="space-y-3">
-              <h3 className="text-[16px] font-bold text-[#111827] flex items-center gap-2">
-                <CalendarIcon className="w-4 h-4 text-[#4F46E5]" /> Schedule Next Round
+              <h3 className="text-h3 font-bold text-text-primary flex items-center gap-2">
+                <CalendarIcon className="w-4 h-4 text-primary" /> Schedule Next Round
               </h3>
 
               <div>
-                <label className="text-[12px] font-semibold text-[#6B7280] block mb-1">Interview Type</label>
+                <label className="text-caption-ui font-semibold text-text-secondary block mb-1">Interview Type</label>
                 <select
                   value={interviewType}
                   onChange={(e: any) => setInterviewType(e.target.value)}
-                  className="w-full h-[36px] px-3 bg-white border border-[#ECECF3] rounded-[12px] text-[13px] font-medium"
+                  className="w-full h-[36px] px-3 bg-surface border border-border rounded-element text-caption-ui font-medium text-text-primary"
                 >
                   <option value="Phone">Phone Screening</option>
                   <option value="Technical">Technical Live Code</option>
@@ -341,44 +341,44 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
               </div>
 
               <div>
-                <label className="text-[12px] font-semibold text-[#6B7280] block mb-1">Interviewer</label>
+                <label className="text-caption-ui font-semibold text-text-secondary block mb-1">Interviewer</label>
                 <input
                   type="text"
                   value={interviewer}
                   onChange={(e) => setInterviewer(e.target.value)}
-                  className="w-full h-[36px] px-3 bg-white border border-[#ECECF3] rounded-[12px] text-[13px] font-medium"
+                  className="w-full h-[36px] px-3 bg-surface border border-border rounded-element text-caption-ui font-medium text-text-primary"
                 />
               </div>
 
               <div>
-                <label className="text-[12px] font-semibold text-[#6B7280] block mb-1">Date & Time</label>
+                <label className="text-caption-ui font-semibold text-text-secondary block mb-1">Date & Time</label>
                 <input
                   type="datetime-local"
                   value={interviewDate}
                   onChange={(e) => setInterviewDate(e.target.value)}
-                  className="w-full h-[36px] px-3 bg-white border border-[#ECECF3] rounded-[12px] text-[13px] font-medium"
+                  className="w-full h-[36px] px-3 bg-surface border border-border rounded-element text-caption-ui font-medium text-text-primary"
                 />
               </div>
             </div>
 
             {/* Submit Scorecard Section */}
-            <form onSubmit={handleSaveScorecard} className="space-y-3 border-t border-[#ECECF3] pt-5">
-              <h3 className="text-[16px] font-bold text-[#111827] flex items-center gap-2">
-                <Star className="w-4 h-4 text-[#F59E0B]" /> Submit Scorecard
+            <form onSubmit={handleSaveScorecard} className="space-y-3 border-t border-border pt-5">
+              <h3 className="text-h3 font-bold text-text-primary flex items-center gap-2">
+                <Star className="w-4 h-4 text-accent-amber" /> Submit Scorecard
               </h3>
 
               <div>
-                <label className="text-[12px] font-semibold text-[#6B7280] block mb-1">Overall Rating</label>
+                <label className="text-caption-ui font-semibold text-text-secondary block mb-1">Overall Rating</label>
                 <div className="flex items-center gap-2">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
                       key={star}
                       type="button"
                       onClick={() => setScoreRating(star)}
-                      className="p-1 text-[#F59E0B]"
+                      className="p-1 text-accent-amber"
                     >
                       <Star
-                        className={`w-6 h-6 ${star <= scoreRating ? 'fill-[#F59E0B]' : 'text-[#D1D5DB]'}`}
+                        className={`w-6 h-6 ${star <= scoreRating ? 'fill-accent-amber' : 'text-text-disabled'}`}
                       />
                     </button>
                   ))}
@@ -386,24 +386,24 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
               </div>
 
               <div>
-                <label className="text-[12px] font-semibold text-[#6B7280] block mb-1">Key Strengths</label>
+                <label className="text-caption-ui font-semibold text-text-secondary block mb-1">Key Strengths</label>
                 <textarea
                   rows={2}
                   value={scoreStrengths}
                   onChange={(e) => setScoreStrengths(e.target.value)}
                   placeholder="Strong technical capabilities, clear communicator..."
-                  className="w-full p-2.5 bg-white border border-[#ECECF3] rounded-[12px] text-[13px] focus:ring-2 focus:ring-[#4F46E5] outline-none"
+                  className="w-full p-2.5 bg-surface border border-border rounded-element text-caption-ui text-text-primary focus:ring-2 focus:ring-primary outline-none"
                 />
               </div>
 
               <div>
-                <label className="text-[12px] font-semibold text-[#6B7280] block mb-1">Key Concerns</label>
+                <label className="text-caption-ui font-semibold text-text-secondary block mb-1">Key Concerns</label>
                 <textarea
                   rows={2}
                   value={scoreConcerns}
                   onChange={(e) => setScoreConcerns(e.target.value)}
                   placeholder="Any reservation..."
-                  className="w-full p-2.5 bg-white border border-[#ECECF3] rounded-[12px] text-[13px] focus:ring-2 focus:ring-[#4F46E5] outline-none"
+                  className="w-full p-2.5 bg-surface border border-border rounded-element text-caption-ui text-text-primary focus:ring-2 focus:ring-primary outline-none"
                 />
               </div>
 
@@ -413,9 +413,9 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                   id="recommend"
                   checked={scoreRecommend}
                   onChange={(e) => setScoreRecommend(e.target.checked)}
-                  className="w-4 h-4 text-[#4F46E5] rounded"
+                  className="w-4 h-4 text-primary rounded"
                 />
-                <label htmlFor="recommend" className="text-[13px] font-semibold text-[#111827]">
+                <label htmlFor="recommend" className="text-caption-ui font-semibold text-text-primary">
                   Recommend for Hire
                 </label>
               </div>
@@ -436,35 +436,35 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
       >
         <form onSubmit={handleAddCandidateSubmit} className="space-y-4">
           <div>
-            <label className="text-[13px] font-semibold text-[#111827] block mb-1">Full Name</label>
+            <label className="text-caption-ui font-semibold text-text-primary block mb-1">Full Name</label>
             <input
               type="text"
               required
               value={newCandidateName}
               onChange={(e) => setNewCandidateName(e.target.value)}
               placeholder="e.g. Alexandra Vance"
-              className="w-full h-[40px] px-3.5 bg-white border border-[#ECECF3] rounded-[12px] text-[14px]"
+              className="w-full h-[40px] px-3.5 bg-surface border border-border rounded-element text-body-ui text-text-primary"
             />
           </div>
 
           <div>
-            <label className="text-[13px] font-semibold text-[#111827] block mb-1">Email Address</label>
+            <label className="text-caption-ui font-semibold text-text-primary block mb-1">Email Address</label>
             <input
               type="email"
               required
               value={newCandidateEmail}
               onChange={(e) => setNewCandidateEmail(e.target.value)}
               placeholder="alexandra@example.com"
-              className="w-full h-[40px] px-3.5 bg-white border border-[#ECECF3] rounded-[12px] text-[14px]"
+              className="w-full h-[40px] px-3.5 bg-surface border border-border rounded-element text-body-ui text-text-primary"
             />
           </div>
 
           <div>
-            <label className="text-[13px] font-semibold text-[#111827] block mb-1">Role Applied For</label>
+            <label className="text-caption-ui font-semibold text-text-primary block mb-1">Role Applied For</label>
             <select
               value={newCandidateRole}
               onChange={(e) => setNewCandidateRole(e.target.value)}
-              className="w-full h-[40px] px-3 bg-white border border-[#ECECF3] rounded-[12px] text-[14px]"
+              className="w-full h-[40px] px-3 bg-surface border border-border rounded-element text-body-ui text-text-primary"
             >
               <option value="Senior Product Designer">Senior Product Designer</option>
               <option value="UX Researcher">UX Researcher</option>
@@ -474,7 +474,7 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
             </select>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-[#ECECF3]">
+          <div className="flex justify-end gap-3 pt-4 border-t border-border">
             <Button type="button" variant="secondary" onClick={() => setIsAddModalOpen(false)}>
               Cancel
             </Button>

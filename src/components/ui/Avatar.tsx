@@ -27,14 +27,14 @@ export const Avatar: React.FC<AvatarProps> = ({
   };
 
   const sizes = {
-    sm: 'w-8 h-8 text-[12px]',
-    md: 'w-10 h-10 text-[14px]',
-    lg: 'w-14 h-14 text-[18px]',
+    sm: 'w-8 h-8 text-caption-ui',
+    md: 'w-10 h-10 text-body-ui',
+    lg: 'w-14 h-14 text-h3',
   };
 
   const rings = {
-    recruiter: 'ring-2 ring-[#4F46E5] ring-offset-2',
-    manager: 'ring-2 ring-[#14B8A6] ring-offset-2',
+    recruiter: 'ring-2 ring-primary ring-offset-2',
+    manager: 'ring-2 ring-accent-teal ring-offset-2',
     none: '',
   };
 
@@ -42,7 +42,7 @@ export const Avatar: React.FC<AvatarProps> = ({
     <div
       className={twMerge(
         clsx(
-          'relative inline-flex items-center justify-center rounded-full bg-[#EEF0FD] text-[#4F46E5] font-semibold overflow-hidden shrink-0 select-none',
+          'relative inline-flex items-center justify-center rounded-full bg-primary-tint text-primary font-semibold overflow-hidden shrink-0 select-none',
           sizes[size],
           rings[roleRing],
           className

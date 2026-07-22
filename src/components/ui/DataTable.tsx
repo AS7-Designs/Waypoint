@@ -46,10 +46,10 @@ export const DataTable: React.FC<DataTableProps> = ({
   };
 
   return (
-    <div className="w-full overflow-x-auto rounded-[16px] border border-[#ECECF3] bg-white">
+    <div className="w-full overflow-x-auto rounded-element border border-border bg-surface">
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="border-b border-[#ECECF3] bg-[#F8F9FC] text-[12px] leading-[16px] font-semibold text-[#6B7280]">
+          <tr className="border-b border-border bg-surface-muted text-caption-ui font-semibold text-text-secondary">
             <th
               className="py-3.5 px-4 cursor-pointer select-none"
               onClick={() => handleSort('name')}
@@ -78,22 +78,22 @@ export const DataTable: React.FC<DataTableProps> = ({
             <th className="py-3.5 px-4">Source</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-[#ECECF3]">
+        <tbody className="divide-y divide-border">
           {candidates.map((candidate) => (
             <tr
               key={candidate.id}
               onClick={() => onSelectCandidate && onSelectCandidate(candidate)}
-              className="hover:bg-[#F8F9FC] transition-colors cursor-pointer text-[14px] leading-[20px]"
+              className="hover:bg-surface-muted transition-colors cursor-pointer text-body-ui"
             >
               {/* Candidate Avatar + Name */}
               <td className="py-3.5 px-4">
                 <div className="flex items-center gap-3">
                   <Avatar src={candidate.avatar} name={candidate.name} size="sm" />
                   <div>
-                    <div className="font-semibold text-[#111827]">
+                    <div className="font-semibold text-text-primary">
                       {candidate.name}
                     </div>
-                    <div className="text-[12px] text-[#6B7280]">
+                    <div className="text-caption-ui text-text-secondary">
                       {candidate.email}
                     </div>
                   </div>
@@ -101,7 +101,7 @@ export const DataTable: React.FC<DataTableProps> = ({
               </td>
 
               {/* Role */}
-              <td className="py-3.5 px-4 font-medium text-[#111827]">
+              <td className="py-3.5 px-4 font-medium text-text-primary">
                 {candidate.role}
               </td>
 
@@ -114,18 +114,18 @@ export const DataTable: React.FC<DataTableProps> = ({
               </td>
 
               {/* Applied Date */}
-              <td className="py-3.5 px-4 text-[#6B7280]">
+              <td className="py-3.5 px-4 text-text-secondary">
                 {candidate.appliedDate}
               </td>
 
               {/* Recruiter */}
-              <td className="py-3.5 px-4 text-[#111827]">
+              <td className="py-3.5 px-4 text-text-primary">
                 {candidate.recruiter}
               </td>
 
               {/* Source */}
-              <td className="py-3.5 px-4 text-[#6B7280]">
-                <span className="inline-block px-2 py-0.5 rounded-full bg-[#F3F4F6] text-[12px] font-medium text-[#6B7280]">
+              <td className="py-3.5 px-4 text-text-secondary">
+                <span className="inline-block px-2 py-0.5 rounded-full bg-status-neutralBg text-caption-ui text-status-neutralText">
                   {candidate.source}
                 </span>
               </td>

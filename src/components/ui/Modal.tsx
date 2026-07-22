@@ -40,15 +40,15 @@ export const Modal: React.FC<ModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-[20px] shadow-2xl max-w-lg w-full z-10 overflow-hidden border border-[#ECECF3] animate-scale-up">
+      <div className="relative bg-surface rounded-card shadow-2xl max-w-lg w-full z-10 overflow-hidden border border-border animate-scale-up">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-[#ECECF3] flex items-center justify-between">
-          <h3 className="text-[18px] leading-[24px] font-bold text-[#111827]">
+        <div className="px-6 py-5 border-b border-border flex items-center justify-between">
+          <h3 className="text-h3 font-bold text-text-primary">
             {title}
           </h3>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-[12px] text-[#6B7280] hover:text-[#111827] hover:bg-[#F3F4F6] transition-colors"
+            className="p-1.5 rounded-element text-text-secondary hover:text-text-primary hover:bg-surface-muted transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -59,7 +59,7 @@ export const Modal: React.FC<ModalProps> = ({
 
         {/* Footer */}
         {footer && (
-          <div className="px-6 py-4 border-t border-[#ECECF3] bg-[#F8F9FC] flex justify-end gap-3">
+          <div className="px-6 py-4 border-t border-border bg-surface-muted flex justify-end gap-3">
             {footer}
           </div>
         )}

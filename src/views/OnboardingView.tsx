@@ -68,13 +68,13 @@ export const OnboardingView: React.FC = () => {
 
   const getOwnerBadge = (owner: TaskOwner) => {
     const bgMap: Record<TaskOwner, string> = {
-      IT: 'bg-[#E0E7FF] text-[#4F46E5]',
-      HR: 'bg-[#DCFCE7] text-[#16A34A]',
-      Manager: 'bg-[#FEF3C7] text-[#D97706]',
-      'New Hire': 'bg-[#F3F4F6] text-[#6B7280]',
+      IT: 'bg-primary-tint text-primary',
+      HR: 'bg-status-successBg text-status-successText',
+      Manager: 'bg-amber-100 text-amber-800',
+      'New Hire': 'bg-status-neutralBg text-status-neutralText',
     };
     return (
-      <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${bgMap[owner]}`}>
+      <span className={`px-2 py-0.5 rounded-full text-caption-ui font-semibold ${bgMap[owner]}`}>
         {owner}
       </span>
     );
@@ -100,33 +100,33 @@ export const OnboardingView: React.FC = () => {
                 <div
                   key={hire.id}
                   onClick={() => setSelectedHireId(hire.id)}
-                  className={`p-3.5 rounded-[16px] border cursor-pointer transition-all flex items-center justify-between ${
+                  className={`p-3.5 rounded-element border cursor-pointer transition-all flex items-center justify-between ${
                     isSelected
-                      ? 'bg-[#EEF0FD] border-[#4F46E5] shadow-sm'
-                      : 'bg-white border-[#ECECF3] hover:bg-[#F8F9FC]'
+                      ? 'bg-primary-tint border-primary shadow-sm'
+                      : 'bg-surface border-border hover:bg-surface-muted'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <Avatar src={hire.avatar} name={hire.name} size="md" roleRing="manager" />
                     <div>
-                      <h4 className="text-[14px] font-bold text-[#111827]">
+                      <h4 className="text-body-ui font-bold text-text-primary">
                         {hire.name}
                       </h4>
-                      <p className="text-[12px] text-[#6B7280] font-medium">
+                      <p className="text-caption-ui text-text-secondary font-medium">
                         {hire.role}
                       </p>
-                      <span className="text-[11px] text-[#6B7280] block mt-0.5">
+                      <span className="text-caption-ui text-text-secondary block mt-0.5">
                         Starts: {hire.startDate}
                       </span>
                     </div>
                   </div>
 
                   <div className="text-right">
-                    <span className="text-[14px] font-bold text-[#4F46E5]">
+                    <span className="text-body-ui font-bold text-primary">
                       {hire.progress}%
                     </span>
                     {hire.missingRequiredDocs && (
-                      <span className="block text-[10px] text-[#DC2626] font-semibold">
+                      <span className="block text-caption-ui text-status-dangerText font-semibold">
                         Doc Pending
                       </span>
                     )}
@@ -145,36 +145,36 @@ export const OnboardingView: React.FC = () => {
               <div className="flex items-center gap-4">
                 <Avatar src={selectedHire.avatar} name={selectedHire.name} size="lg" />
                 <div>
-                  <h2 className="text-[22px] font-bold text-[#111827]">
+                  <h2 className="text-display font-bold text-text-primary">
                     {selectedHire.name}
                   </h2>
-                  <p className="text-[14px] text-[#6B7280] font-medium">
-                    {selectedHire.role} • Start Date: <span className="text-[#111827] font-semibold">{selectedHire.startDate}</span>
+                  <p className="text-body-ui text-text-secondary font-medium">
+                    {selectedHire.role} • Start Date: <span className="text-text-primary font-semibold">{selectedHire.startDate}</span>
                   </p>
-                  <div className="flex items-center gap-4 text-[12px] text-[#6B7280] mt-2">
-                    <span>Manager: <strong className="text-[#111827]">{selectedHire.manager}</strong></span>
-                    <span>Onboarding Buddy: <strong className="text-[#111827]">{selectedHire.buddy}</strong></span>
+                  <div className="flex items-center gap-4 text-caption-ui text-text-secondary mt-2">
+                    <span>Manager: <strong className="text-text-primary">{selectedHire.manager}</strong></span>
+                    <span>Onboarding Buddy: <strong className="text-text-primary">{selectedHire.buddy}</strong></span>
                   </div>
                 </div>
               </div>
 
               {/* Progress Donut Badge */}
-              <div className="flex items-center gap-4 bg-[#F8F9FC] p-3 px-5 rounded-[16px] border border-[#ECECF3]">
+              <div className="flex items-center gap-4 bg-surface-muted p-3 px-5 rounded-element border border-border">
                 <div className="text-center">
-                  <span className="text-[24px] font-bold text-[#4F46E5] block">
+                  <span className="text-display font-bold text-primary block">
                     {selectedHire.progress}%
                   </span>
-                  <span className="text-[11px] font-semibold text-[#6B7280] uppercase">Complete</span>
+                  <span className="text-caption-ui font-semibold text-text-secondary uppercase">Complete</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Actions Row */}
-            <div className="flex items-center gap-3 pt-4 mt-4 border-t border-[#ECECF3] flex-wrap">
+            <div className="flex items-center gap-3 pt-4 mt-4 border-t border-border flex-wrap">
               <Button
                 variant="secondary"
                 size="sm"
-                icon={<Mail className="w-3.5 h-3.5 text-[#4F46E5]" />}
+                icon={<Mail className="w-3.5 h-3.5 text-primary" />}
                 onClick={() => alert(`Welcome email dispatched to ${selectedHire.name}!`)}
               >
                 Send Welcome Email
@@ -182,7 +182,7 @@ export const OnboardingView: React.FC = () => {
               <Button
                 variant="secondary"
                 size="sm"
-                icon={<FileText className="w-3.5 h-3.5 text-[#4F46E5]" />}
+                icon={<FileText className="w-3.5 h-3.5 text-primary" />}
                 onClick={() => alert(`Viewing signed offer letter for ${selectedHire.name}...`)}
               >
                 View Offer Letter
@@ -192,13 +192,13 @@ export const OnboardingView: React.FC = () => {
 
           {/* Missing Document Block Alert (Danger Tint) */}
           {selectedHire.missingRequiredDocs && (
-            <div className="p-4 rounded-[16px] bg-[#FEE2E2] border border-[#FCA5A5] flex items-start gap-3">
-              <ShieldAlert className="w-5 h-5 text-[#DC2626] shrink-0 mt-0.5" />
+            <div className="p-4 rounded-element bg-status-dangerBg border border-red-300 flex items-start gap-3">
+              <ShieldAlert className="w-5 h-5 text-status-dangerText shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-[14px] font-bold text-[#DC2626]">
+                <h4 className="text-body-ui font-bold text-status-dangerText">
                   Action Required: Required Onboarding Document Missing
                 </h4>
-                <p className="text-[13px] text-[#991B1B] mt-0.5">
+                <p className="text-caption-ui text-red-900 mt-0.5">
                   {selectedHire.name} has not completed the required Photo ID & Tax Form upload. Subsequent onboarding steps are on hold until verified.
                 </p>
               </div>
@@ -223,37 +223,37 @@ export const OnboardingView: React.FC = () => {
                   <div
                     key={task.id}
                     onClick={() => handleTaskToggle(task.id)}
-                    className={`p-4 rounded-[16px] border flex items-center justify-between cursor-pointer transition-all ${
+                    className={`p-4 rounded-element border flex items-center justify-between cursor-pointer transition-all ${
                       isDone
-                        ? 'bg-[#F8F9FC] border-[#ECECF3]'
-                        : 'bg-white border-[#ECECF3] hover:border-[#4F46E5]/40 shadow-sm'
+                        ? 'bg-surface-muted border-border'
+                        : 'bg-surface border-border hover:border-primary/40 shadow-sm'
                     }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <button className="text-[#4F46E5] shrink-0">
+                      <button className="text-primary shrink-0">
                         {isDone ? (
-                          <CheckCircle2 className="w-5 h-5 text-[#16A34A] fill-[#DCFCE7]" />
+                          <CheckCircle2 className="w-5 h-5 text-status-successText fill-status-successBg" />
                         ) : (
-                          <Circle className="w-5 h-5 text-[#9CA3AF]" />
+                          <Circle className="w-5 h-5 text-text-disabled" />
                         )}
                       </button>
                       <div>
                         <div className="flex items-center gap-2 flex-wrap">
                           <h4
-                            className={`text-[14px] font-semibold ${
-                              isDone ? 'line-through text-[#9CA3AF]' : 'text-[#111827]'
+                            className={`text-body-ui font-semibold ${
+                              isDone ? 'line-through text-text-disabled' : 'text-text-primary'
                             }`}
                           >
                             {task.title}
                           </h4>
                           {task.isRequiredDoc && (
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FEE2E2] text-[#DC2626]">
+                            <span className="text-caption-ui font-bold px-2 py-0.5 rounded-full bg-status-dangerBg text-status-dangerText">
                               Required Doc
                             </span>
                           )}
                         </div>
-                        <p className="text-[12px] text-[#6B7280] flex items-center gap-2 mt-1">
-                          <Clock className="w-3.5 h-3.5 text-[#9CA3AF]" />
+                        <p className="text-caption-ui text-text-secondary flex items-center gap-2 mt-1">
+                          <Clock className="w-3.5 h-3.5 text-text-disabled" />
                           Due: {task.dueDate} • Owner: {getOwnerBadge(task.owner)}
                         </p>
                       </div>
@@ -265,7 +265,7 @@ export const OnboardingView: React.FC = () => {
               })}
 
               {filteredTasks.length === 0 && (
-                <div className="text-center py-8 bg-[#F8F9FC] rounded-[16px] text-[#6B7280] text-[14px]">
+                <div className="text-center py-8 bg-surface-muted rounded-element text-text-secondary text-body-ui">
                   No tasks configured for {activePhase} phase.
                 </div>
               )}

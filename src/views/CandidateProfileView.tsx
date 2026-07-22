@@ -91,7 +91,7 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
       <div>
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#6B7280] hover:text-[#111827] transition-colors mb-2"
+          className="inline-flex items-center gap-2 text-body-ui font-semibold text-text-secondary hover:text-text-primary transition-colors mb-2"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Candidate Pipeline</span>
@@ -105,7 +105,7 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
             <Avatar src={candidate.avatar} name={candidate.name} size="lg" roleRing="recruiter" />
             <div>
               <div className="flex items-center gap-3 flex-wrap">
-                <h1 className="text-[28px] leading-[36px] font-bold text-[#111827]">
+                <h1 className="text-display font-bold text-text-primary">
                   {candidate.name}
                 </h1>
                 <StatusPill variant="progress" label={candidate.stage} />
@@ -113,20 +113,20 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
                   <StatusPill variant="danger" label="Scorecard Overdue" />
                 )}
               </div>
-              <p className="text-[16px] font-medium text-[#6B7280] mt-0.5">
+              <p className="text-h3 font-medium text-text-secondary mt-0.5">
                 {candidate.role} • Applied {candidate.appliedDate}
               </p>
-              <div className="flex items-center gap-4 text-[12px] text-[#6B7280] mt-2 flex-wrap">
+              <div className="flex items-center gap-4 text-caption-ui text-text-secondary mt-2 flex-wrap">
                 <span className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-[#9CA3AF]" />
+                  <Mail className="w-3.5 h-3.5 text-text-disabled" />
                   {candidate.email}
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-[#9CA3AF]" />
+                  <Phone className="w-3.5 h-3.5 text-text-disabled" />
                   {candidate.phone || '+1 (555) 019-2834'}
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#9CA3AF]" />
+                  <MapPin className="w-3.5 h-3.5 text-text-disabled" />
                   {candidate.location || 'San Francisco, CA'}
                 </span>
               </div>
@@ -137,7 +137,7 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
           <div className="flex items-center gap-3 w-full md:w-auto">
             <Button
               variant="secondary"
-              icon={<Calendar className="w-4 h-4 text-[#4F46E5]" />}
+              icon={<Calendar className="w-4 h-4 text-primary" />}
               onClick={() => onScheduleInterview(candidate)}
             >
               Schedule Interview
@@ -169,33 +169,33 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
             {activeTab === 'overview' && (
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-[16px] font-bold text-[#111827] mb-3">
+                  <h3 className="text-h3 font-bold text-text-primary mb-3">
                     Candidate Details & Attributes
                   </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-[#F8F9FC] p-4 rounded-[16px] border border-[#ECECF3]">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-surface-muted p-4 rounded-element border border-border">
                     <div>
-                      <span className="text-[12px] font-medium text-[#6B7280] block">Recruiter Owner</span>
-                      <span className="text-[14px] font-semibold text-[#111827]">{candidate.recruiter}</span>
+                      <span className="text-caption-ui font-medium text-text-secondary block">Recruiter Owner</span>
+                      <span className="text-body-ui font-semibold text-text-primary">{candidate.recruiter}</span>
                     </div>
                     <div>
-                      <span className="text-[12px] font-medium text-[#6B7280] block">Source</span>
-                      <span className="text-[14px] font-semibold text-[#111827]">{candidate.source}</span>
+                      <span className="text-caption-ui font-medium text-text-secondary block">Source</span>
+                      <span className="text-body-ui font-semibold text-text-primary">{candidate.source}</span>
                     </div>
                     <div>
-                      <span className="text-[12px] font-medium text-[#6B7280] block">Days in Current Stage</span>
-                      <span className="text-[14px] font-semibold text-[#4F46E5]">{candidate.daysInStage} days</span>
+                      <span className="text-caption-ui font-medium text-text-secondary block">Days in Current Stage</span>
+                      <span className="text-body-ui font-semibold text-primary">{candidate.daysInStage} days</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Skills & Tags */}
                 <div>
-                  <h3 className="text-[16px] font-bold text-[#111827] mb-3">Skills & Tags</h3>
+                  <h3 className="text-h3 font-bold text-text-primary mb-3">Skills & Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {candidate.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-[#EEF0FD] text-[#4F46E5] text-[12px] font-semibold rounded-full border border-[#C7D2FE]"
+                        className="px-3 py-1 bg-primary-tint text-primary text-caption-ui font-semibold rounded-full border border-primary-tint2"
                       >
                         #{tag}
                       </span>
@@ -208,14 +208,14 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
             {/* TAB 2: RESUME & DOCUMENTS */}
             {activeTab === 'resume' && (
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-[#F8F9FC] rounded-[16px] border border-[#ECECF3]">
+                <div className="flex items-center justify-between p-4 bg-surface-muted rounded-element border border-border">
                   <div className="flex items-center gap-3">
-                    <FileText className="w-8 h-8 text-[#4F46E5]" />
+                    <FileText className="w-8 h-8 text-primary" />
                     <div>
-                      <h4 className="text-[14px] font-semibold text-[#111827]">
+                      <h4 className="text-body-ui font-semibold text-text-primary">
                         {candidate.name}_Resume_2025.pdf
                       </h4>
-                      <p className="text-[12px] text-[#6B7280]">Uploaded 10 Jun 2025 • 1.4 MB</p>
+                      <p className="text-caption-ui text-text-secondary">Uploaded 10 Jun 2025 • 1.4 MB</p>
                     </div>
                   </div>
                   <Button variant="secondary" size="sm" onClick={() => alert('Downloading resume preview...')}>
@@ -223,10 +223,10 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
                   </Button>
                 </div>
 
-                <div className="p-8 border border-dashed border-[#ECECF3] rounded-[16px] text-center bg-[#F5F5FA]/50">
-                  <FileText className="w-10 h-10 text-[#9CA3AF] mx-auto mb-2" />
-                  <p className="text-[14px] font-semibold text-[#111827]">PDF Preview Container</p>
-                  <p className="text-[12px] text-[#6B7280] mt-1">
+                <div className="p-8 border border-dashed border-border rounded-element text-center bg-bgCanvas/50">
+                  <FileText className="w-10 h-10 text-text-disabled mx-auto mb-2" />
+                  <p className="text-body-ui font-semibold text-text-primary">PDF Preview Container</p>
+                  <p className="text-caption-ui text-text-secondary mt-1">
                     Candidate's resume and portfolio documents are verified and attached.
                   </p>
                 </div>
@@ -240,26 +240,26 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
                   candidate.scorecards.map((scorecard) => (
                     <div
                       key={scorecard.id}
-                      className="p-5 rounded-[16px] border border-[#ECECF3] bg-[#F8F9FC] space-y-3"
+                      className="p-5 rounded-element border border-border bg-surface-muted space-y-3"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <Avatar name={scorecard.interviewerName} size="sm" />
                           <div>
-                            <h4 className="text-[14px] font-semibold text-[#111827]">
+                            <h4 className="text-body-ui font-semibold text-text-primary">
                               {scorecard.interviewerName}
                             </h4>
-                            <p className="text-[12px] text-[#6B7280]">{scorecard.interviewerRole}</p>
+                            <p className="text-caption-ui text-text-secondary">{scorecard.interviewerRole}</p>
                           </div>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <div className="flex items-center text-[#F59E0B] gap-0.5">
+                          <div className="flex items-center text-accent-amber gap-0.5">
                             {[1, 2, 3, 4, 5].map((star) => (
                               <Star
                                 key={star}
                                 className={`w-4 h-4 ${
-                                  star <= scorecard.rating ? 'fill-[#F59E0B]' : 'text-[#D1D5DB]'
+                                  star <= scorecard.rating ? 'fill-accent-amber' : 'text-text-disabled'
                                 }`}
                               />
                             ))}
@@ -271,20 +271,20 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 text-[13px]">
-                        <div className="bg-white p-3 rounded-[12px] border border-[#ECECF3]">
-                          <span className="font-semibold text-[#16A34A] block mb-1">Key Strengths</span>
-                          <p className="text-[#374151]">{scorecard.strengths}</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 text-caption-ui">
+                        <div className="bg-surface p-3 rounded-element border border-border">
+                          <span className="font-semibold text-status-successText block mb-1">Key Strengths</span>
+                          <p className="text-text-primary">{scorecard.strengths}</p>
                         </div>
-                        <div className="bg-white p-3 rounded-[12px] border border-[#ECECF3]">
-                          <span className="font-semibold text-[#DC2626] block mb-1">Key Concerns</span>
-                          <p className="text-[#374151]">{scorecard.concerns}</p>
+                        <div className="bg-surface p-3 rounded-element border border-border">
+                          <span className="font-semibold text-status-dangerText block mb-1">Key Concerns</span>
+                          <p className="text-text-primary">{scorecard.concerns}</p>
                         </div>
                       </div>
                     </div>
                   ))
                 ) : (
-                  <div className="text-center py-8 bg-[#F8F9FC] rounded-[16px] text-[#6B7280] text-[14px]">
+                  <div className="text-center py-8 bg-surface-muted rounded-element text-text-secondary text-body-ui">
                     No scorecards submitted yet for this candidate.
                   </div>
                 )}
@@ -300,7 +300,7 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
                     placeholder="Add a team note or feedback memory..."
                     value={newNote}
                     onChange={(e) => setNewNote(e.target.value)}
-                    className="flex-1 h-[40px] px-3.5 bg-white border border-[#ECECF3] rounded-[12px] text-[14px] font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
+                    className="flex-1 h-[40px] px-3.5 bg-surface border border-border rounded-element text-body-ui font-medium text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                   <Button type="submit" variant="primary" icon={<Plus className="w-4 h-4" />}>
                     Add Note
@@ -311,7 +311,7 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
                   {notes.map((note, idx) => (
                     <div
                       key={idx}
-                      className="p-3.5 bg-[#F8F9FC] rounded-[12px] border border-[#ECECF3] text-[14px] text-[#111827]"
+                      className="p-3.5 bg-surface-muted rounded-element border border-border text-body-ui text-text-primary"
                     >
                       {note}
                     </div>
@@ -325,14 +325,14 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
         {/* Right 1/3 Stepper Column */}
         <div className="space-y-6">
           {/* Pinned Next Step Card */}
-          <Card className="bg-[#EEF0FD] border-[#C7D2FE]">
+          <Card className="bg-primary-tint border-primary-tint2">
             <div className="flex items-start gap-3">
-              <div className="p-2 rounded-full bg-[#4F46E5] text-white shrink-0">
+              <div className="p-2 rounded-full bg-primary text-white shrink-0">
                 <AlertCircle className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-[14px] font-bold text-[#4F46E5]">Next Action Required</h4>
-                <p className="text-[13px] text-[#374151] mt-1">
+                <h4 className="text-body-ui font-bold text-primary">Next Action Required</h4>
+                <p className="text-caption-ui text-text-primary mt-1">
                   Technical Panel Scorecard ready. Move {candidate.name.split(' ')[0]} to <strong>Executive Call</strong> or issue an Offer.
                 </p>
                 <Button

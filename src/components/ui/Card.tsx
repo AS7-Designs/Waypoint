@@ -21,7 +21,7 @@ export const Card: React.FC<CardProps> = ({
     <div
       className={twMerge(
         clsx(
-          'bg-white rounded-[20px] p-6 shadow-[0_2_8px_rgba(17,24,39,0.04),0_1_2px_rgba(17,24,39,0.03)] border border-[#ECECF3]',
+          'bg-surface rounded-card p-6 shadow-card border border-border',
           className
         )
       )}
@@ -36,7 +36,7 @@ export const Card: React.FC<CardProps> = ({
           )}
         >
           {typeof title === 'string' ? (
-            <h2 className="text-[20px] leading-[28px] font-bold text-[#111827]">
+            <h2 className="text-h2 text-text-primary">
               {title}
             </h2>
           ) : (

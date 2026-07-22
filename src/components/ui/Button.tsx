@@ -17,13 +17,13 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-[12px] transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#4F46E5] disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-element transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variants = {
-    primary: 'bg-[#4F46E5] text-white hover:bg-[#4338CA] shadow-sm',
-    secondary: 'bg-white text-[#111827] border border-[#ECECF3] hover:bg-[#F8F9FC] shadow-sm',
-    ghost: 'bg-transparent text-[#6B7280] hover:text-[#111827] hover:bg-[#F3F4F6]',
-    destructive: 'bg-[#FB7185] text-white hover:bg-[#f43f5e]',
+    primary: 'bg-primary text-white hover:bg-primary-dark shadow-sm',
+    secondary: 'bg-surface text-text-primary border border-border hover:bg-surface-muted shadow-sm',
+    ghost: 'bg-transparent text-text-secondary hover:text-text-primary hover:bg-status-neutralBg',
+    destructive: 'bg-accent-rose text-white hover:opacity-90',
   };
 
   const sizes = {

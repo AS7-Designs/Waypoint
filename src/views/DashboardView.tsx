@@ -65,12 +65,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
   const getQuickIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Smartphone': return <Smartphone className="w-5 h-5 text-[#4F46E5]" />;
-      case 'Calendar': return <CalendarIcon className="w-5 h-5 text-[#F59E0B]" />;
-      case 'UserPlus': return <UserPlus className="w-5 h-5 text-[#14B8A6]" />;
-      case 'FileCheck': return <FileCheck className="w-5 h-5 text-[#4F46E5]" />;
-      case 'Code': return <Code className="w-5 h-5 text-[#FB7185]" />;
-      default: return <Send className="w-5 h-5 text-[#8B5CF6]" />;
+      case 'Smartphone': return <Smartphone className="w-5 h-5 text-primary" />;
+      case 'Calendar': return <CalendarIcon className="w-5 h-5 text-accent-amber" />;
+      case 'UserPlus': return <UserPlus className="w-5 h-5 text-accent-teal" />;
+      case 'FileCheck': return <FileCheck className="w-5 h-5 text-primary" />;
+      case 'Code': return <Code className="w-5 h-5 text-accent-rose" />;
+      default: return <Send className="w-5 h-5 text-purple-600" />;
     }
   };
 
@@ -89,13 +89,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       <Card
         title={
           <div className="flex items-center gap-2">
-            <h2 className="text-[20px] font-bold text-[#111827]">Add More Task</h2>
+            <h2 className="text-h2 font-bold text-text-primary">Add More Task</h2>
           </div>
         }
         action={
           <button 
             onClick={onNavigateToPipeline}
-            className="text-[14px] font-semibold text-[#4F46E5] hover:underline flex items-center gap-1"
+            className="text-body-ui font-semibold text-primary hover:underline flex items-center gap-1"
           >
             See all
           </button>
@@ -129,7 +129,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           className="lg:col-span-2 flex flex-col justify-between"
           title="New Employee Progress"
           action={
-            <button className="text-[14px] font-semibold text-[#4F46E5] hover:bg-[#EEF0FD] px-3 py-1.5 rounded-[12px] transition-colors">
+            <button className="text-body-ui font-semibold text-primary hover:bg-primary-tint px-3 py-1.5 rounded-element transition-colors">
               Month ▾
             </button>
           }
@@ -166,14 +166,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
 
           {/* Chart Legend */}
-          <div className="flex items-center gap-6 mt-4 pt-4 border-t border-[#ECECF3]">
+          <div className="flex items-center gap-6 mt-4 pt-4 border-t border-border">
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-[#4F46E5]" />
-              <span className="text-[12px] font-medium text-[#6B7280]">Completed Task</span>
+              <span className="w-3 h-3 rounded-full bg-primary" />
+              <span className="text-caption-ui font-medium text-text-secondary">Completed Task</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-[#C7D2FE]" />
-              <span className="text-[12px] font-medium text-[#6B7280]">Late Assignments</span>
+              <span className="w-3 h-3 rounded-full bg-primary-tint2" />
+              <span className="text-caption-ui font-medium text-text-secondary">Late Assignments</span>
             </div>
           </div>
         </Card>
@@ -187,25 +187,25 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 <div
                   key={todo.id}
                   onClick={() => toggleTodo(todo.id)}
-                  className="flex items-center justify-between p-3 rounded-[12px] hover:bg-[#F8F9FC] border border-[#ECECF3] cursor-pointer transition-colors group"
+                  className="flex items-center justify-between p-3 rounded-element hover:bg-surface-muted border border-border cursor-pointer transition-colors group"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <button className="text-[#4F46E5] shrink-0">
+                    <button className="text-primary shrink-0">
                       {isDone ? (
-                        <CheckCircle2 className="w-5 h-5 text-[#16A34A] fill-[#DCFCE7]" />
+                        <CheckCircle2 className="w-5 h-5 text-status-successText fill-status-successBg" />
                       ) : (
-                        <Circle className="w-5 h-5 text-[#9CA3AF] group-hover:text-[#4F46E5]" />
+                        <Circle className="w-5 h-5 text-text-disabled group-hover:text-primary" />
                       )}
                     </button>
                     <div className="min-w-0">
                       <h4
-                        className={`text-[14px] font-semibold truncate ${
-                          isDone ? 'line-through text-[#9CA3AF]' : 'text-[#111827]'
+                        className={`text-body-ui font-semibold truncate ${
+                          isDone ? 'line-through text-text-disabled' : 'text-text-primary'
                         }`}
                       >
                         {todo.title}
                       </h4>
-                      <p className="text-[12px] text-[#6B7280] flex items-center gap-1 mt-0.5">
+                      <p className="text-caption-ui text-text-secondary flex items-center gap-1 mt-0.5">
                         <Clock className="w-3 h-3" />
                         {todo.timestamp}
                       </p>
@@ -228,7 +228,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           action={
             <button
               onClick={onNavigateToPipeline}
-              className="text-[14px] font-semibold text-[#4F46E5] hover:underline"
+              className="text-body-ui font-semibold text-primary hover:underline"
             >
               View Pipeline
             </button>
@@ -239,10 +239,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <div
                 key={interview.id}
                 onClick={() => onNavigateToCandidate('c1')}
-                className="flex items-center justify-between p-3 rounded-[12px] bg-[#F8F9FC] border border-[#ECECF3] hover:border-[#4F46E5]/30 cursor-pointer transition-all"
+                className="flex items-center justify-between p-3 rounded-element bg-surface-muted border border-border hover:border-primary/30 cursor-pointer transition-all"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-[10px] bg-white border border-[#ECECF3] flex items-center justify-center text-[#4F46E5] shrink-0">
+                  <div className="w-9 h-9 rounded-element bg-surface border border-border flex items-center justify-center text-primary shrink-0">
                     {interview.type === 'Panel' || interview.type === 'Onsite' ? (
                       <Video className="w-4 h-4" />
                     ) : (
@@ -250,10 +250,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     )}
                   </div>
                   <div>
-                    <h4 className="text-[14px] font-semibold text-[#111827]">
+                    <h4 className="text-body-ui font-semibold text-text-primary">
                       ({interview.type}) {interview.candidateName}
                     </h4>
-                    <p className="text-[12px] text-[#6B7280] flex items-center gap-1">
+                    <p className="text-caption-ui text-text-secondary flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       {interview.time}
                     </p>
@@ -276,19 +276,19 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           {/* Mini Calendar Header */}
           <div className="mb-4">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-[14px] font-bold text-[#111827]">July 2025</span>
-              <div className="flex items-center gap-1 text-[#6B7280]">
-                <button className="p-1 hover:bg-[#F3F4F6] rounded-full">
+              <span className="text-body-ui font-bold text-text-primary">July 2025</span>
+              <div className="flex items-center gap-1 text-text-secondary">
+                <button className="p-1 hover:bg-status-neutralBg rounded-full">
                   <ChevronLeft className="w-4 h-4" />
                 </button>
-                <button className="p-1 hover:bg-[#F3F4F6] rounded-full">
+                <button className="p-1 hover:bg-status-neutralBg rounded-full">
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
             {/* Days strip */}
-            <div className="grid grid-cols-7 text-center gap-1 text-[12px] font-semibold text-[#6B7280]">
+            <div className="grid grid-cols-7 text-center gap-1 text-caption-ui font-semibold text-text-secondary">
               <span>Mon</span>
               <span>Tue</span>
               <span>Wed</span>
@@ -297,11 +297,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <span>Sat</span>
               <span>Sun</span>
             </div>
-            <div className="grid grid-cols-7 text-center gap-1 text-[12px] font-medium text-[#111827] mt-2">
+            <div className="grid grid-cols-7 text-center gap-1 text-caption-ui font-medium text-text-primary mt-2">
               <span className="py-1">5</span>
               <span className="py-1">6</span>
               <span className="py-1">7</span>
-              <span className="py-1 bg-[#4F46E5] text-white rounded-full font-bold">8</span>
+              <span className="py-1 bg-primary text-white rounded-full font-bold">8</span>
               <span className="py-1">9</span>
               <span className="py-1">10</span>
               <span className="py-1">11</span>
@@ -309,10 +309,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
 
           {/* Daily Schedule */}
-          <div className="border-t border-[#ECECF3] pt-4">
+          <div className="border-t border-border pt-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[14px] font-bold text-[#111827]">Schedule</h3>
-              <button className="p-1 text-[#4F46E5] hover:bg-[#EEF0FD] rounded-full">
+              <h3 className="text-body-ui font-bold text-text-primary">Schedule</h3>
+              <button className="p-1 text-primary hover:bg-primary-tint rounded-full">
                 <Plus className="w-4 h-4" />
               </button>
             </div>
@@ -321,17 +321,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               {mockScheduleItems.map((item) => (
                 <div
                   key={item.id}
-                  className={`p-3 rounded-[14px] flex items-center justify-between border transition-all ${
+                  className={`p-3 rounded-element flex items-center justify-between border transition-all ${
                     item.type === 'interview'
-                      ? 'bg-[#EEF0FD] border-[#C7D2FE] text-[#4F46E5]'
-                      : 'bg-[#FEF3C7]/60 border-[#FDE68A] text-[#D97706]'
+                      ? 'bg-primary-tint border-primary-tint2 text-primary'
+                      : 'bg-amber-50 border-amber-200 text-amber-700'
                   }`}
                 >
                   <div>
-                    <h4 className="text-[13px] font-bold text-[#111827]">
+                    <h4 className="text-caption-ui font-bold text-text-primary">
                       {item.title}
                     </h4>
-                    <p className="text-[11px] font-medium opacity-80 mt-0.5">
+                    <p className="text-caption-ui font-medium opacity-80 mt-0.5">
                       {item.time}
                     </p>
                   </div>

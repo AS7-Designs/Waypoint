@@ -14,7 +14,7 @@ export interface AppTileProps {
 export const AppTile: React.FC<AppTileProps> = ({
   label,
   icon,
-  bgColor = 'bg-[#EEF0FD]',
+  bgColor = 'bg-primary-tint',
   onClick,
   className,
 }) => {
@@ -23,7 +23,7 @@ export const AppTile: React.FC<AppTileProps> = ({
       onClick={onClick}
       className={twMerge(
         clsx(
-          'flex items-center justify-between p-3 bg-white hover:bg-[#F8F9FC] border border-[#ECECF3] rounded-[16px] transition-all duration-150 ease-out group text-left w-full shadow-sm',
+          'flex items-center justify-between p-3 bg-surface hover:bg-surface-muted border border-border rounded-element transition-all duration-150 ease-out group text-left w-full shadow-sm',
           className
         )
       )}
@@ -32,18 +32,18 @@ export const AppTile: React.FC<AppTileProps> = ({
         <div
           className={twMerge(
             clsx(
-              'w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0 transition-transform group-hover:scale-105',
+              'w-10 h-10 rounded-element flex items-center justify-center shrink-0 transition-transform group-hover:scale-105',
               bgColor
             )
           )}
         >
           {icon}
         </div>
-        <span className="text-[14px] leading-[20px] font-semibold text-[#111827] truncate">
+        <span className="text-body-ui font-semibold text-text-primary truncate">
           {label}
         </span>
       </div>
-      <ChevronRight className="w-4 h-4 text-[#9CA3AF] group-hover:text-[#6B7280] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+      <ChevronRight className="w-4 h-4 text-text-disabled group-hover:text-text-secondary group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
     </button>
   );
 };

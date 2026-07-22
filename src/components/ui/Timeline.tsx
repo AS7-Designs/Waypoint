@@ -36,7 +36,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, className }) => {
               <div
                 className={clsx(
                   'absolute left-[15px] top-[30px] bottom-[-24px] w-[2px]',
-                  isCompleted ? 'bg-[#4F46E5]' : 'bg-[#ECECF3]'
+                  isCompleted ? 'bg-primary' : 'bg-border'
                 )}
               />
             )}
@@ -44,16 +44,16 @@ export const Timeline: React.FC<TimelineProps> = ({ items, className }) => {
             {/* Indicator Circle */}
             <div className="shrink-0 z-10">
               {isCompleted ? (
-                <div className="w-8 h-8 rounded-full bg-[#4F46E5] flex items-center justify-center text-white shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shadow-sm">
                   <Check className="w-4 h-4" />
                 </div>
               ) : isActive ? (
-                <div className="w-8 h-8 rounded-full bg-[#EEF0FD] border-2 border-[#4F46E5] flex items-center justify-center text-[#4F46E5]">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#4F46E5]" />
+                <div className="w-8 h-8 rounded-full bg-primary-tint border-2 border-primary flex items-center justify-center text-primary">
+                  <div className="w-2.5 h-2.5 rounded-full bg-primary" />
                 </div>
               ) : (
-                <div className="w-8 h-8 rounded-full bg-white border-2 border-[#ECECF3] flex items-center justify-center text-[#9CA3AF]">
-                  <div className="w-2 h-2 rounded-full bg-[#9CA3AF]" />
+                <div className="w-8 h-8 rounded-full bg-surface border-2 border-border flex items-center justify-center text-text-disabled">
+                  <div className="w-2 h-2 rounded-full bg-text-disabled" />
                 </div>
               )}
             </div>
@@ -61,18 +61,18 @@ export const Timeline: React.FC<TimelineProps> = ({ items, className }) => {
             {/* Content */}
             <div className="flex-1 pt-1">
               <div className="flex items-center justify-between gap-2">
-                <h4 className="text-[14px] leading-[20px] font-semibold text-[#111827]">
+                <h4 className="text-body-ui font-semibold text-text-primary">
                   {item.title}
                 </h4>
                 {item.statusPill && (
                   <StatusPill variant={item.statusPill.variant} label={item.statusPill.label} />
                 )}
               </div>
-              <p className="text-[12px] leading-[16px] font-medium text-[#6B7280] mt-0.5">
+              <p className="text-caption-ui text-text-secondary mt-0.5">
                 {item.timestamp}
               </p>
               {item.description && (
-                <p className="text-[14px] leading-[20px] font-normal text-[#6B7280] mt-1 bg-[#F8F9FC] p-2.5 rounded-[12px] border border-[#ECECF3]">
+                <p className="text-body-regular text-text-secondary mt-1 bg-surface-muted p-2.5 rounded-element border border-border">
                   {item.description}
                 </p>
               )}

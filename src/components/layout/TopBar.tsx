@@ -18,9 +18,9 @@ export const TopBar: React.FC<TopBarProps> = ({
   onSearchChange,
 }) => {
   return (
-    <header className="h-[72px] bg-[#F5F5FA] pl-[292px] pr-8 flex items-center justify-between fixed top-0 left-0 right-0 z-20">
+    <header className="h-[72px] bg-bgCanvas pl-[292px] pr-8 flex items-center justify-between fixed top-0 left-0 right-0 z-20">
       {/* Page Title */}
-      <h1 className="text-[28px] leading-[36px] font-bold text-[#111827]">
+      <h1 className="text-display text-text-primary">
         {title}
       </h1>
 
@@ -28,34 +28,34 @@ export const TopBar: React.FC<TopBarProps> = ({
       <div className="flex items-center gap-5">
         {/* Global Search Pill (360px) */}
         <div className="relative w-[360px]">
-          <Search className="w-4 h-4 text-[#9CA3AF] absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-text-disabled absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search candidates, tasks, interviews..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full h-[40px] pl-10 pr-4 bg-white border border-[#ECECF3] rounded-full text-[14px] font-medium text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] shadow-sm transition-all"
+            className="w-full h-[40px] pl-10 pr-4 bg-surface border border-border rounded-full text-body-ui text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all"
           />
         </div>
 
         {/* Role Segmented Switcher */}
-        <div className="flex items-center bg-[#F3F4F6] p-1 rounded-full border border-[#ECECF3]">
+        <div className="flex items-center bg-status-neutralBg p-1 rounded-full border border-border">
           <button
             onClick={() => onRoleToggle('Recruiter')}
-            className={`px-3 py-1 text-[12px] font-semibold rounded-full transition-all ${
+            className={`px-3 py-1 text-caption-ui font-semibold rounded-full transition-all ${
               userRole === 'Recruiter'
-                ? 'bg-white text-[#4F46E5] shadow-sm'
-                : 'text-[#6B7280] hover:text-[#111827]'
+                ? 'bg-surface text-primary shadow-sm'
+                : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             Recruiter
           </button>
           <button
             onClick={() => onRoleToggle('Hiring Manager')}
-            className={`px-3 py-1 text-[12px] font-semibold rounded-full transition-all ${
+            className={`px-3 py-1 text-caption-ui font-semibold rounded-full transition-all ${
               userRole === 'Hiring Manager'
-                ? 'bg-white text-[#14B8A6] shadow-sm'
-                : 'text-[#6B7280] hover:text-[#111827]'
+                ? 'bg-surface text-accent-teal shadow-sm'
+                : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             Manager
@@ -63,13 +63,13 @@ export const TopBar: React.FC<TopBarProps> = ({
         </div>
 
         {/* Notifications Bell */}
-        <button className="relative w-10 h-10 rounded-full bg-white border border-[#ECECF3] flex items-center justify-center text-[#6B7280] hover:text-[#111827] hover:bg-[#F8F9FC] shadow-sm transition-all">
+        <button className="relative w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-muted shadow-sm transition-all">
           <Bell className="w-5 h-5" />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-[#FB7185] rounded-full" />
+          <span className="absolute top-2 right-2 w-2 h-2 bg-accent-rose rounded-full" />
         </button>
 
         {/* User Profile */}
-        <div className="flex items-center gap-3 pl-2 border-l border-[#ECECF3]">
+        <div className="flex items-center gap-3 pl-2 border-l border-border">
           <Avatar
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100"
             name="Eve Baker"
@@ -77,11 +77,11 @@ export const TopBar: React.FC<TopBarProps> = ({
             size="md"
           />
           <div className="hidden md:block text-left">
-            <div className="text-[14px] font-semibold text-[#111827] leading-tight flex items-center gap-1">
+            <div className="text-body-ui font-semibold text-text-primary leading-tight flex items-center gap-1">
               <span>Eve Baker</span>
-              <ChevronDown className="w-3.5 h-3.5 text-[#6B7280]" />
+              <ChevronDown className="w-3.5 h-3.5 text-text-secondary" />
             </div>
-            <div className="text-[12px] font-medium text-[#6B7280]">
+            <div className="text-caption-ui text-text-secondary">
               {userRole}
             </div>
           </div>

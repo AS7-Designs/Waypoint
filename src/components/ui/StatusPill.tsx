@@ -17,17 +17,17 @@ export const StatusPill: React.FC<StatusPillProps> = ({
   className,
 }) => {
   const styles = {
-    success: 'bg-[#DCFCE7] text-[#16A34A]',
-    progress: 'bg-[#E0E7FF] text-[#4F46E5]',
-    neutral: 'bg-[#F3F4F6] text-[#6B7280]',
-    danger: 'bg-[#FEE2E2] text-[#DC2626]',
+    success: 'bg-status-successBg text-status-successText',
+    progress: 'bg-status-progressBg text-status-progressText',
+    neutral: 'bg-status-neutralBg text-status-neutralText',
+    danger: 'bg-status-dangerBg text-status-dangerText',
   };
 
   return (
     <span
       className={twMerge(
         clsx(
-          'inline-flex items-center justify-center rounded-full text-[12px] leading-[16px] font-medium py-1 px-3 whitespace-nowrap',
+          'inline-flex items-center justify-center rounded-full text-caption-ui py-1 px-3 whitespace-nowrap',
           styles[variant],
           className
         )

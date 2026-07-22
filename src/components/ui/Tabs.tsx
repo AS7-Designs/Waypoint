@@ -22,7 +22,7 @@ export const Tabs: React.FC<TabsProps> = ({
   className,
 }) => {
   return (
-    <div className={twMerge(clsx('flex border-b border-[#ECECF3] gap-6', className))}>
+    <div className={twMerge(clsx('flex border-b border-border gap-6', className))}>
       {tabs.map((tab) => {
         const isActive = tab.id === activeTab;
         return (
@@ -30,27 +30,27 @@ export const Tabs: React.FC<TabsProps> = ({
             key={tab.id}
             onClick={() => onChange(tab.id)}
             className={clsx(
-              'pb-3 text-[14px] leading-[20px] font-semibold transition-all relative whitespace-nowrap flex items-center gap-2',
+              'pb-3 text-body-ui font-semibold transition-all relative whitespace-nowrap flex items-center gap-2',
               isActive
-                ? 'text-[#4F46E5]'
-                : 'text-[#6B7280] hover:text-[#111827]'
+                ? 'text-primary'
+                : 'text-text-secondary hover:text-text-primary'
             )}
           >
             <span>{tab.label}</span>
             {tab.count !== undefined && (
               <span
                 className={clsx(
-                  'text-[12px] px-2 py-0.5 rounded-full font-medium',
+                  'text-caption-ui px-2 py-0.5 rounded-full font-medium',
                   isActive
-                    ? 'bg-[#EEF0FD] text-[#4F46E5]'
-                    : 'bg-[#F3F4F6] text-[#6B7280]'
+                    ? 'bg-primary-tint text-primary'
+                    : 'bg-status-neutralBg text-status-neutralText'
                 )}
               >
                 {tab.count}
               </span>
             )}
             {isActive && (
-              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#4F46E5] rounded-t-full" />
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary rounded-t-full" />
             )}
           </button>
         );

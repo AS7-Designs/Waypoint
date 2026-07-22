@@ -72,11 +72,11 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
         
         {/* Center Text */}
         <div className="absolute flex flex-col items-center justify-center text-center">
-          <span className="text-[32px] leading-[36px] font-bold text-[#111827]">
+          <span className="text-display font-bold text-text-primary">
             {percentage}%
           </span>
           {title && (
-            <span className="text-[12px] leading-[16px] font-medium text-[#6B7280]">
+            <span className="text-caption-ui text-text-secondary">
               {title}
             </span>
           )}
@@ -92,7 +92,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
                 className="w-3 h-3 rounded-full shrink-0"
                 style={{ backgroundColor: item.color }}
               />
-              <span className="text-[12px] leading-[16px] font-medium text-[#6B7280] truncate">
+              <span className="text-caption-ui text-text-secondary truncate">
                 {item.label}
               </span>
             </div>
