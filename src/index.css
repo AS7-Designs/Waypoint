@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg-canvas:      #F5F5FA;   /* page background, light lavender-grey */
+  --color-surface:        #FFFFFF;   /* cards, sidebar, modals */
+  --color-surface-muted:  #F8F9FC;   /* nested panels inside cards */
+  --color-border:         #ECECF3;   /* hairline borders on cards/inputs */
+
+  --color-primary:        #4F46E5;   /* indigo — primary actions, active nav, bars */
+  --color-primary-dark:   #4338CA;   /* hover/pressed state */
+  --color-primary-tint:   #EEF0FD;   /* active nav background, light chart bars */
+  --color-primary-tint-2: #C7D2FE;   /* secondary chart series, subtle fills */
+
+  --color-accent-teal:    #14B8A6;   /* "remote"/secondary status, secondary charts */
+  --color-accent-amber:   #F59E0B;   /* scheduled/in-progress highlight card */
+  --color-accent-rose:    #FB7185;   /* destructive/at-risk sparingly */
+
+  --color-text-primary:   #111827;   /* headings, primary text */
+  --color-text-secondary: #6B7280;   /* metadata, timestamps, labels */
+  --color-text-disabled:  #9CA3AF;
+
+  --color-success-bg:     #DCFCE7;
+  --color-success-text:   #16A34A;
+  --color-progress-bg:    #E0E7FF;
+  --color-progress-text:  #4F46E5;
+  --color-neutral-bg:     #F3F4F6;
+  --color-neutral-text:   #6B7280;
+  --color-danger-bg:      #FEE2E2;
+  --color-danger-text:    #DC2626;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Typography Utility Classes */
+.text-display {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+.text-h2 {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+}
+
+.text-h3 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.text-body-ui {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.text-body-regular {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.text-caption-ui {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #CBD5E1;
+}

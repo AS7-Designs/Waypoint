@@ -1,0 +1,188 @@
+import { Candidate, NewHire, TodoItem, ActiveInterview, CalendarScheduleItem, QuickActionItem } from '../types';
+
+export const mockQuickActions: QuickActionItem[] = [
+  { id: '1', label: 'Post a Job', iconName: 'Smartphone', bgColor: 'bg-indigo-50', iconColor: 'text-indigo-600', actionKey: 'post-job' },
+  { id: '2', label: 'Schedule Interview', iconName: 'Calendar', bgColor: 'bg-amber-50', iconColor: 'text-amber-600', actionKey: 'schedule' },
+  { id: '3', label: 'Add Candidate', iconName: 'UserPlus', bgColor: 'bg-teal-50', iconColor: 'text-teal-600', actionKey: 'add-candidate' },
+  { id: '4', label: 'Assign Onboarding', iconName: 'FileCheck', bgColor: 'bg-indigo-50', iconColor: 'text-indigo-600', actionKey: 'assign-onboarding' },
+  { id: '5', label: 'Review Feedback', iconName: 'Code', bgColor: 'bg-rose-50', iconColor: 'text-rose-600', actionKey: 'review-feedback' },
+  { id: '6', label: 'Send Offer', iconName: 'Send', bgColor: 'bg-purple-50', iconColor: 'text-purple-600', actionKey: 'send-offer' },
+];
+
+export const mockHiringFunnelData = [
+  { month: 'Jan', applied: 55, hired: 40 },
+  { month: 'Feb', applied: 40, hired: 50 },
+  { month: 'Mar', applied: 75, hired: 50 },
+  { month: 'Apr', applied: 50, hired: 35 },
+  { month: 'May', applied: 68, hired: 45 },
+  { month: 'Jun', applied: 48, hired: 42 },
+  { month: 'Jul', applied: 55, hired: 32 },
+];
+
+export const mockTodoList: TodoItem[] = [
+  { id: 't1', title: 'Review UI/UX Design Web Scorecard', timestamp: '10 AM, 7 Jul 2025', status: 'Done', category: 'hiring', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100' },
+  { id: 't2', title: 'Send Mobile App Dev Laptop Request', timestamp: '12 AM, 7 Jul 2025', status: 'Done', category: 'onboarding', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100' },
+  { id: 't3', title: 'Screening Call with Alex Rivera', timestamp: '10 AM, 8 Jul 2025', status: 'Process', category: 'hiring', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100' },
+  { id: 't4', title: 'Assign Security Compliance Training', timestamp: '8 AM, 9 Jul 2025', status: 'Not Started', category: 'onboarding', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100' },
+  { id: 't5', title: 'Collect Signed Offer Letter — Marcus', timestamp: '1 PM, 10 Jul 2025', status: 'Not Started', category: 'onboarding', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100' },
+];
+
+export const mockActiveInterviews: ActiveInterview[] = [
+  { id: 'i1', candidateName: 'Sarah Jenkins', candidateAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100', role: 'Senior Product Designer', type: 'Onsite', time: '9:00 AM, 7 Jul 2025', status: 'Completed' },
+  { id: 'i2', candidateName: 'David Chen', candidateAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100', role: 'Frontend Engineer', type: 'Technical', time: '11:30 AM, 7 Jul 2025', status: 'Completed' },
+  { id: 'i3', candidateName: 'Alex Rivera', candidateAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100', role: 'UX Researcher', type: 'Phone', time: '9:00 AM, 8 Jul 2025', status: 'In Progress' },
+  { id: 'i4', candidateName: 'Elena Rostova', candidateAvatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100', role: 'Product Manager', type: 'Panel', time: '2:00 PM, 9 Jul 2025', status: 'Scheduled' },
+];
+
+export const mockScheduleItems: CalendarScheduleItem[] = [
+  { id: 's1', title: 'Work Meeting (Technical Panel)', time: '8.00 - 9.00 AM', type: 'interview' },
+  { id: 's2', title: 'UI/UX Design Dashboard Check-in', time: '9.00 - 10.00 AM', type: 'onboarding' },
+];
+
+export const mockCandidates: Candidate[] = [
+  {
+    id: 'c1',
+    name: 'Sarah Jenkins',
+    email: 'sarah.j@example.com',
+    role: 'Senior Product Designer',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
+    stage: 'Interview',
+    appliedDate: '10 Jun 2025',
+    recruiter: 'Eve Baker',
+    source: 'LinkedIn',
+    tags: ['Design System', 'Figma', 'Referral'],
+    daysInStage: 4,
+    hasOverdueFeedback: true,
+    phone: '+1 (555) 234-5678',
+    location: 'San Francisco, CA',
+    resumeUrl: 'sarah_jenkins_resume.pdf',
+    scorecards: [
+      {
+        id: 'sc1',
+        candidateId: 'c1',
+        interviewerName: 'Michael Chang',
+        interviewerRole: 'Lead Designer',
+        rating: 4,
+        strengths: 'Strong portfolio, intuitive component architecture mindset.',
+        concerns: 'Would like to explore motion graphics experience deeper.',
+        recommendHire: true,
+        date: '2 Jul 2025',
+      },
+    ],
+    notes: [
+      'Candidate prefers remote or hybrid flexibility (2 days in office).',
+      'Expecting offer in upper band for Senior tier.',
+    ],
+  },
+  {
+    id: 'c2',
+    name: 'Alex Rivera',
+    email: 'alex.r@example.com',
+    role: 'UX Researcher',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+    stage: 'Screening',
+    appliedDate: '14 Jun 2025',
+    recruiter: 'Eve Baker',
+    source: 'Careers Site',
+    tags: ['User Testing', 'Qualitative', 'B2B SaaS'],
+    daysInStage: 2,
+    scorecards: [],
+    notes: ['Initial recruiter screen went great. Recommended for hiring manager call.'],
+  },
+  {
+    id: 'c3',
+    name: 'David Chen',
+    email: 'david.chen@example.com',
+    role: 'Frontend Engineer',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+    stage: 'Offer',
+    appliedDate: '1 Jun 2025',
+    recruiter: 'Marcus Vance',
+    source: 'Referral',
+    tags: ['React', 'TypeScript', 'Tailwind'],
+    daysInStage: 1,
+    scorecards: [
+      {
+        id: 'sc2',
+        candidateId: 'c3',
+        interviewerName: 'Sarah Connor',
+        interviewerRole: 'Engineering Manager',
+        rating: 5,
+        strengths: 'Exceptional code clarity, mastered state management & accessibility.',
+        concerns: 'None, outstanding interview.',
+        recommendHire: true,
+        date: '28 Jun 2025',
+      },
+    ],
+    notes: ['Offer letter drafted and sent on July 5.'],
+  },
+  {
+    id: 'c4',
+    name: 'Elena Rostova',
+    email: 'elena.r@example.com',
+    role: 'Product Manager',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150',
+    stage: 'Applied',
+    appliedDate: '28 Jun 2025',
+    recruiter: 'Eve Baker',
+    source: 'LinkedIn',
+    tags: ['Agile', 'Roadmapping', 'Growth'],
+    daysInStage: 5,
+    scorecards: [],
+  },
+  {
+    id: 'c5',
+    name: 'Marcus Vance',
+    email: 'marcus.v@example.com',
+    role: 'DevOps Engineer',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
+    stage: 'Hired',
+    appliedDate: '15 May 2025',
+    recruiter: 'Eve Baker',
+    source: 'Agency',
+    tags: ['AWS', 'Kubernetes', 'Terraform'],
+    daysInStage: 0,
+    scorecards: [],
+  },
+];
+
+export const mockNewHires: NewHire[] = [
+  {
+    id: 'nh1',
+    candidateId: 'c5',
+    name: 'Marcus Vance',
+    role: 'DevOps Engineer',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
+    startDate: '15 Jul 2025',
+    manager: 'Sarah Connor',
+    buddy: 'David Chen',
+    progress: 65,
+    missingRequiredDocs: true,
+    tasks: [
+      { id: 'k1', title: 'Sign Offer & Non-Disclosure Agreement', owner: 'HR', phase: 'Pre-boarding', dueDate: '10 Jul 2025', status: 'Done', isRequiredDoc: true },
+      { id: 'k2', title: 'Upload Government Photo ID & Tax Forms', owner: 'New Hire', phase: 'Pre-boarding', dueDate: '12 Jul 2025', status: 'Not Started', isRequiredDoc: true },
+      { id: 'k3', title: 'Order MacBook Pro & Peripheral Setup', owner: 'IT', phase: 'Pre-boarding', dueDate: '13 Jul 2025', status: 'Done' },
+      { id: 'k4', title: 'Day 1 Welcome Orientation & Team Lunch', owner: 'Manager', phase: 'Day 1', dueDate: '15 Jul 2025', status: 'Process' },
+      { id: 'k5', title: 'Setup GitHub & AWS IAM Credentials', owner: 'IT', phase: 'Day 1', dueDate: '15 Jul 2025', status: 'Done' },
+      { id: 'k6', title: '1-on-1 Alignment with Engineering Director', owner: 'Manager', phase: 'Week 1', dueDate: '18 Jul 2025', status: 'Not Started' },
+      { id: 'k7', title: 'Complete Security & Compliance Training Module', owner: 'New Hire', phase: 'Week 1', dueDate: '20 Jul 2025', status: 'Not Started' },
+      { id: 'k8', title: 'First 30-Day Performance & Feedback Review', owner: 'Manager', phase: 'Month 1', dueDate: '15 Aug 2025', status: 'Not Started' },
+    ],
+  },
+  {
+    id: 'nh2',
+    name: 'Priya Sharma',
+    role: 'Data Scientist',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150',
+    startDate: '1 Aug 2025',
+    manager: 'Alex Mercer',
+    buddy: 'Elena Rostova',
+    progress: 40,
+    missingRequiredDocs: false,
+    tasks: [
+      { id: 'p1', title: 'Sign Employment Contract', owner: 'HR', phase: 'Pre-boarding', dueDate: '25 Jul 2025', status: 'Done', isRequiredDoc: true },
+      { id: 'p2', title: 'Laptop & Dual Monitor Request', owner: 'IT', phase: 'Pre-boarding', dueDate: '26 Jul 2025', status: 'Done' },
+      { id: 'p3', title: 'Team Slack Channel Introduction', owner: 'Manager', phase: 'Day 1', dueDate: '1 Aug 2025', status: 'Not Started' },
+    ],
+  },
+];
