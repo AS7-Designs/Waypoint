@@ -18,7 +18,8 @@ import {
   UserPlus, 
   ChevronRight, 
   Check, 
-  ArrowRight 
+  ArrowRight,
+  GripVertical
 } from 'lucide-react';
 
 export interface PipelineViewProps {
@@ -31,6 +32,10 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   
+  // Drag & Drop State
+  const [draggedCandidateId, setDraggedCandidateId] = useState<string | null>(null);
+  const [dragOverStage, setDragOverStage] = useState<PipelineStage | null>(null);
+
   // Filters
   const [roleFilter, setRoleFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -68,6 +73,43 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
     setCandidates((prev) =>
       prev.map((c) => (c.id === candidateId ? { ...c, stage: newStage, daysInStage: 0 } : c))
     );
+  };
+
+  // Drag & Drop Handlers
+  const handleDragStart = (e: React.DragEvent, candidateId: string) => {
+    e.dataTransfer.setData('text/plain', candidateId);
+    e.dataTransfer.effectAllowed = 'move';
+    setDraggedCandidateId(candidateId);
+  };
+
+  const handleDragOver = (e: React.DragEvent, stage: PipelineStage) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (dragOverStage !== stage) {
+      setDragOverStage(stage);
+    }
+  };
+
+  const handleDragLeave = (e: React.DragEvent, stage: PipelineStage) => {
+    e.preventDefault();
+    if (dragOverStage === stage) {
+      setDragOverStage(null);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent, targetStage: PipelineStage) => {
+    e.preventDefault();
+    const candidateId = e.dataTransfer.getData('text/plain') || draggedCandidateId;
+    if (candidateId) {
+      handleMoveStage(candidateId, targetStage);
+    }
+    setDraggedCandidateId(null);
+    setDragOverStage(null);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedCandidateId(null);
+    setDragOverStage(null);
   };
 
   const handleAddCandidateSubmit = (e: React.FormEvent) => {
@@ -181,105 +223,142 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
         </Button>
       </div>
 
-      {/* Kanban Board Columns */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 items-start">
+      {/* Kanban Board Columns with Drag & Drop */}
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 items-start select-none">
         {stages.map(({ stage, avgDays }) => {
           const stageCandidates = filteredCandidates.filter((c) => c.stage === stage);
+          const isTargetStage = dragOverStage === stage;
 
           return (
-            <div key={stage} className="bg-white p-3.5 rounded-card border border-border shadow-card min-h-[500px]">
-              {/* Column Header */}
-              <div className="flex items-center justify-between mb-3 pb-2 border-b border-border">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-[14px] font-bold text-text-primary">{stage}</h3>
-                  <span className="w-5 h-5 rounded-full bg-primary-tint text-primary text-[12px] font-bold flex items-center justify-center">
-                    {stageCandidates.length}
+            <div
+              key={stage}
+              onDragOver={(e) => handleDragOver(e, stage)}
+              onDragLeave={(e) => handleDragLeave(e, stage)}
+              onDrop={(e) => handleDrop(e, stage)}
+              className={`p-3.5 rounded-card border transition-all duration-200 min-h-[520px] flex flex-col justify-between ${
+                isTargetStage
+                  ? 'bg-primary-tint/40 border-primary ring-2 ring-primary/40 shadow-md scale-[1.01]'
+                  : 'bg-white border-border shadow-card'
+              }`}
+            >
+              <div>
+                {/* Column Header */}
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-border">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-[14px] font-bold text-text-primary">{stage}</h3>
+                    <span className="w-5 h-5 rounded-full bg-primary-tint text-primary text-[12px] font-bold flex items-center justify-center">
+                      {stageCandidates.length}
+                    </span>
+                  </div>
+                  <span className="text-[12px] font-medium text-text-disabled">
+                    avg {avgDays}d
                   </span>
                 </div>
-                <span className="text-[12px] font-medium text-text-disabled">
-                  avg {avgDays}d
-                </span>
-              </div>
 
-              {/* Column Cards List */}
-              <div className="space-y-3">
-                {stageCandidates.map((candidate) => (
-                  <div
-                    key={candidate.id}
-                    className="bg-surface-muted p-4 rounded-nested border border-border hover:border-primary/40 hover:bg-white hover:shadow-card transition-all cursor-pointer group"
-                    onClick={() => handleCardClick(candidate)}
-                  >
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <div className="flex items-center gap-3">
-                        <Avatar src={candidate.avatar} name={candidate.name} size="sm" />
-                        <div>
-                          <h4 className="text-[14px] font-bold text-text-primary group-hover:text-primary transition-colors">
-                            {candidate.name}
-                          </h4>
-                          <p className="text-[12px] text-text-secondary font-medium">
-                            {candidate.role}
-                          </p>
+                {/* Column Cards List */}
+                <div className="space-y-3">
+                  {stageCandidates.map((candidate) => {
+                    const isDraggingThis = draggedCandidateId === candidate.id;
+
+                    return (
+                      <div
+                        key={candidate.id}
+                        draggable
+                        onDragStart={(e) => handleDragStart(e, candidate.id)}
+                        onDragEnd={handleDragEnd}
+                        onClick={() => handleCardClick(candidate)}
+                        className={`bg-surface-muted p-4 rounded-nested border transition-all cursor-grab active:cursor-grabbing group relative ${
+                          isDraggingThis
+                            ? 'opacity-40 border-dashed border-primary bg-primary-tint/30 scale-[0.98]'
+                            : 'border-border hover:border-primary/40 hover:bg-white hover:shadow-card'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <div className="flex items-center gap-3">
+                            <Avatar src={candidate.avatar} name={candidate.name} size="sm" />
+                            <div>
+                              <h4 className="text-[14px] font-bold text-text-primary group-hover:text-primary transition-colors flex items-center gap-1">
+                                {candidate.name}
+                              </h4>
+                              <p className="text-[12px] text-text-secondary font-medium">
+                                {candidate.role}
+                              </p>
+                            </div>
+                          </div>
+                          
+                          <div className="text-text-disabled group-hover:text-primary transition-colors p-0.5" title="Drag to move card">
+                            <GripVertical className="w-4 h-4" />
+                          </div>
+                        </div>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {candidate.tags.slice(0, 2).map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className="px-2 py-0.5 bg-status-neutralBg text-text-secondary text-[12px] font-medium rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Attention Pill if overdue feedback */}
+                        {candidate.hasOverdueFeedback && (
+                          <div className="mb-2">
+                            <StatusPill variant="danger" label="Overdue Feedback" />
+                          </div>
+                        )}
+
+                        {/* Footer / Quick move stage dropdown & profile link */}
+                        <div className="flex items-center justify-between border-t border-border pt-2 mt-2 text-[12px] text-text-secondary">
+                          <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                            <span className="text-[11px] text-text-disabled font-medium">Move:</span>
+                            <select
+                              value={candidate.stage}
+                              onChange={(e) => handleMoveStage(candidate.id, e.target.value as PipelineStage)}
+                              className="h-6 text-[11px] font-semibold bg-white border border-border rounded-element text-primary px-1 focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer hover:border-primary/50"
+                            >
+                              {stages.map((s) => (
+                                <option key={s.stage} value={s.stage}>
+                                  {s.stage}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onSelectCandidate(candidate);
+                            }}
+                            className="text-primary font-semibold hover:underline flex items-center gap-0.5"
+                          >
+                            Profile <ChevronRight className="w-3 h-3" />
+                          </button>
                         </div>
                       </div>
-                    </div>
+                    );
+                  })}
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1 mb-3">
-                      {candidate.tags.slice(0, 2).map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-0.5 bg-status-neutralBg text-text-secondary text-[12px] font-medium rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Attention Pill if overdue feedback */}
-                    {candidate.hasOverdueFeedback && (
-                      <div className="mb-2">
-                        <StatusPill variant="danger" label="Overdue Feedback" />
-                      </div>
-                    )}
-
-                    {/* Footer / Quick move stage dropdown */}
-                    <div className="flex items-center justify-between border-t border-border pt-2 mt-2 text-[12px] text-text-secondary">
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-text-disabled" />
-                        {candidate.daysInStage}d in stage
-                      </span>
-
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSelectCandidate(candidate);
-                        }}
-                        className="text-primary font-semibold hover:underline flex items-center gap-0.5"
-                      >
-                        Profile <ChevronRight className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-
-                {stageCandidates.length > 0 && (
-                  <button
-                    onClick={() => setIsAddModalOpen(true)}
-                    className="w-full p-3 rounded-nested border border-dashed border-border text-text-disabled hover:text-primary hover:border-primary/40 hover:bg-primary-tint/30 transition-all flex items-center justify-center gap-1.5 text-[12px] font-semibold"
-                  >
-                    <Plus className="w-3.5 h-3.5" />
-                    Add candidate
-                  </button>
-                )}
-
-                {stageCandidates.length === 0 && (
-                  <EmptyState
-                    title="No candidates"
-                    description={`No candidates in ${stage}`}
-                    className="p-4 py-8"
-                  />
-                )}
+                  {stageCandidates.length === 0 && (
+                    <EmptyState
+                      title="No candidates"
+                      description={`Drag candidates here or click below`}
+                      className="p-4 py-8"
+                    />
+                  )}
+                </div>
               </div>
+
+              {/* High-contrast, readable Add candidate button at column bottom */}
+              <button
+                onClick={() => setIsAddModalOpen(true)}
+                className="w-full mt-3 py-2.5 px-3 rounded-nested bg-primary-tint/60 text-primary hover:bg-primary-tint hover:border-primary/50 border border-dashed border-primary/40 transition-all flex items-center justify-center gap-1.5 text-[13px] font-semibold shadow-xs cursor-pointer"
+              >
+                <Plus className="w-4 h-4 text-primary shrink-0" />
+                <span>Add candidate</span>
+              </button>
             </div>
           );
         })}
