@@ -40,9 +40,9 @@ export const Modal: React.FC<ModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-card shadow-elevated max-w-lg w-full z-10 overflow-hidden border border-border animate-scale-up">
+      <div className="relative bg-white rounded-card shadow-elevated max-w-xl w-full z-10 border border-border animate-scale-up max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-border flex items-center justify-between">
+        <div className="px-6 py-5 border-b border-border flex items-center justify-between shrink-0">
           <h3 className="text-h2 text-text-primary">
             {title}
           </h3>
@@ -55,11 +55,11 @@ export const Modal: React.FC<ModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6">{children}</div>
+        <div className="p-6 overflow-y-auto flex-1">{children}</div>
 
         {/* Footer */}
         {footer && (
-          <div className="px-6 py-4 border-t border-border bg-surface-muted flex justify-end gap-3">
+          <div className="px-6 py-4 border-t border-border bg-surface-muted flex items-center justify-end gap-3 shrink-0">
             {footer}
           </div>
         )}
