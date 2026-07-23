@@ -36,13 +36,13 @@ export const Toast: React.FC<ToastProps> = ({
     },
     progress: {
       bg: 'bg-status-progressBg border-primary-tint2',
-      text: 'text-status-progressText',
-      icon: <Info className="w-5 h-5 text-status-progressText shrink-0" />,
+      text: 'text-primary',
+      icon: <Info className="w-5 h-5 text-primary shrink-0" />,
     },
     neutral: {
       bg: 'bg-status-neutralBg border-border',
-      text: 'text-status-neutralText',
-      icon: <Info className="w-5 h-5 text-status-neutralText shrink-0" />,
+      text: 'text-text-secondary',
+      icon: <Info className="w-5 h-5 text-text-secondary shrink-0" />,
     },
     danger: {
       bg: 'bg-status-dangerBg border-border',
@@ -56,17 +56,17 @@ export const Toast: React.FC<ToastProps> = ({
   return (
     <div
       className={clsx(
-        'fixed bottom-6 right-6 z-50 flex items-start gap-3 p-4 rounded-element border shadow-lg max-w-sm w-full animate-slide-up',
+        'fixed bottom-6 right-6 z-50 flex items-start gap-3 p-4 rounded-nested border shadow-elevated max-w-sm w-full animate-slide-up',
         activeVariant.bg
       )}
     >
       {activeVariant.icon}
       <div className="flex-1 min-w-0">
-        <h4 className={clsx('text-body-ui font-semibold', activeVariant.text)}>
+        <h4 className={clsx('text-[14px] leading-[20px] font-semibold', activeVariant.text)}>
           {title}
         </h4>
         {message && (
-          <p className="text-caption-ui text-text-secondary mt-0.5">
+          <p className="text-[12px] leading-[16px] text-text-secondary mt-0.5">
             {message}
           </p>
         )}

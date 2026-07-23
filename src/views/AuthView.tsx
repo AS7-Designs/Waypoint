@@ -44,16 +44,16 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
             <circle cx="18" cy="14" r="2.5" fill="#C7D2FE"/>
             <circle cx="26" cy="22" r="3.5" fill="#14B8A6" stroke="white" strokeWidth="1.5"/>
           </svg>
-          <span className="text-h2 font-bold text-text-primary tracking-tight">Waypoint</span>
+          <span className="text-h3 text-text-primary tracking-tight">Waypoint</span>
         </div>
 
         {/* Auth Form Card */}
         <div className="w-full max-w-md mx-auto my-auto py-8">
           <div className="mb-6">
-            <h2 className="text-display font-bold text-text-primary">
+            <h2 className="text-[28px] leading-[36px] font-bold text-text-primary">
               {isSignUp ? 'Create your account' : 'Welcome back'}
             </h2>
-            <p className="text-body-regular text-text-secondary mt-1">
+            <p className="text-[14px] leading-[20px] font-normal text-text-secondary mt-1">
               {isSignUp
                 ? 'Start managing your hiring pipeline and new-hire onboarding in one place.'
                 : 'Log in to manage candidates and team onboarding milestones.'}
@@ -61,12 +61,12 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
           </div>
 
           {/* Toggle Tab */}
-          <div className="flex bg-primary-tint/50 p-1 rounded-element mb-6">
+          <div className="flex bg-status-progressBg/40 p-1 rounded-element mb-6">
             <button
               type="button"
               onClick={() => setIsSignUp(false)}
-              className={`flex-1 py-2 text-body-ui font-semibold rounded-element transition-all ${
-                !isSignUp ? 'bg-surface text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary'
+              className={`flex-1 py-2 text-[14px] font-semibold rounded-element transition-all ${
+                !isSignUp ? 'bg-white text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary'
               }`}
             >
               Log in
@@ -74,8 +74,8 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
             <button
               type="button"
               onClick={() => setIsSignUp(true)}
-              className={`flex-1 py-2 text-body-ui font-semibold rounded-element transition-all ${
-                isSignUp ? 'bg-surface text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary'
+              className={`flex-1 py-2 text-[14px] font-semibold rounded-element transition-all ${
+                isSignUp ? 'bg-white text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary'
               }`}
             >
               Sign up
@@ -87,7 +87,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
             <button
               type="button"
               onClick={onLoginSuccess}
-              className="w-full h-[40px] px-4 bg-surface border border-border rounded-element text-body-ui font-semibold text-text-primary hover:bg-surface-muted flex items-center justify-center gap-2 shadow-sm transition-all"
+              className="w-full h-[40px] px-4 bg-white border border-border rounded-element text-[14px] font-semibold text-text-primary hover:bg-surface-muted flex items-center justify-center gap-2 shadow-sm transition-all"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -101,7 +101,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
 
           <div className="relative flex items-center justify-center mb-6">
             <div className="border-t border-border w-full" />
-            <span className="bg-bgCanvas px-3 text-caption-ui font-medium text-text-disabled uppercase">
+            <span className="bg-bgCanvas px-3 text-[12px] font-medium text-text-disabled uppercase">
               or continue with email
             </span>
           </div>
@@ -110,15 +110,15 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {isSignUp && (
               <div className="mb-4">
-                <label className="block text-caption-ui font-semibold text-text-secondary uppercase mb-1.5">
+                <label className="block text-[12px] font-semibold text-text-secondary uppercase mb-1.5">
                   Your Primary Role
                 </label>
-                <div className="grid grid-cols-2 gap-2 bg-primary-tint/30 p-1 rounded-element border border-border">
+                <div className="grid grid-cols-2 gap-2 bg-status-progressBg/30 p-1 rounded-element border border-border">
                   <button
                     type="button"
                     onClick={() => setRole('Recruiter')}
-                    className={`py-2 text-body-ui font-semibold rounded-element transition-all ${
-                      role === 'Recruiter' ? 'bg-surface text-primary shadow-sm' : 'text-text-secondary'
+                    className={`py-2 text-[14px] font-semibold rounded-element transition-all ${
+                      role === 'Recruiter' ? 'bg-white text-primary shadow-sm' : 'text-text-secondary'
                     }`}
                   >
                     Recruiter / Talent
@@ -126,8 +126,8 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
                   <button
                     type="button"
                     onClick={() => setRole('Hiring Manager')}
-                    className={`py-2 text-body-ui font-semibold rounded-element transition-all ${
-                      role === 'Hiring Manager' ? 'bg-surface text-accent-teal shadow-sm' : 'text-text-secondary'
+                    className={`py-2 text-[14px] font-semibold rounded-element transition-all ${
+                      role === 'Hiring Manager' ? 'bg-white text-accent-teal shadow-sm' : 'text-text-secondary'
                     }`}
                   >
                     Hiring Manager
@@ -137,7 +137,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
             )}
 
             <div>
-              <label className="block text-body-ui font-semibold text-text-primary mb-1">
+              <label className="block text-[14px] font-semibold text-text-primary mb-1">
                 Work Email
               </label>
               <input
@@ -145,18 +145,18 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-[40px] px-3.5 bg-surface border border-border rounded-element text-body-ui text-text-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                className="w-full h-[40px] px-3.5 bg-white border border-border rounded-element text-[14px] font-medium text-text-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                 placeholder="you@company.com"
               />
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label className="block text-body-ui font-semibold text-text-primary">
+                <label className="block text-[14px] font-semibold text-text-primary">
                   Password
                 </label>
                 {!isSignUp && (
-                  <a href="#" className="text-caption-ui font-medium text-primary hover:underline">
+                  <a href="#" className="text-[12px] font-medium text-primary hover:underline">
                     Forgot password?
                   </a>
                 )}
@@ -166,12 +166,12 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-[40px] px-3.5 bg-surface border border-border rounded-element text-body-ui text-text-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                className="w-full h-[40px] px-3.5 bg-white border border-border rounded-element text-[14px] font-medium text-text-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all"
               />
             </div>
 
             {error && (
-              <p className="text-caption-ui font-medium text-status-dangerText bg-status-dangerBg p-2.5 rounded-element">
+              <p className="text-[12px] font-medium text-status-dangerText bg-status-dangerBg p-2.5 rounded-element">
                 {error}
               </p>
             )}
@@ -195,12 +195,12 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
           </form>
 
           <div className="text-center mt-6">
-            <span className="text-body-ui text-text-secondary">
+            <span className="text-[14px] text-text-secondary">
               {isSignUp ? 'Already have an account?' : "Don't have an account yet?"}{' '}
             </span>
             <button
               onClick={() => setIsSignUp(!isSignUp)}
-              className="text-body-ui font-semibold text-primary hover:underline"
+              className="text-[14px] font-semibold text-primary hover:underline"
             >
               {isSignUp ? 'Log in' : 'Sign up'}
             </button>
@@ -208,13 +208,13 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
         </div>
 
         {/* Footer info */}
-        <div className="text-caption-ui text-text-disabled text-center lg:text-left">
+        <div className="text-[12px] text-text-disabled text-center lg:text-left">
           © 2026 Waypoint Inc. All rights reserved. • Privacy & Terms
         </div>
       </div>
 
       {/* Right Hero Panel (55%) */}
-      <div className="hidden lg:flex w-[55%] bg-gradient-to-br from-primary via-primary-dark to-[#312E81] text-white p-12 flex-col justify-between relative overflow-hidden">
+      <div className="hidden lg:flex w-[55%] bg-gradient-to-br from-primary via-[#4338CA] to-[#312E81] text-white p-12 flex-col justify-between relative overflow-hidden">
         {/* Decorative background routes */}
         <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 600 600" fill="none">
           <circle cx="300" cy="300" r="240" stroke="white" strokeWidth="2" strokeDasharray="6 8"/>
@@ -229,7 +229,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
         </div>
 
         <div className="relative z-10 max-w-lg space-y-6 my-auto">
-          <h1 className="text-[36px] leading-[44px] font-bold tracking-tight">
+          <h1 className="text-display-lg tracking-tight">
             From first interview to Day 90 success — all in one guided journey.
           </h1>
           <p className="text-[16px] leading-[24px] text-indigo-100 font-normal">
@@ -237,22 +237,22 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
           </p>
 
           <div className="space-y-3 pt-4">
-            <div className="flex items-center gap-3 bg-white/10 p-3 rounded-element backdrop-blur-md border border-white/10">
+            <div className="flex items-center gap-3 bg-white/10 p-3 rounded-nested backdrop-blur-md border border-white/10">
               <CheckCircle2 className="w-5 h-5 text-accent-teal shrink-0" />
-              <span className="text-body-ui font-medium">Unified candidate pipeline & interview scorecards</span>
+              <span className="text-[14px] font-medium">Unified candidate pipeline & interview scorecards</span>
             </div>
-            <div className="flex items-center gap-3 bg-white/10 p-3 rounded-element backdrop-blur-md border border-white/10">
+            <div className="flex items-center gap-3 bg-white/10 p-3 rounded-nested backdrop-blur-md border border-white/10">
               <CheckCircle2 className="w-5 h-5 text-accent-teal shrink-0" />
-              <span className="text-body-ui font-medium">Automated Day 1 / Week 1 / Month 1 task assignment</span>
+              <span className="text-[14px] font-medium">Automated Day 1 / Week 1 / Month 1 task assignment</span>
             </div>
-            <div className="flex items-center gap-3 bg-white/10 p-3 rounded-element backdrop-blur-md border border-white/10">
+            <div className="flex items-center gap-3 bg-white/10 p-3 rounded-nested backdrop-blur-md border border-white/10">
               <CheckCircle2 className="w-5 h-5 text-accent-teal shrink-0" />
-              <span className="text-body-ui font-medium">Clear metrics for recruiters and team managers</span>
+              <span className="text-[14px] font-medium">Clear metrics for recruiters and team managers</span>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 flex items-center justify-between text-indigo-200 text-caption-ui border-t border-white/10 pt-6">
+        <div className="relative z-10 flex items-center justify-between text-indigo-200 text-[12px] border-t border-white/10 pt-6">
           <span>Trusted by 450+ high-growth talent teams</span>
           <span>Security Compliant & Encrypted</span>
         </div>

@@ -42,6 +42,7 @@ Rule: status pills only ever use one of the four pairs above (success / progress
 
 - Font family: **Inter** (fallback: system-ui, sans-serif).
 - Scale:
+  - `display-lg`: 36px / 44px, Weight: 700 (hero stat numbers, marketing headline only — see audit note below)
   - `display`: 28px / 36px, Weight: 700 ("Dashboard", "Candidate Profile")
   - `h2`: 20px / 28px, Weight: 700 (Card/section titles)
   - `h3`: 16px / 24px, Weight: 600 (Sub-headers, list item titles)
@@ -52,5 +53,16 @@ Rule: status pills only ever use one of the four pairs above (success / progress
 ## 4. Spacing & radius (8px base grid)
 - Spacing scale: `4, 8, 12, 16, 20, 24, 32, 40, 48, 64` px only.
 - Card padding: 24px. Card-to-card gutter: 24px. Page margin: 32px.
-- Radius: `12px` small elements (buttons, inputs, pills), `20px` cards/modals, `999px` pills/avatars only.
-- Shadow: `0 2px 8px rgba(17, 24, 39, 0.04), 0 1px 2px rgba(17, 24, 39, 0.03)`.
+- Radius — three tiers, use `rounded-element` / `rounded-nested` / `rounded-card` (no raw `rounded-[Npx]` anywhere):
+  - `rounded-element` (12px) — buttons, inputs, small icon squares, tab pills.
+  - `rounded-nested` (16px) — sub-cards/panels embedded *inside* a Card: kanban cards, table wrappers, toasts, info panels, dashed upload zones.
+  - `rounded-card` (20px) — the outer Card component itself, and modals.
+  - `rounded-full` — pills, avatars only.
+- Shadow — two tiers, use `shadow-card` / `shadow-elevated` for surfaces (Tailwind's stock `shadow-sm` remains fine for small in-page controls like the search input, tab toggles, and small icon buttons — it is not a card and doesn't need to compete with card elevation):
+  - `shadow-card`: `0 2px 8px rgba(17,24,39,0.04), 0 1px 2px rgba(17,24,39,0.03)` — every Card, AppTile, and nested panel.
+  - `shadow-elevated`: `0 25px 50px -12px rgba(17,24,39,0.25)` — Modal, Drawer, Toast: anything floating above a scrim.
+
+### Audit note (2026-07)
+A pass across the built app found the type scale had drifted to 13 ad hoc font sizes and 3 stray radius values, none wired to these tokens (components were hardcoding raw hex/px instead of the classes below). All of it was consolidated back into this scale, with two deliberate additions kept because they served a real, consistently-used role rather than being noise:
+- `text-display-lg` (36px / 44px / 700) — for true hero moments only: the ProgressRing center stat and the Auth marketing headline. Do not use it for page titles; that's still `text-display` (28px).
+- `rounded-nested` (16px), described above — this was already the de facto standard for embedded sub-surfaces across every screen; it's now a named token instead of a magic number.

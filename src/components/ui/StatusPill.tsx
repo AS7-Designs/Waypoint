@@ -18,8 +18,8 @@ export const StatusPill: React.FC<StatusPillProps> = ({
 }) => {
   const styles = {
     success: 'bg-status-successBg text-status-successText',
-    progress: 'bg-status-progressBg text-status-progressText',
-    neutral: 'bg-status-neutralBg text-status-neutralText',
+    progress: 'bg-status-progressBg text-primary',
+    neutral: 'bg-status-neutralBg text-text-secondary',
     danger: 'bg-status-dangerBg text-status-dangerText',
   };
 
@@ -27,7 +27,7 @@ export const StatusPill: React.FC<StatusPillProps> = ({
     <span
       className={twMerge(
         clsx(
-          'inline-flex items-center justify-center rounded-full text-caption-ui py-1 px-3 whitespace-nowrap',
+          'inline-flex items-center justify-center rounded-full text-[12px] leading-[16px] font-medium py-1 px-3 whitespace-nowrap',
           styles[variant],
           className
         )

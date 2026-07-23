@@ -52,7 +52,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, className }) => {
                   <div className="w-2.5 h-2.5 rounded-full bg-primary" />
                 </div>
               ) : (
-                <div className="w-8 h-8 rounded-full bg-surface border-2 border-border flex items-center justify-center text-text-disabled">
+                <div className="w-8 h-8 rounded-full bg-white border-2 border-border flex items-center justify-center text-text-disabled">
                   <div className="w-2 h-2 rounded-full bg-text-disabled" />
                 </div>
               )}
@@ -61,18 +61,18 @@ export const Timeline: React.FC<TimelineProps> = ({ items, className }) => {
             {/* Content */}
             <div className="flex-1 pt-1">
               <div className="flex items-center justify-between gap-2">
-                <h4 className="text-body-ui font-semibold text-text-primary">
+                <h4 className="text-[14px] leading-[20px] font-semibold text-text-primary">
                   {item.title}
                 </h4>
                 {item.statusPill && (
                   <StatusPill variant={item.statusPill.variant} label={item.statusPill.label} />
                 )}
               </div>
-              <p className="text-caption-ui text-text-secondary mt-0.5">
+              <p className="text-[12px] leading-[16px] font-medium text-text-secondary mt-0.5">
                 {item.timestamp}
               </p>
               {item.description && (
-                <p className="text-body-regular text-text-secondary mt-1 bg-surface-muted p-2.5 rounded-element border border-border">
+                <p className="text-[14px] leading-[20px] font-normal text-text-secondary mt-1 bg-surface-muted p-2.5 rounded-element border border-border">
                   {item.description}
                 </p>
               )}

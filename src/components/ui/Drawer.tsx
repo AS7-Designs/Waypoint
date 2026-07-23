@@ -42,15 +42,15 @@ export const Drawer: React.FC<DrawerProps> = ({
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-[420px] bg-surface shadow-2xl flex flex-col transform transition-transform ease-out duration-200">
+        <div className="w-screen max-w-[420px] bg-white shadow-elevated flex flex-col transform transition-transform ease-out duration-200">
           {/* Header */}
           <div className="px-6 py-5 border-b border-border flex items-center justify-between">
-            <h3 className="text-h3 font-bold text-text-primary">
+            <h3 className="text-h2 text-text-primary">
               {title}
             </h3>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-element text-text-secondary hover:text-text-primary hover:bg-surface-muted transition-colors"
+              className="p-1.5 rounded-element text-text-secondary hover:text-text-primary hover:bg-status-neutralBg transition-colors"
             >
               <X className="w-5 h-5" />
             </button>

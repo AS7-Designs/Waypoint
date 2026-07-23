@@ -1,12 +1,12 @@
 import { Candidate, NewHire, TodoItem, ActiveInterview, CalendarScheduleItem, QuickActionItem } from '../types';
 
 export const mockQuickActions: QuickActionItem[] = [
-  { id: '1', label: 'Post a Job', iconName: 'Smartphone', bgColor: 'bg-indigo-50', iconColor: 'text-indigo-600', actionKey: 'post-job' },
-  { id: '2', label: 'Schedule Interview', iconName: 'Calendar', bgColor: 'bg-amber-50', iconColor: 'text-amber-600', actionKey: 'schedule' },
-  { id: '3', label: 'Add Candidate', iconName: 'UserPlus', bgColor: 'bg-teal-50', iconColor: 'text-teal-600', actionKey: 'add-candidate' },
-  { id: '4', label: 'Assign Onboarding', iconName: 'FileCheck', bgColor: 'bg-indigo-50', iconColor: 'text-indigo-600', actionKey: 'assign-onboarding' },
-  { id: '5', label: 'Review Feedback', iconName: 'Code', bgColor: 'bg-rose-50', iconColor: 'text-rose-600', actionKey: 'review-feedback' },
-  { id: '6', label: 'Send Offer', iconName: 'Send', bgColor: 'bg-purple-50', iconColor: 'text-purple-600', actionKey: 'send-offer' },
+  { id: '1', label: 'Post a Job', iconName: 'Smartphone', bgColor: 'bg-primary-tint', iconColor: 'text-primary', actionKey: 'post-job' },
+  { id: '2', label: 'Schedule Interview', iconName: 'Calendar', bgColor: 'bg-accent-amber/15', iconColor: 'text-accent-amber', actionKey: 'schedule' },
+  { id: '3', label: 'Add Candidate', iconName: 'UserPlus', bgColor: 'bg-accent-teal/15', iconColor: 'text-accent-teal', actionKey: 'add-candidate' },
+  { id: '4', label: 'Assign Onboarding', iconName: 'FileCheck', bgColor: 'bg-primary-dark/10', iconColor: 'text-primary-dark', actionKey: 'assign-onboarding' },
+  { id: '5', label: 'Review Feedback', iconName: 'Code', bgColor: 'bg-accent-rose/15', iconColor: 'text-accent-rose', actionKey: 'review-feedback' },
+  { id: '6', label: 'Send Offer', iconName: 'Send', bgColor: 'bg-primary-tint', iconColor: 'text-primary', actionKey: 'send-offer' },
 ];
 
 export const mockHiringFunnelData = [

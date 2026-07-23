@@ -27,9 +27,9 @@ export const Avatar: React.FC<AvatarProps> = ({
   };
 
   const sizes = {
-    sm: 'w-8 h-8 text-caption-ui',
-    md: 'w-10 h-10 text-body-ui',
-    lg: 'w-14 h-14 text-h3',
+    sm: 'w-8 h-8 text-[12px]',
+    md: 'w-10 h-10 text-[14px]',
+    lg: 'w-14 h-14 text-[18px]',
   };
 
   const rings = {

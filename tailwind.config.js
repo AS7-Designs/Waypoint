@@ -23,6 +23,7 @@ export default {
           teal: 'var(--color-accent-teal)',
           amber: 'var(--color-accent-amber)',
           rose: 'var(--color-accent-rose)',
+          violet: 'var(--color-accent-violet)',
         },
         text: {
           primary: 'var(--color-text-primary)',
@@ -45,11 +46,13 @@ export default {
       },
       borderRadius: {
         'element': '12px',
+        'nested': '16px',   /* nested panels / sub-cards inside a Card (kanban cards, table wrappers, toasts) */
         'card': '20px',
         'full': '9999px',
       },
       boxShadow: {
         'card': '0 2px 8px rgba(17, 24, 39, 0.04), 0 1px 2px rgba(17, 24, 39, 0.03)',
+        'elevated': '0 25px 50px -12px rgba(17, 24, 39, 0.25)',   /* Modal / Drawer / Toast - surfaces above a scrim */
       }
     },
   },

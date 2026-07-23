@@ -79,7 +79,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5FA] text-[#111827]">
+    <div className="min-h-screen bg-bgCanvas text-text-primary">
       {/* 260px Fixed Sidebar */}
       <Sidebar
         currentView={currentView}

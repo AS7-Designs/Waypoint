@@ -23,7 +23,7 @@ export const AppTile: React.FC<AppTileProps> = ({
       onClick={onClick}
       className={twMerge(
         clsx(
-          'flex items-center justify-between p-3 bg-surface hover:bg-surface-muted border border-border rounded-element transition-all duration-150 ease-out group text-left w-full shadow-sm',
+          'flex items-center justify-between p-3 bg-white hover:bg-surface-muted border border-border rounded-nested transition-all duration-150 ease-out group text-left w-full shadow-card',
           className
         )
       )}
@@ -39,7 +39,7 @@ export const AppTile: React.FC<AppTileProps> = ({
         >
           {icon}
         </div>
-        <span className="text-body-ui font-semibold text-text-primary truncate">
+        <span className="text-[14px] leading-[20px] font-semibold text-text-primary truncate">
           {label}
         </span>
       </div>

@@ -31,7 +31,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
   ];
 
   return (
-    <aside className="w-[260px] h-screen bg-surface border-r border-border flex flex-col fixed left-0 top-0 z-30 select-none">
+    <aside className="w-[260px] h-screen bg-white border-r border-border flex flex-col fixed left-0 top-0 z-30 select-none">
       {/* Brand Header */}
       <div className="h-[72px] px-6 flex items-center gap-3 border-b border-border">
         <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
           <circle cx="18" cy="14" r="2.5" fill="#C7D2FE"/>
           <circle cx="26" cy="22" r="3.5" fill="#14B8A6" stroke="white" strokeWidth="1.5"/>
         </svg>
-        <span className="text-h2 font-bold text-text-primary tracking-tight">
+        <span className="text-h3 text-text-primary tracking-tight">
           Waypoint
         </span>
       </div>
@@ -50,7 +50,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
       <div className="flex-1 px-4 py-6 overflow-y-auto space-y-8">
         {/* Main Menu */}
         <div>
-          <div className="px-3 text-caption-ui font-semibold text-text-disabled uppercase tracking-wider mb-2">
+          <div className="px-3 text-[12px] font-semibold text-text-disabled uppercase tracking-wider mb-2">
             Main Menu
           </div>
           <nav className="space-y-1">
@@ -63,7 +63,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
                   key={item.id}
                   onClick={() => onNavigate(item.id as NavView)}
                   className={clsx(
-                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-body-ui font-semibold transition-all duration-150',
+                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold transition-all duration-150',
                     isActive
                       ? 'bg-primary-tint text-primary'
                       : 'text-text-secondary hover:text-text-primary hover:bg-surface-muted'
@@ -79,7 +79,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
 
         {/* Others */}
         <div>
-          <div className="px-3 text-caption-ui font-semibold text-text-disabled uppercase tracking-wider mb-2">
+          <div className="px-3 text-[12px] font-semibold text-text-disabled uppercase tracking-wider mb-2">
             Others
           </div>
           <nav className="space-y-1">
@@ -89,7 +89,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
                 <button
                   key={item.id}
                   onClick={() => alert(`Navigating to ${item.label}`)}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-body-ui font-semibold text-text-secondary hover:text-text-primary hover:bg-surface-muted transition-all duration-150"
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold text-text-secondary hover:text-text-primary hover:bg-surface-muted transition-all duration-150"
                 >
                   <Icon className="w-5 h-5 text-text-secondary" />
                   <span>{item.label}</span>
@@ -104,7 +104,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
       <div className="p-4 border-t border-border">
         <button
           onClick={() => onNavigate('auth' as any)}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-body-ui font-semibold text-text-secondary hover:text-status-dangerText hover:bg-status-dangerBg/50 transition-all duration-150"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold text-text-secondary hover:text-status-dangerText hover:bg-status-dangerBg/50 transition-all duration-150"
         >
           <LogOut className="w-5 h-5" />
           <span>Log Out</span>

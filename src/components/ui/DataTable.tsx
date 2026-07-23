@@ -46,10 +46,10 @@ export const DataTable: React.FC<DataTableProps> = ({
   };
 
   return (
-    <div className="w-full overflow-x-auto rounded-element border border-border bg-surface">
+    <div className="w-full overflow-x-auto rounded-nested border border-border bg-white shadow-card">
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="border-b border-border bg-surface-muted text-caption-ui font-semibold text-text-secondary">
+          <tr className="border-b border-border bg-surface-muted text-[12px] leading-[16px] font-semibold text-text-secondary">
             <th
               className="py-3.5 px-4 cursor-pointer select-none"
               onClick={() => handleSort('name')}
@@ -78,12 +78,12 @@ export const DataTable: React.FC<DataTableProps> = ({
             <th className="py-3.5 px-4">Source</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-border">
+        <tbody className="divide-y divide-[#ECECF3]">
           {candidates.map((candidate) => (
             <tr
               key={candidate.id}
               onClick={() => onSelectCandidate && onSelectCandidate(candidate)}
-              className="hover:bg-surface-muted transition-colors cursor-pointer text-body-ui"
+              className="hover:bg-surface-muted transition-colors cursor-pointer text-[14px] leading-[20px]"
             >
               {/* Candidate Avatar + Name */}
               <td className="py-3.5 px-4">
@@ -93,7 +93,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                     <div className="font-semibold text-text-primary">
                       {candidate.name}
                     </div>
-                    <div className="text-caption-ui text-text-secondary">
+                    <div className="text-[12px] text-text-secondary">
                       {candidate.email}
                     </div>
                   </div>
@@ -125,7 +125,7 @@ export const DataTable: React.FC<DataTableProps> = ({
 
               {/* Source */}
               <td className="py-3.5 px-4 text-text-secondary">
-                <span className="inline-block px-2 py-0.5 rounded-full bg-status-neutralBg text-caption-ui text-status-neutralText">
+                <span className="inline-block px-2 py-0.5 rounded-full bg-status-neutralBg text-[12px] font-medium text-text-secondary">
                   {candidate.source}
                 </span>
               </td>

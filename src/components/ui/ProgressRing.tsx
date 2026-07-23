@@ -23,7 +23,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
     { label: 'Documents', percentage: 40, color: '#4F46E5' },
     { label: 'Training', percentage: 20, color: '#14B8A6' },
     { label: 'Equipment', percentage: 10, color: '#C7D2FE' },
-    { label: 'Culture', percentage: 7, color: '#A5B4FC' },
+    { label: 'Culture', percentage: 7, color: '#F59E0B' },
   ],
 }) => {
   const radius = (size - strokeWidth) / 2;
@@ -41,7 +41,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
             cx={size / 2}
             cy={size / 2}
             r={radius}
-            stroke="#F3F4F6"
+            stroke="var(--color-neutral-bg)"
             strokeWidth={strokeWidth}
             fill="transparent"
           />
@@ -72,11 +72,11 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
         
         {/* Center Text */}
         <div className="absolute flex flex-col items-center justify-center text-center">
-          <span className="text-display font-bold text-text-primary">
+          <span className="text-display-lg text-text-primary">
             {percentage}%
           </span>
           {title && (
-            <span className="text-caption-ui text-text-secondary">
+            <span className="text-[12px] leading-[16px] font-medium text-text-secondary">
               {title}
             </span>
           )}
@@ -92,7 +92,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
                 className="w-3 h-3 rounded-full shrink-0"
                 style={{ backgroundColor: item.color }}
               />
-              <span className="text-caption-ui text-text-secondary truncate">
+              <span className="text-[12px] leading-[16px] font-medium text-text-secondary truncate">
                 {item.label}
               </span>
             </div>

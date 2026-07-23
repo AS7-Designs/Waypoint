@@ -44,6 +44,12 @@ body {
 }
 
 /* Custom Typography Utility Classes */
+.text-display-lg {
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 700;
+}
+
 .text-display {
   font-size: 28px;
   line-height: 36px;

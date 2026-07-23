@@ -30,7 +30,7 @@ export const Tabs: React.FC<TabsProps> = ({
             key={tab.id}
             onClick={() => onChange(tab.id)}
             className={clsx(
-              'pb-3 text-body-ui font-semibold transition-all relative whitespace-nowrap flex items-center gap-2',
+              'pb-3 text-[14px] leading-[20px] font-semibold transition-all relative whitespace-nowrap flex items-center gap-2',
               isActive
                 ? 'text-primary'
                 : 'text-text-secondary hover:text-text-primary'
@@ -40,10 +40,10 @@ export const Tabs: React.FC<TabsProps> = ({
             {tab.count !== undefined && (
               <span
                 className={clsx(
-                  'text-caption-ui px-2 py-0.5 rounded-full font-medium',
+                  'text-[12px] px-2 py-0.5 rounded-full font-medium',
                   isActive
                     ? 'bg-primary-tint text-primary'
-                    : 'bg-status-neutralBg text-status-neutralText'
+                    : 'bg-status-neutralBg text-text-secondary'
                 )}
               >
                 {tab.count}
