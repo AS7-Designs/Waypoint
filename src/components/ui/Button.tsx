@@ -17,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-element transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed select-none';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold whitespace-nowrap rounded-element transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed select-none';
 
   const variants = {
     primary: 'bg-primary text-white !text-white hover:bg-primary-dark shadow-sm active:scale-[0.98]',
@@ -27,8 +27,8 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const sizes = {
-    sm: 'h-[36px] px-3.5 text-caption-ui gap-1.5',
-    md: 'h-[40px] px-4.5 text-body-ui gap-2',
+    sm: 'h-[36px] px-4 text-caption-ui gap-2',
+    md: 'h-[42px] px-6 text-body-ui gap-2.5',
   };
 
   return (
@@ -37,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {icon && <span className="shrink-0 flex items-center justify-center">{icon}</span>}
-      <span className="font-semibold tracking-wide">{children}</span>
+      <span className="font-semibold whitespace-nowrap leading-none">{children}</span>
     </button>
   );
 };
