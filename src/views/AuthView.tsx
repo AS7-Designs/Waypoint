@@ -106,15 +106,40 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
                 <label className="block text-[12px] font-semibold text-text-secondary uppercase mb-1.5">
                   Your Primary Role
                 </label>
-                <SegmentedControl
-                  options={[
-                    { value: 'Recruiter', label: 'Recruiter / Talent' },
-                    { value: 'Hiring Manager', label: 'Hiring Manager' },
-                  ]}
-                  value={role}
-                  onChange={(v) => setRole(v as 'Recruiter' | 'Hiring Manager')}
-                  className="w-full"
-                />
+                <div className="bg-surface-muted rounded-element p-1 flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setRole('Recruiter')}
+                    className={`flex-1 rounded-lg px-4 py-3 text-left transition-all ${
+                      role === 'Recruiter'
+                        ? 'bg-white shadow-sm'
+                        : 'bg-transparent hover:bg-white/60'
+                    }`}
+                  >
+                    <span className={`block text-[14px] font-semibold ${role === 'Recruiter' ? 'text-text-primary' : 'text-text-secondary'}`}>
+                      Recruiter / Talent
+                    </span>
+                    <span className={`block text-[12px] mt-0.5 ${role === 'Recruiter' ? 'text-text-secondary' : 'text-text-disabled'}`}>
+                      Manage the candidate pipeline
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setRole('Hiring Manager')}
+                    className={`flex-1 rounded-lg px-4 py-3 text-left transition-all ${
+                      role === 'Hiring Manager'
+                        ? 'bg-white shadow-sm'
+                        : 'bg-transparent hover:bg-white/60'
+                    }`}
+                  >
+                    <span className={`block text-[14px] font-semibold ${role === 'Hiring Manager' ? 'text-text-primary' : 'text-text-secondary'}`}>
+                      Hiring Manager
+                    </span>
+                    <span className={`block text-[12px] mt-0.5 ${role === 'Hiring Manager' ? 'text-text-secondary' : 'text-text-disabled'}`}>
+                      Review candidates & onboard your team
+                    </span>
+                  </button>
+                </div>
               </div>
             )}
 
