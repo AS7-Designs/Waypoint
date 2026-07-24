@@ -21,11 +21,48 @@ import {
   AlertCircle,
   Briefcase,
   Clock,
-  TrendingUp,
   MessageSquare,
   Award,
   Target
 } from 'lucide-react';
+
+/* ── tiny radial score ring (SVG) ─────────────────────────── */
+const ScoreRing: React.FC<{
+  score: number;
+  max: number;
+  label: string;
+  color: string;
+}> = ({ score, max, label, color }) => {
+  const pct = score / max;
+  const r = 28;
+  const circ = 2 * Math.PI * r;
+  return (
+    <div className="flex flex-col items-center bg-white rounded-nested border border-border p-4 hover:shadow-card transition-shadow">
+      <svg viewBox="0 0 72 72" className="w-[72px] h-[72px]">
+        <circle cx="36" cy="36" r={r} fill="none" stroke="#ECECF3" strokeWidth="6" />
+        <circle
+          cx="36" cy="36" r={r}
+          fill="none"
+          stroke={color}
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeDasharray={`${pct * circ} ${circ}`}
+          transform="rotate(-90 36 36)"
+          className="transition-all duration-500"
+        />
+        <text x="36" y="33" textAnchor="middle" fill="#111827" fontSize="16" fontWeight="700">
+          {score}
+        </text>
+        <text x="36" y="46" textAnchor="middle" fill="#9CA3AF" fontSize="9" fontWeight="600">
+          / {max}
+        </text>
+      </svg>
+      <span className="text-[12px] font-semibold text-text-secondary mt-2 text-center leading-tight">
+        {label}
+      </span>
+    </div>
+  );
+};
 
 export interface CandidateProfileViewProps {
   candidate: Candidate;
@@ -57,10 +94,6 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
     { id: 'feedback', label: 'Interview Feedback', count: candidate.scorecards.length },
     { id: 'notes', label: 'Notes', count: notes.length },
   ];
-
-  // Pipeline stage progress
-  const allStages = ['Applied', 'Screening', 'Interview', 'Offer', 'Hired'];
-  const currentStageIdx = allStages.indexOf(candidate.stage);
 
   const timelineItems: TimelineItem[] = [
     {
@@ -109,19 +142,18 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
     },
   ];
 
-  // Mock evaluation scores
   const evaluationScores = [
-    { label: 'Technical Skills', score: 4.2, max: 5 },
-    { label: 'Communication', score: 4.5, max: 5 },
-    { label: 'Culture Fit', score: 3.8, max: 5 },
-    { label: 'Problem Solving', score: 4.0, max: 5 },
+    { label: 'Technical Skills', score: 4.2, max: 5, color: '#4F46E5' },
+    { label: 'Communication', score: 4.5, max: 5, color: '#14B8A6' },
+    { label: 'Culture Fit', score: 3.8, max: 5, color: '#F59E0B' },
+    { label: 'Problem Solving', score: 4.0, max: 5, color: '#8B5CF6' },
   ];
 
   const avgScore = (evaluationScores.reduce((sum, e) => sum + e.score, 0) / evaluationScores.length).toFixed(1);
 
   return (
     <div className="space-y-6 pb-12">
-      {/* Top back navigation button */}
+      {/* Back navigation */}
       <div>
         <button
           onClick={onBack}
@@ -132,7 +164,7 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
         </button>
       </div>
 
-      {/* Candidate Summary Header Card */}
+      {/* ── Header card: name + applied date + stage pill + actions ── */}
       <Card>
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
@@ -150,24 +182,9 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
               <p className="text-[16px] font-medium text-text-secondary mt-0.5">
                 {candidate.role} • Applied {candidate.appliedDate}
               </p>
-              <div className="flex items-center gap-4 text-[12px] text-text-secondary mt-2 flex-wrap">
-                <span className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-text-disabled" />
-                  {candidate.email}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-text-disabled" />
-                  {candidate.phone || '+1 (555) 019-2834'}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-text-disabled" />
-                  {candidate.location || 'San Francisco, CA'}
-                </span>
-              </div>
             </div>
           </div>
 
-          {/* Primary Action Buttons */}
           <div className="flex items-center gap-3 w-full md:w-auto">
             <Button
               variant="secondary"
@@ -187,7 +204,30 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
         </div>
       </Card>
 
-      {/* Main Grid: Left 2/3 Tabs & Content + Right 1/3 Stepper & Next Steps */}
+      {/* ── Next Action Required — full width, directly below header ── */}
+      <Card className="bg-primary-tint border-primary-tint2">
+        <div className="flex items-start gap-3">
+          <div className="p-2 rounded-full bg-primary text-white shrink-0">
+            <AlertCircle className="w-5 h-5" />
+          </div>
+          <div className="flex-1">
+            <h4 className="text-[14px] font-bold text-primary">Next Action Required</h4>
+            <p className="text-[14px] text-text-primary mt-1">
+              Technical Panel Scorecard ready. Move {candidate.name.split(' ')[0]} to <strong>Executive Call</strong> or issue an Offer.
+            </p>
+          </div>
+          <Button
+            variant="primary"
+            size="sm"
+            className="shrink-0"
+            onClick={() => onMoveToOffer(candidate)}
+          >
+            Advance Stage
+          </Button>
+        </div>
+      </Card>
+
+      {/* ── Main Grid: Left 2/3 + Right 1/3 ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* Left 2/3 Content Column */}
         <div className="lg:col-span-2 space-y-6">
@@ -202,46 +242,38 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
             {/* TAB 1: OVERVIEW */}
             {activeTab === 'overview' && (
               <div className="space-y-6">
-                {/* Pipeline Stage Progress */}
+                {/* Contact Information (moved from header) */}
                 <div>
                   <h3 className="text-[16px] font-bold text-text-primary mb-3">
-                    Pipeline Progress
+                    Contact Information
                   </h3>
-                  <div className="bg-surface-muted p-4 rounded-nested border border-border">
-                    <div className="flex items-center justify-between mb-2">
-                      {allStages.map((stage, idx) => {
-                        const isCompleted = idx < currentStageIdx;
-                        const isCurrent = idx === currentStageIdx;
-                        return (
-                          <div key={stage} className="flex flex-col items-center flex-1">
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold transition-all ${
-                              isCompleted
-                                ? 'bg-primary text-white'
-                                : isCurrent
-                                ? 'bg-primary-tint border-2 border-primary text-primary'
-                                : 'bg-white border-2 border-border text-text-disabled'
-                            }`}>
-                              {isCompleted ? (
-                                <CheckCircle2 className="w-4 h-4" />
-                              ) : (
-                                idx + 1
-                              )}
-                            </div>
-                            <span className={`text-[11px] mt-1.5 font-semibold ${
-                              isCurrent ? 'text-primary' : isCompleted ? 'text-text-primary' : 'text-text-disabled'
-                            }`}>
-                              {stage}
-                            </span>
-                          </div>
-                        );
-                      })}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-surface-muted p-4 rounded-nested border border-border">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-full bg-white border border-border flex items-center justify-center shrink-0">
+                        <Mail className="w-4 h-4 text-text-disabled" />
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-medium text-text-secondary block">Email</span>
+                        <span className="text-[13px] font-semibold text-text-primary">{candidate.email}</span>
+                      </div>
                     </div>
-                    {/* Progress bar */}
-                    <div className="relative h-1.5 bg-border rounded-full mt-1 mx-4">
-                      <div
-                        className="absolute left-0 top-0 h-full bg-primary rounded-full transition-all"
-                        style={{ width: `${(currentStageIdx / (allStages.length - 1)) * 100}%` }}
-                      />
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-full bg-white border border-border flex items-center justify-center shrink-0">
+                        <Phone className="w-4 h-4 text-text-disabled" />
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-medium text-text-secondary block">Phone</span>
+                        <span className="text-[13px] font-semibold text-text-primary">{candidate.phone || '+1 (555) 019-2834'}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-full bg-white border border-border flex items-center justify-center shrink-0">
+                        <MapPin className="w-4 h-4 text-text-disabled" />
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-medium text-text-secondary block">Location</span>
+                        <span className="text-[13px] font-semibold text-text-primary">{candidate.location || 'San Francisco, CA'}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -279,30 +311,28 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
                   </div>
                 </div>
 
-                {/* Evaluation Summary */}
+                {/* Evaluation Summary — radial score rings */}
                 <div>
                   <h3 className="text-[16px] font-bold text-text-primary mb-3">
                     Evaluation Summary
                   </h3>
-                  <div className="bg-surface-muted p-4 rounded-nested border border-border space-y-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {evaluationScores.map((item) => (
-                      <div key={item.label} className="flex items-center gap-3">
-                        <span className="text-[13px] font-medium text-text-secondary w-[140px] shrink-0">{item.label}</span>
-                        <div className="flex-1 h-2 bg-border rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-primary rounded-full transition-all"
-                            style={{ width: `${(item.score / item.max) * 100}%` }}
-                          />
-                        </div>
-                        <span className="text-[13px] font-bold text-text-primary w-[36px] text-right">{item.score}</span>
-                      </div>
+                      <ScoreRing
+                        key={item.label}
+                        score={item.score}
+                        max={item.max}
+                        label={item.label}
+                        color={item.color}
+                      />
                     ))}
-                    <div className="flex items-center justify-between pt-2 border-t border-border">
-                      <span className="text-[13px] font-semibold text-text-primary">Overall Average</span>
-                      <div className="flex items-center gap-2">
-                        <Star className="w-4 h-4 fill-accent-amber text-accent-amber" />
-                        <span className="text-[16px] font-bold text-primary">{avgScore} / 5.0</span>
-                      </div>
+                  </div>
+                  {/* Overall average row */}
+                  <div className="flex items-center justify-between mt-3 bg-surface-muted p-3 rounded-nested border border-border">
+                    <span className="text-[13px] font-semibold text-text-primary">Overall Average</span>
+                    <div className="flex items-center gap-2">
+                      <Star className="w-4 h-4 fill-accent-amber text-accent-amber" />
+                      <span className="text-[16px] font-bold text-primary">{avgScore} / 5.0</span>
                     </div>
                   </div>
                 </div>
@@ -492,65 +522,8 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
           </Card>
         </div>
 
-        {/* Right 1/3 Stepper Column */}
+        {/* Right 1/3 Column */}
         <div className="space-y-6">
-          {/* Pinned Next Step Card */}
-          <Card className="bg-primary-tint border-primary-tint2">
-            <div className="flex items-start gap-3">
-              <div className="p-2 rounded-full bg-primary text-white shrink-0">
-                <AlertCircle className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-[14px] font-bold text-primary">Next Action Required</h4>
-                <p className="text-[14px] text-text-primary mt-1">
-                  Technical Panel Scorecard ready. Move {candidate.name.split(' ')[0]} to <strong>Executive Call</strong> or issue an Offer.
-                </p>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  className="mt-3"
-                  onClick={() => onMoveToOffer(candidate)}
-                >
-                  Advance Stage
-                </Button>
-              </div>
-            </div>
-          </Card>
-
-          {/* Candidate Snapshot Card */}
-          <Card title="Candidate Snapshot">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-surface-muted rounded-nested p-3 border border-border text-center">
-                <div className="w-8 h-8 rounded-full bg-primary-tint flex items-center justify-center mx-auto mb-1.5">
-                  <Star className="w-4 h-4 text-primary" />
-                </div>
-                <span className="text-[18px] font-bold text-primary block">{avgScore}</span>
-                <span className="text-[11px] font-medium text-text-secondary">Avg Rating</span>
-              </div>
-              <div className="bg-surface-muted rounded-nested p-3 border border-border text-center">
-                <div className="w-8 h-8 rounded-full bg-accent-teal/15 flex items-center justify-center mx-auto mb-1.5">
-                  <Clock className="w-4 h-4 text-accent-teal" />
-                </div>
-                <span className="text-[18px] font-bold text-accent-teal block">{candidate.daysInStage}d</span>
-                <span className="text-[11px] font-medium text-text-secondary">In Stage</span>
-              </div>
-              <div className="bg-surface-muted rounded-nested p-3 border border-border text-center">
-                <div className="w-8 h-8 rounded-full bg-accent-amber/15 flex items-center justify-center mx-auto mb-1.5">
-                  <Target className="w-4 h-4 text-accent-amber" />
-                </div>
-                <span className="text-[18px] font-bold text-accent-amber block">{candidate.scorecards.length}/3</span>
-                <span className="text-[11px] font-medium text-text-secondary">Rounds Done</span>
-              </div>
-              <div className="bg-surface-muted rounded-nested p-3 border border-border text-center">
-                <div className="w-8 h-8 rounded-full bg-status-successBg flex items-center justify-center mx-auto mb-1.5">
-                  <Award className="w-4 h-4 text-status-successText" />
-                </div>
-                <span className="text-[18px] font-bold text-status-successText block">Yes</span>
-                <span className="text-[11px] font-medium text-text-secondary">Hire Rec</span>
-              </div>
-            </div>
-          </Card>
-
           {/* Stepper Timeline Card */}
           <Card title="Hiring Journey Timeline">
             <Timeline items={timelineItems} />
