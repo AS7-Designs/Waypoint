@@ -529,28 +529,6 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
             <Timeline items={timelineItems} />
           </Card>
 
-          {/* Recent Activity Feed */}
-          <Card title="Recent Activity">
-            <div className="space-y-3">
-              {[
-                { icon: <MessageSquare className="w-3.5 h-3.5" />, text: 'Eve Baker added a recruiter note', time: '2 hours ago', color: 'text-primary bg-primary-tint' },
-                { icon: <Star className="w-3.5 h-3.5" />, text: 'Michael Chang submitted scorecard (4/5)', time: '1 day ago', color: 'text-accent-amber bg-accent-amber/15' },
-                { icon: <Calendar className="w-3.5 h-3.5" />, text: 'Executive call scheduled for Jul 8', time: '2 days ago', color: 'text-accent-teal bg-accent-teal/15' },
-                { icon: <CheckCircle2 className="w-3.5 h-3.5" />, text: 'Technical panel interview completed', time: '5 days ago', color: 'text-status-successText bg-status-successBg' },
-                { icon: <Briefcase className="w-3.5 h-3.5" />, text: 'Moved from Screening to Interview', time: '1 week ago', color: 'text-primary bg-primary-tint' },
-              ].map((activity, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${activity.color}`}>
-                    {activity.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[13px] font-medium text-text-primary leading-tight">{activity.text}</p>
-                    <span className="text-[11px] text-text-disabled">{activity.time}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
         </div>
       </div>
     </div>
