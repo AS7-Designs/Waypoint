@@ -12,10 +12,11 @@ import {
   mockScheduleItems 
 } from '../data/mockData';
 import { 
-  Smartphone, 
+  Briefcase, 
   Calendar as CalendarIcon, 
   UserPlus, 
   FileCheck, 
+  MessageSquare,
   Code, 
   Send, 
   ChevronRight, 
@@ -65,11 +66,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
   const getQuickIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Smartphone': return <Smartphone className="w-5 h-5 text-primary" />;
+      case 'Briefcase': return <Briefcase className="w-5 h-5 text-primary" />;
       case 'Calendar': return <CalendarIcon className="w-5 h-5 text-accent-amber" />;
       case 'UserPlus': return <UserPlus className="w-5 h-5 text-accent-teal" />;
       case 'FileCheck': return <FileCheck className="w-5 h-5 text-primary-dark" />;
-      case 'Code': return <Code className="w-5 h-5 text-accent-rose" />;
+      case 'MessageSquare': return <MessageSquare className="w-5 h-5 text-accent-rose" />;
       default: return <Send className="w-5 h-5 text-primary" />;
     }
   };
@@ -89,7 +90,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       <Card
         title={
           <div className="flex items-center gap-2">
-            <h2 className="text-[20px] font-bold text-text-primary">Add More Task</h2>
+            <h2 className="text-[20px] font-bold text-text-primary">Quick Actions</h2>
           </div>
         }
         action={
@@ -127,7 +128,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         {/* Hiring Funnel Bar Chart */}
         <Card
           className="lg:col-span-2 flex flex-col justify-between"
-          title="New Employee Progress"
+          title="Hiring Funnel"
           action={
             <button className="text-[14px] font-semibold text-primary hover:bg-primary-tint px-3 py-1.5 rounded-element transition-colors">
               Month ▾
@@ -159,8 +160,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     fontSize: '13px',
                   }}
                 />
-                <Bar dataKey="applied" fill="#4F46E5" radius={[6, 6, 0, 0]} name="Completed Task" />
-                <Bar dataKey="hired" fill="#C7D2FE" radius={[6, 6, 0, 0]} name="Late Assignments" />
+                <Bar dataKey="applied" fill="#4F46E5" radius={[6, 6, 0, 0]} name="Candidates Applied" />
+                <Bar dataKey="hired" fill="#C7D2FE" radius={[6, 6, 0, 0]} name="Hired" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -169,11 +170,11 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div className="flex items-center gap-6 mt-4 pt-4 border-t border-border">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-primary" />
-              <span className="text-[12px] font-medium text-text-secondary">Completed Task</span>
+              <span className="text-[12px] font-medium text-text-secondary">Candidates Applied</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-primary-tint2" />
-              <span className="text-[12px] font-medium text-text-secondary">Late Assignments</span>
+              <span className="text-[12px] font-medium text-text-secondary">Hired</span>
             </div>
           </div>
         </Card>
@@ -220,7 +221,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Active Interviews / Training List */}
         <Card
-          title="List Training"
+          title="Active Interviews"
           action={
             <button
               onClick={onNavigateToPipeline}
@@ -239,8 +240,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               >
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-element bg-white border border-border flex items-center justify-center text-primary shrink-0">
-                    {interview.type === 'Panel' || interview.type === 'Onsite' ? (
+                    {interview.type === 'Panel' ? (
                       <Video className="w-4 h-4" />
+                    ) : interview.type === 'Technical' ? (
+                      <Code className="w-4 h-4" />
                     ) : (
                       <FileText className="w-4 h-4" />
                     )}
@@ -263,7 +266,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </Card>
 
         {/* Onboarding Completion Donut */}
-        <Card title="Employment status">
+        <Card title="Onboarding Progress">
           <ProgressRing percentage={77} title="Onboarded" />
         </Card>
 

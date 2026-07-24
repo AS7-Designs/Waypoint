@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '../components/ui/Button';
 import { StatusPill } from '../components/ui/StatusPill';
+import { SegmentedControl } from '../components/ui/SegmentedControl';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export interface AuthViewProps {
@@ -61,26 +62,15 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
           </div>
 
           {/* Toggle Tab */}
-          <div className="flex bg-status-progressBg/40 p-1 rounded-element mb-6">
-            <button
-              type="button"
-              onClick={() => setIsSignUp(false)}
-              className={`flex-1 py-2 text-[14px] font-semibold rounded-element transition-all ${
-                !isSignUp ? 'bg-white text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary'
-              }`}
-            >
-              Log in
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsSignUp(true)}
-              className={`flex-1 py-2 text-[14px] font-semibold rounded-element transition-all ${
-                isSignUp ? 'bg-white text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary'
-              }`}
-            >
-              Sign up
-            </button>
-          </div>
+          <SegmentedControl
+            options={[
+              { value: 'login', label: 'Log in' },
+              { value: 'signup', label: 'Sign up' },
+            ]}
+            value={isSignUp ? 'signup' : 'login'}
+            onChange={(v) => setIsSignUp(v === 'signup')}
+            className="w-full mb-6"
+          />
 
           {/* SSO Buttons */}
           <div className="space-y-3 mb-6">
@@ -113,26 +103,15 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
                 <label className="block text-[12px] font-semibold text-text-secondary uppercase mb-1.5">
                   Your Primary Role
                 </label>
-                <div className="grid grid-cols-2 gap-2 bg-status-progressBg/30 p-1 rounded-element border border-border">
-                  <button
-                    type="button"
-                    onClick={() => setRole('Recruiter')}
-                    className={`py-2 text-[14px] font-semibold rounded-element transition-all ${
-                      role === 'Recruiter' ? 'bg-white text-primary shadow-sm' : 'text-text-secondary'
-                    }`}
-                  >
-                    Recruiter / Talent
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setRole('Hiring Manager')}
-                    className={`py-2 text-[14px] font-semibold rounded-element transition-all ${
-                      role === 'Hiring Manager' ? 'bg-white text-accent-teal shadow-sm' : 'text-text-secondary'
-                    }`}
-                  >
-                    Hiring Manager
-                  </button>
-                </div>
+                <SegmentedControl
+                  options={[
+                    { value: 'Recruiter', label: 'Recruiter / Talent' },
+                    { value: 'Hiring Manager', label: 'Hiring Manager' },
+                  ]}
+                  value={role}
+                  onChange={(v) => setRole(v as 'Recruiter' | 'Hiring Manager')}
+                  className="w-full"
+                />
               </div>
             )}
 
@@ -184,7 +163,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
               disabled={isLoading}
             >
               {isLoading ? (
-                <span>Logging in...</span>
+                <span>{isSignUp ? 'Creating account...' : 'Logging in...'}</span>
               ) : (
                 <span className="flex items-center gap-2">
                   {isSignUp ? 'Create Waypoint Account' : 'Sign In to Waypoint'}

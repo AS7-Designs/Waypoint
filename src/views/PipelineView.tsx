@@ -4,6 +4,7 @@ import { Avatar } from '../components/ui/Avatar';
 import { StatusPill } from '../components/ui/StatusPill';
 import { Button } from '../components/ui/Button';
 import { Drawer } from '../components/ui/Drawer';
+import { SegmentedControl } from '../components/ui/SegmentedControl';
 import { Modal } from '../components/ui/Modal';
 import { EmptyState } from '../components/ui/EmptyState';
 import { Candidate, PipelineStage } from '../types';
@@ -193,23 +194,19 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
             />
           </div>
 
-          <div className="flex items-center bg-white border border-border rounded-full p-1 shadow-sm">
-            <span className="px-3 text-[12px] font-semibold text-text-secondary flex items-center gap-1">
+          <div className="flex items-center gap-2">
+            <span className="text-caption-ui font-semibold text-text-secondary flex items-center gap-1">
               <Filter className="w-3.5 h-3.5" /> Role:
             </span>
-            {['All', 'Senior Product Designer', 'UX Researcher', 'Frontend Engineer'].map((role) => (
-              <button
-                key={role}
-                onClick={() => setRoleFilter(role)}
-                className={`px-3 py-1 text-[12px] font-semibold rounded-full transition-all ${
-                  roleFilter === role
-                    ? 'bg-primary-tint text-primary'
-                    : 'text-text-secondary hover:text-text-primary'
-                }`}
-              >
-                {role === 'All' ? 'All Roles' : role.split(' ')[0]}
-              </button>
-            ))}
+            <SegmentedControl
+              options={['All', 'Senior Product Designer', 'UX Researcher', 'Frontend Engineer'].map((r) => ({
+                value: r,
+                label: r === 'All' ? 'All Roles' : r.split(' ')[0],
+              }))}
+              value={roleFilter}
+              onChange={setRoleFilter}
+              size="sm"
+            />
           </div>
         </div>
 
@@ -392,21 +389,13 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
               <label className="text-[12px] font-semibold text-text-secondary uppercase block mb-2">
                 Move Stage
               </label>
-              <div className="grid grid-cols-3 gap-2">
-                {stages.map((s) => (
-                  <button
-                    key={s.stage}
-                    onClick={() => handleMoveStage(selectedCandidate.id, s.stage)}
-                    className={`py-1.5 px-2 text-[12px] font-semibold rounded-element border transition-all ${
-                      selectedCandidate.stage === s.stage
-                        ? 'bg-primary text-white border-primary'
-                        : 'bg-white text-text-secondary border-border hover:bg-primary-tint'
-                    }`}
-                  >
-                    {s.stage}
-                  </button>
-                ))}
-              </div>
+              <SegmentedControl
+                options={stages.map((s) => ({ value: s.stage, label: s.stage }))}
+                value={selectedCandidate.stage}
+                onChange={(v) => handleMoveStage(selectedCandidate.id, v as any)}
+                className="w-full"
+                size="sm"
+              />
             </div>
 
             {/* Schedule Interview Section */}

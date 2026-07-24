@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   LayoutDashboard, 
-  GitPullRequest, 
+  Users, 
   CheckSquare, 
   Calendar, 
   Settings, 
@@ -20,7 +20,7 @@ export interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => {
   const mainMenu = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'pipeline', label: 'Pipeline & Hiring', icon: GitPullRequest },
+    { id: 'pipeline', label: 'Pipeline & Hiring', icon: Users },
     { id: 'onboarding', label: 'Onboarding Tasks', icon: CheckSquare },
     { id: 'calendar', label: 'Schedule', icon: Calendar },
   ];

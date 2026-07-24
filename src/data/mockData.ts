@@ -1,11 +1,11 @@
 import { Candidate, NewHire, TodoItem, ActiveInterview, CalendarScheduleItem, QuickActionItem } from '../types';
 
 export const mockQuickActions: QuickActionItem[] = [
-  { id: '1', label: 'Post a Job', iconName: 'Smartphone', bgColor: 'bg-primary-tint', iconColor: 'text-primary', actionKey: 'post-job' },
+  { id: '1', label: 'Post a Job', iconName: 'Briefcase', bgColor: 'bg-primary-tint', iconColor: 'text-primary', actionKey: 'post-job' },
   { id: '2', label: 'Schedule Interview', iconName: 'Calendar', bgColor: 'bg-accent-amber/15', iconColor: 'text-accent-amber', actionKey: 'schedule' },
   { id: '3', label: 'Add Candidate', iconName: 'UserPlus', bgColor: 'bg-accent-teal/15', iconColor: 'text-accent-teal', actionKey: 'add-candidate' },
   { id: '4', label: 'Assign Onboarding', iconName: 'FileCheck', bgColor: 'bg-primary-dark/10', iconColor: 'text-primary-dark', actionKey: 'assign-onboarding' },
-  { id: '5', label: 'Review Feedback', iconName: 'Code', bgColor: 'bg-accent-rose/15', iconColor: 'text-accent-rose', actionKey: 'review-feedback' },
+  { id: '5', label: 'Review Feedback', iconName: 'MessageSquare', bgColor: 'bg-accent-rose/15', iconColor: 'text-accent-rose', actionKey: 'review-feedback' },
   { id: '6', label: 'Send Offer', iconName: 'Send', bgColor: 'bg-primary-tint', iconColor: 'text-primary', actionKey: 'send-offer' },
 ];
 
@@ -20,7 +20,7 @@ export const mockHiringFunnelData = [
 ];
 
 export const mockTodoList: TodoItem[] = [
-  { id: 't1', title: 'Review UI/UX Design Web Scorecard', timestamp: '10 AM, 7 Jul 2025', status: 'Done', category: 'hiring', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100' },
+  { id: 't1', title: 'Review Interview Scorecard — Sarah Jenkins', timestamp: '10 AM, 7 Jul 2025', status: 'Done', category: 'hiring', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100' },
   { id: 't2', title: 'Send Mobile App Dev Laptop Request', timestamp: '12 AM, 7 Jul 2025', status: 'Done', category: 'onboarding', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100' },
   { id: 't3', title: 'Screening Call with Alex Rivera', timestamp: '10 AM, 8 Jul 2025', status: 'Process', category: 'hiring', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100' },
   { id: 't4', title: 'Assign Security Compliance Training', timestamp: '8 AM, 9 Jul 2025', status: 'Not Started', category: 'onboarding', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100' },
@@ -36,7 +36,7 @@ export const mockActiveInterviews: ActiveInterview[] = [
 
 export const mockScheduleItems: CalendarScheduleItem[] = [
   { id: 's1', title: 'Work Meeting (Technical Panel)', time: '8.00 - 9.00 AM', type: 'interview' },
-  { id: 's2', title: 'UI/UX Design Dashboard Check-in', time: '9.00 - 10.00 AM', type: 'onboarding' },
+  { id: 's2', title: 'New Hire Onboarding Check-in', time: '9.00 - 10.00 AM', type: 'onboarding' },
 ];
 
 export const mockCandidates: Candidate[] = [

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, Bell, ChevronDown } from 'lucide-react';
 import { Avatar } from '../ui/Avatar';
+import { SegmentedControl } from '../ui/SegmentedControl';
 
 export interface TopBarProps {
   title: string;
@@ -39,28 +40,15 @@ export const TopBar: React.FC<TopBarProps> = ({
         </div>
 
         {/* Role Segmented Switcher */}
-        <div className="flex items-center bg-status-progressBg/40 p-1 rounded-full border border-border">
-          <button
-            onClick={() => onRoleToggle('Recruiter')}
-            className={`px-3 py-1 text-[12px] font-semibold rounded-full transition-all ${
-              userRole === 'Recruiter'
-                ? 'bg-white text-primary shadow-sm'
-                : 'text-text-secondary hover:text-text-primary'
-            }`}
-          >
-            Recruiter
-          </button>
-          <button
-            onClick={() => onRoleToggle('Hiring Manager')}
-            className={`px-3 py-1 text-[12px] font-semibold rounded-full transition-all ${
-              userRole === 'Hiring Manager'
-                ? 'bg-white text-accent-teal shadow-sm'
-                : 'text-text-secondary hover:text-text-primary'
-            }`}
-          >
-            Manager
-          </button>
-        </div>
+        <SegmentedControl
+          options={[
+            { value: 'Recruiter', label: 'Recruiter' },
+            { value: 'Hiring Manager', label: 'Manager' },
+          ]}
+          value={userRole}
+          onChange={(v) => onRoleToggle(v as 'Recruiter' | 'Hiring Manager')}
+          size="sm"
+        />
 
         {/* Notifications Bell */}
         <button className="relative w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-muted shadow-sm transition-all">
