@@ -340,9 +340,12 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
 
                   {stageCandidates.length === 0 && (
                     <EmptyState
-                      title="No candidates"
-                      description={`Drag candidates here or click below`}
-                      className="p-4 py-8"
+                      icon={<UserPlus className="w-5 h-5 text-primary" />}
+                      title={`No candidates in ${stage}`}
+                      description="Add a candidate or drag one here"
+                      actionLabel="+ Add Candidate"
+                      onAction={() => setIsAddModalOpen(true)}
+                      className="py-8 px-3 my-2"
                     />
                   )}
                 </div>
@@ -367,21 +370,6 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
           title={`Manage ${selectedCandidate.name}`}
-          footer={
-            <div className="flex gap-2 w-full">
-              <Button
-                variant="secondary"
-                size="sm"
-                className="flex-1"
-                onClick={() => {
-                  setIsDrawerOpen(false);
-                  onSelectCandidate(selectedCandidate);
-                }}
-              >
-                View Full Profile
-              </Button>
-            </div>
-          }
         >
           <div className="space-y-6">
             {/* Stage Quick Advancement */}
@@ -420,12 +408,17 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
 
               <div>
                 <label className="text-[12px] font-semibold text-text-secondary block mb-1">Interviewer</label>
-                <input
-                  type="text"
+                <select
                   value={interviewer}
                   onChange={(e) => setInterviewer(e.target.value)}
                   className="w-full h-[36px] px-3 bg-white border border-border rounded-element text-[14px] font-medium"
-                />
+                >
+                  <option value="Michael Chang">Michael Chang (Lead Designer)</option>
+                  <option value="Sarah Connor">Sarah Connor (Engineering Manager)</option>
+                  <option value="Eve Baker">Eve Baker (Recruiter Lead)</option>
+                  <option value="Alex Mercer">Alex Mercer (Research Lead)</option>
+                  <option value="Marcus Vance">Marcus Vance (DevOps Lead)</option>
+                </select>
               </div>
 
               <div>
@@ -500,6 +493,19 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
 
               <Button type="submit" variant="primary" size="md" className="w-full mt-2">
                 Save Scorecard & Update Status
+              </Button>
+
+              <Button
+                type="button"
+                variant="secondary"
+                size="md"
+                className="w-full mt-2"
+                onClick={() => {
+                  setIsDrawerOpen(false);
+                  onSelectCandidate(selectedCandidate);
+                }}
+              >
+                View Full Profile
               </Button>
             </form>
           </div>

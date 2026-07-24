@@ -202,6 +202,27 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
                     ))}
                   </div>
                 </div>
+
+                {/* Compensation & Availability */}
+                <div>
+                  <h3 className="text-[16px] font-bold text-text-primary mb-3">
+                    Compensation & Availability
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-surface-muted p-4 rounded-nested border border-border">
+                    <div>
+                      <span className="text-[12px] font-medium text-text-secondary block">Target Salary</span>
+                      <span className="text-[14px] font-semibold text-text-primary">$175,000 - $185,000 / yr</span>
+                    </div>
+                    <div>
+                      <span className="text-[12px] font-medium text-text-secondary block">Notice Period</span>
+                      <span className="text-[14px] font-semibold text-text-primary">2 Weeks (Available Aug 1)</span>
+                    </div>
+                    <div>
+                      <span className="text-[12px] font-medium text-text-secondary block">Work Preference</span>
+                      <span className="text-[14px] font-semibold text-text-primary">Hybrid (2 Days Onsite)</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
 

@@ -270,6 +270,16 @@ export const OnboardingView: React.FC = () => {
                 </div>
               )}
             </div>
+
+            {/* Phase Progress Footer */}
+            <div className="flex items-center justify-between pt-4 mt-4 border-t border-border text-[12px] text-text-secondary">
+              <span className="font-semibold">
+                Phase Summary: {filteredTasks.filter((t) => t.status === 'Done').length} of {filteredTasks.length} {activePhase} tasks completed
+              </span>
+              <span className="text-primary font-bold">
+                {filteredTasks.length > 0 ? Math.round((filteredTasks.filter((t) => t.status === 'Done').length / filteredTasks.length) * 100) : 100}% Phase Completion
+              </span>
+            </div>
           </Card>
         </div>
       </div>
