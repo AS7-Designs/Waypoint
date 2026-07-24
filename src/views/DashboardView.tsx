@@ -26,7 +26,10 @@ import {
   FileText, 
   Clock, 
   Plus, 
-  ChevronLeft 
+  ChevronLeft,
+  Building2,
+  Users,
+  Phone
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -160,7 +163,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     fontSize: '13px',
                   }}
                 />
-                <Bar dataKey="applied" fill="#4F46E5" radius={[6, 6, 0, 0]} name="Candidates Applied" />
+                <Bar dataKey="applied" fill="#4F46E5" radius={[6, 6, 0, 0]} name="Applied" />
                 <Bar dataKey="hired" fill="#C7D2FE" radius={[6, 6, 0, 0]} name="Hired" />
               </BarChart>
             </ResponsiveContainer>
@@ -170,7 +173,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div className="flex items-center gap-6 mt-4 pt-4 border-t border-border">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-primary" />
-              <span className="text-[12px] font-medium text-text-secondary">Candidates Applied</span>
+              <span className="text-[12px] font-medium text-text-secondary">Applied</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-primary-tint2" />
@@ -240,12 +243,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               >
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-element bg-white border border-border flex items-center justify-center text-primary shrink-0">
-                    {interview.type === 'Panel' ? (
-                      <Video className="w-4 h-4" />
+                    {interview.type === 'Onsite' ? (
+                      <Building2 className="w-4 h-4" />
+                    ) : interview.type === 'Panel' ? (
+                      <Users className="w-4 h-4" />
                     ) : interview.type === 'Technical' ? (
                       <Code className="w-4 h-4" />
                     ) : (
-                      <FileText className="w-4 h-4" />
+                      <Phone className="w-4 h-4" />
                     )}
                   </div>
                   <div>
@@ -266,7 +271,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </Card>
 
         {/* Onboarding Completion Donut */}
-        <Card title="Onboarding Progress">
+        <Card title="Onboarding Completion">
           <ProgressRing percentage={77} title="Onboarded" />
         </Card>
 

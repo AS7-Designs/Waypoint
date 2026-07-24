@@ -10,13 +10,13 @@ export const mockQuickActions: QuickActionItem[] = [
 ];
 
 export const mockHiringFunnelData = [
-  { month: 'Jan', applied: 55, hired: 40 },
-  { month: 'Feb', applied: 40, hired: 50 },
-  { month: 'Mar', applied: 75, hired: 50 },
-  { month: 'Apr', applied: 50, hired: 35 },
-  { month: 'May', applied: 68, hired: 45 },
-  { month: 'Jun', applied: 48, hired: 42 },
-  { month: 'Jul', applied: 55, hired: 32 },
+  { month: 'Jan', applied: 55, hired: 12 },
+  { month: 'Feb', applied: 40, hired: 10 },
+  { month: 'Mar', applied: 75, hired: 18 },
+  { month: 'Apr', applied: 50, hired: 11 },
+  { month: 'May', applied: 68, hired: 15 },
+  { month: 'Jun', applied: 48, hired: 9 },
+  { month: 'Jul', applied: 55, hired: 12 },
 ];
 
 export const mockTodoList: TodoItem[] = [
