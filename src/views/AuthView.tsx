@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '../components/ui/Button';
 import { StatusPill } from '../components/ui/StatusPill';
 import { SegmentedControl } from '../components/ui/SegmentedControl';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 
 export interface AuthViewProps {
   onLoginSuccess: () => void;
@@ -13,6 +13,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
   const [role, setRole] = useState<'Recruiter' | 'Hiring Manager'>('Recruiter');
   const [email, setEmail] = useState('eve.baker@waypoint.io');
   const [password, setPassword] = useState('••••••••••••');
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -89,11 +90,13 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
             </button>
           </div>
 
-          <div className="relative flex items-center justify-center mb-6">
-            <div className="border-t border-border w-full" />
-            <span className="bg-bgCanvas px-3 text-[12px] font-medium text-text-disabled uppercase">
+          {/* Divider with centered label */}
+          <div className="relative flex items-center mb-6">
+            <div className="flex-1 border-t border-border" />
+            <span className="shrink-0 px-4 bg-bgCanvas text-[11px] font-semibold text-text-disabled uppercase tracking-widest whitespace-nowrap">
               or continue with email
             </span>
+            <div className="flex-1 border-t border-border" />
           </div>
 
           {/* Main Form */}
@@ -140,13 +143,27 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
                   </a>
                 )}
               </div>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-[40px] px-3.5 bg-white border border-border rounded-element text-[14px] font-medium text-text-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full h-[40px] px-3.5 pr-10 bg-white border border-border rounded-element text-[14px] font-medium text-text-primary focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-text-disabled hover:text-text-secondary transition-colors"
+                  tabIndex={-1}
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-4.5 h-4.5" />
+                  ) : (
+                    <Eye className="w-4.5 h-4.5" />
+                  )}
+                </button>
+              </div>
             </div>
 
             {error && (
@@ -194,11 +211,34 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
 
       {/* Right Hero Panel (55%) */}
       <div className="hidden lg:flex w-[55%] bg-gradient-to-br from-primary via-[#4338CA] to-[#312E81] text-white p-12 flex-col justify-between relative overflow-hidden">
-        {/* Decorative background routes */}
-        <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 600 600" fill="none">
-          <circle cx="300" cy="300" r="240" stroke="white" strokeWidth="2" strokeDasharray="6 8"/>
-          <circle cx="300" cy="300" r="160" stroke="white" strokeWidth="2" strokeDasharray="4 6"/>
-          <path d="M100 500 C 200 300, 400 400, 500 100" stroke="#14B8A6" strokeWidth="4" fill="none"/>
+        {/* Waypoint journey path — 4 connected dots along a curve */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 600 700" fill="none" preserveAspectRatio="xMidYMid slice">
+          {/* The curved journey path */}
+          <path
+            d="M80 580 C 160 480, 200 400, 220 340 C 240 280, 300 240, 380 260 C 460 280, 480 200, 480 160 C 480 120, 520 80, 560 60"
+            stroke="white"
+            strokeWidth="2"
+            strokeDasharray="6 6"
+            opacity="0.2"
+          />
+          {/* Waypoint 1: Applied */}
+          <circle cx="80" cy="580" r="8" fill="#14B8A6" opacity="0.7" />
+          <circle cx="80" cy="580" r="4" fill="white" opacity="0.9" />
+          <text x="96" y="584" fill="white" fontSize="11" fontWeight="600" opacity="0.5">Applied</text>
+          {/* Waypoint 2: Interviewed */}
+          <circle cx="220" cy="340" r="8" fill="#14B8A6" opacity="0.7" />
+          <circle cx="220" cy="340" r="4" fill="white" opacity="0.9" />
+          <text x="236" y="344" fill="white" fontSize="11" fontWeight="600" opacity="0.5">Interviewed</text>
+          {/* Waypoint 3: Offer */}
+          <circle cx="480" cy="160" r="8" fill="#14B8A6" opacity="0.7" />
+          <circle cx="480" cy="160" r="4" fill="white" opacity="0.9" />
+          <text x="450" y="148" fill="white" fontSize="11" fontWeight="600" opacity="0.5">Offer</text>
+          {/* Waypoint 4: Onboarded */}
+          <circle cx="560" cy="60" r="10" fill="#14B8A6" opacity="0.8" />
+          <circle cx="560" cy="60" r="5" fill="white" opacity="0.95" />
+          <text x="510" y="48" fill="white" fontSize="11" fontWeight="600" opacity="0.5">Onboarded</text>
+          {/* Subtle radial glow behind final waypoint */}
+          <circle cx="560" cy="60" r="24" fill="#14B8A6" opacity="0.12" />
         </svg>
 
         <div className="relative z-10 flex justify-end">
@@ -227,6 +267,35 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
             <div className="flex items-center gap-3 bg-white/10 p-3 rounded-nested backdrop-blur-md border border-white/10">
               <CheckCircle2 className="w-5 h-5 text-accent-teal shrink-0" />
               <span className="text-[14px] font-medium">Clear metrics for recruiters and team managers</span>
+            </div>
+          </div>
+
+          {/* Floating card mockup — tilted ProgressRing preview */}
+          <div className="flex justify-end pt-4">
+            <div
+              className="bg-white/10 backdrop-blur-md border border-white/15 rounded-card p-5 shadow-elevated w-[180px]"
+              style={{ transform: 'rotate(5deg)', opacity: 0.6 }}
+            >
+              {/* Mini progress ring SVG */}
+              <svg viewBox="0 0 80 80" className="w-16 h-16 mx-auto mb-2">
+                <circle cx="40" cy="40" r="32" stroke="white" strokeWidth="6" opacity="0.15" fill="none" />
+                <circle
+                  cx="40" cy="40" r="32"
+                  stroke="#14B8A6"
+                  strokeWidth="6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeDasharray={`${0.77 * 2 * Math.PI * 32} ${2 * Math.PI * 32}`}
+                  transform="rotate(-90 40 40)"
+                  opacity="0.9"
+                />
+                <text x="40" y="38" textAnchor="middle" fill="white" fontSize="16" fontWeight="700">77%</text>
+                <text x="40" y="52" textAnchor="middle" fill="white" fontSize="8" fontWeight="500" opacity="0.7">Onboarded</text>
+              </svg>
+              <div className="text-center">
+                <div className="text-[11px] font-semibold text-white/80">Onboarding Progress</div>
+                <div className="text-[10px] text-white/50 mt-0.5">3 of 8 tasks remaining</div>
+              </div>
             </div>
           </div>
         </div>
