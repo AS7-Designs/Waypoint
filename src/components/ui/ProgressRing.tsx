@@ -16,7 +16,7 @@ export interface ProgressRingProps {
 
 export const ProgressRing: React.FC<ProgressRingProps> = ({
   percentage,
-  size = 200,
+  size = 180,
   strokeWidth = 16,
   title,
   legends = [
@@ -26,45 +26,21 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
     { label: 'Culture', percentage: 7, color: '#F59E0B' },
   ],
 }) => {
-  const radius = (size - strokeWidth - 40) / 2; // Leave room for leader lines and labels
+  const radius = (size - strokeWidth) / 2;
   const center = size / 2;
   const circumference = 2 * Math.PI * radius;
   
   let cumulativeOffset = 0;
-  let cumulativeAngle = -90; // SVG -90deg is top
 
-  // Pre-calculate segments and leader line coordinates
-  const segmentsWithLabels = legends.map((item) => {
+  const segments = legends.map((item) => {
     const strokeDasharray = `${(item.percentage / 100) * circumference} ${circumference}`;
     const strokeDashoffset = -cumulativeOffset;
     cumulativeOffset += (item.percentage / 100) * circumference;
-
-    const angleSpan = (item.percentage / 100) * 360;
-    const midAngleDeg = cumulativeAngle + angleSpan / 2;
-    cumulativeAngle += angleSpan;
-
-    const midAngleRad = (midAngleDeg * Math.PI) / 180;
-    
-    // Leader line start (edge of donut)
-    const lineR1 = radius + strokeWidth / 2 + 2;
-    const x1 = center + lineR1 * Math.cos(midAngleRad);
-    const y1 = center + lineR1 * Math.sin(midAngleRad);
-
-    // Leader line end
-    const lineR2 = radius + strokeWidth / 2 + 10;
-    const x2 = center + lineR2 * Math.cos(midAngleRad);
-    const y2 = center + lineR2 * Math.sin(midAngleRad);
-
-    // Text position
-    const textR = radius + strokeWidth / 2 + 16;
-    const textX = center + textR * Math.cos(midAngleRad);
-    const textY = center + textR * Math.sin(midAngleRad);
 
     return {
       ...item,
       strokeDasharray,
       strokeDashoffset,
-      x1, y1, x2, y2, textX, textY,
     };
   });
 
@@ -84,7 +60,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
           />
           
           {/* Segments */}
-          {segmentsWithLabels.map((item, idx) => (
+          {segments.map((item, idx) => (
             <circle
               key={idx}
               cx={center}
@@ -99,61 +75,37 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
               className="transform -rotate-90 origin-center transition-all duration-500 ease-out"
             />
           ))}
-
-          {/* Leader Lines and Midpoint Percentage Labels (>= 5% only) */}
-          {segmentsWithLabels.map((item, idx) => {
-            if (item.percentage < 5) return null;
-            return (
-              <g key={`label-${idx}`}>
-                <line
-                  x1={item.x1}
-                  y1={item.y1}
-                  x2={item.x2}
-                  y2={item.y2}
-                  stroke={item.color}
-                  strokeWidth="1.5"
-                  strokeDasharray="2 2"
-                />
-                <text
-                  x={item.textX}
-                  y={item.textY}
-                  textAnchor="middle"
-                  dominantBaseline="central"
-                  fill="#1C1917"
-                  fontSize="11"
-                  fontWeight="700"
-                >
-                  {item.percentage}%
-                </text>
-              </g>
-            );
-          })}
         </svg>
         
         {/* Center Text */}
         <div className="absolute flex flex-col items-center justify-center text-center">
-          <span className="text-[24px] font-bold text-text-primary">
+          <span className="text-[26px] font-bold text-text-primary leading-none mb-0.5">
             {percentage}%
           </span>
           {title && (
-            <span className="text-[11px] leading-[14px] font-medium text-text-secondary">
+            <span className="text-[12px] font-medium text-text-secondary">
               {title}
             </span>
           )}
         </div>
       </div>
 
-      {/* Legend below */}
+      {/* Legend below with inline percentages */}
       {legends && legends.length > 0 && (
-        <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 mt-4 w-full max-w-[240px]">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 mt-5 w-full max-w-[260px]">
           {legends.map((item, idx) => (
-            <div key={idx} className="flex items-center gap-2">
-              <span
-                className="w-3 h-3 rounded-full shrink-0"
-                style={{ backgroundColor: item.color }}
-              />
-              <span className="text-[12px] leading-[16px] font-medium text-text-secondary truncate">
-                {item.label}
+            <div key={idx} className="flex items-center justify-between gap-1.5 min-w-0">
+              <div className="flex items-center gap-2 min-w-0">
+                <span
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
+                  style={{ backgroundColor: item.color }}
+                />
+                <span className="text-[12px] font-medium text-text-secondary truncate">
+                  {item.label}
+                </span>
+              </div>
+              <span className="text-[12px] font-bold text-text-primary shrink-0">
+                {item.percentage}%
               </span>
             </div>
           ))}

@@ -166,6 +166,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               key={action.id}
               label={action.label}
               icon={action.icon}
+              bgColor={action.bgColor}
               onClick={action.onClick}
             />
           ))}

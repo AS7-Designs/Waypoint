@@ -5,10 +5,10 @@
 @tailwind utilities;
 
 :root {
-  --color-bg-canvas:      #FAF8F4;   /* warm off-white, not lavender-gray */
-  --color-surface:        #FFFFFF;   /* unchanged - white cards should still pop */
-  --color-surface-muted:  #F5F2ED;   /* was #F8F9FC */
-  --color-border:         #EAE5DC;   /* was #ECECF3 */
+  --color-bg-canvas:      #FBF9F6;   /* warm off-white canvas tone */
+  --color-surface:        #FFFFFF;   /* elevated white cards */
+  --color-surface-muted:  #FBF9F6;   /* alias of bg-canvas for recessed nested panels */
+  --color-border:         #EAE5DC;   /* hairline border */
 
   --color-primary:        #4F46E5;   /* indigo — primary actions, active nav, bars */
   --color-primary-dark:   #4338CA;   /* hover/pressed state */
