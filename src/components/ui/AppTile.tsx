@@ -32,7 +32,7 @@ export const AppTile: React.FC<AppTileProps> = ({
         <div
           className={twMerge(
             clsx(
-              'w-10 h-10 rounded-element flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 bg-primary-tint text-primary',
+              'w-10 h-10 rounded-element flex items-center justify-center shrink-0 transition-transform group-hover:scale-105',
               bgColor
             )
           )}

@@ -240,30 +240,33 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
         <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 600 700" fill="none" preserveAspectRatio="xMidYMid slice">
           {/* The curved journey path */}
           <path
-            d="M80 580 C 160 480, 200 400, 220 340 C 240 280, 300 240, 380 260 C 460 280, 480 200, 480 160 C 480 120, 520 80, 560 60"
+            d="M60 620 C 100 520, 140 460, 140 460 C 180 340, 240 280, 340 220 C 440 160, 480 110, 520 70"
             stroke="white"
             strokeWidth="2"
             strokeDasharray="6 6"
             opacity="0.2"
           />
           {/* Waypoint 1: Applied */}
-          <circle cx="80" cy="580" r="8" fill="#14B8A6" opacity="0.7" />
-          <circle cx="80" cy="580" r="4" fill="white" opacity="0.9" />
-          <text x="96" y="584" fill="white" fontSize="11" fontWeight="600" opacity="0.5">Applied</text>
+          <circle cx="60" cy="620" r="8" fill="#14B8A6" opacity="0.8" />
+          <circle cx="60" cy="620" r="4" fill="white" opacity="0.95" />
+          <text x="76" y="624" fill="white" fontSize="12" fontWeight="600" opacity="0.7">Applied</text>
+
           {/* Waypoint 2: Interviewed */}
-          <circle cx="220" cy="340" r="8" fill="#14B8A6" opacity="0.7" />
-          <circle cx="220" cy="340" r="4" fill="white" opacity="0.9" />
-          <text x="236" y="344" fill="white" fontSize="11" fontWeight="600" opacity="0.5">Interviewed</text>
+          <circle cx="140" cy="460" r="8" fill="#14B8A6" opacity="0.8" />
+          <circle cx="140" cy="460" r="4" fill="white" opacity="0.95" />
+          <text x="156" y="464" fill="white" fontSize="12" fontWeight="600" opacity="0.7">Interviewed</text>
+
           {/* Waypoint 3: Offer */}
-          <circle cx="480" cy="160" r="8" fill="#14B8A6" opacity="0.7" />
-          <circle cx="480" cy="160" r="4" fill="white" opacity="0.9" />
-          <text x="450" y="148" fill="white" fontSize="11" fontWeight="600" opacity="0.5">Offer</text>
+          <circle cx="340" cy="220" r="8" fill="#14B8A6" opacity="0.8" />
+          <circle cx="340" cy="220" r="4" fill="white" opacity="0.95" />
+          <text x="356" y="224" fill="white" fontSize="12" fontWeight="600" opacity="0.7">Offer</text>
+
           {/* Waypoint 4: Onboarded */}
-          <circle cx="560" cy="60" r="10" fill="#14B8A6" opacity="0.8" />
-          <circle cx="560" cy="60" r="5" fill="white" opacity="0.95" />
-          <text x="510" y="48" fill="white" fontSize="11" fontWeight="600" opacity="0.5">Onboarded</text>
+          <circle cx="520" cy="70" r="10" fill="#14B8A6" opacity="0.9" />
+          <circle cx="520" cy="70" r="5" fill="white" opacity="0.95" />
+          <text x="440" y="74" fill="white" fontSize="12" fontWeight="600" opacity="0.7">Onboarded</text>
           {/* Subtle radial glow behind final waypoint */}
-          <circle cx="560" cy="60" r="24" fill="#14B8A6" opacity="0.12" />
+          <circle cx="520" cy="70" r="24" fill="#14B8A6" opacity="0.15" />
         </svg>
 
         <div className="relative z-10 flex justify-end">

@@ -53,6 +53,7 @@ export const mockCandidates: Candidate[] = [
     source: 'LinkedIn',
     tags: ['Agile', 'Roadmapping', 'Growth'],
     daysInStage: 5,
+    matchScore: 92,
     scorecards: [],
   },
   {
@@ -67,6 +68,7 @@ export const mockCandidates: Candidate[] = [
     source: 'Referral',
     tags: ['Figma', 'Design Systems', 'Design Lead'],
     daysInStage: 2,
+    matchScore: 78,
     scorecards: [],
   },
   {
@@ -81,6 +83,7 @@ export const mockCandidates: Candidate[] = [
     source: 'Careers Site',
     tags: ['Usability', 'Mixed Methods', 'User Interviews'],
     daysInStage: 1,
+    matchScore: 54,
     scorecards: [],
   },
   {
@@ -95,6 +98,7 @@ export const mockCandidates: Candidate[] = [
     source: 'GitHub',
     tags: ['Vue.js', 'TypeScript', 'CSS Modules'],
     daysInStage: 1,
+    matchScore: 84,
     scorecards: [],
   },
 
@@ -111,6 +115,7 @@ export const mockCandidates: Candidate[] = [
     source: 'Careers Site',
     tags: ['User Testing', 'Qualitative', 'B2B SaaS'],
     daysInStage: 2,
+    matchScore: 88,
     scorecards: [],
     notes: ['Initial recruiter screen went great. Recommended for hiring manager call.'],
   },
@@ -126,6 +131,7 @@ export const mockCandidates: Candidate[] = [
     source: 'LinkedIn',
     tags: ['UI Architecture', 'Prototyping', 'Design Ops'],
     daysInStage: 3,
+    matchScore: 72,
     scorecards: [],
     notes: ['Strong mobile UI portfolio. Screening call scheduled for tomorrow.'],
   },
@@ -141,6 +147,7 @@ export const mockCandidates: Candidate[] = [
     source: 'Referral',
     tags: ['React', 'Next.js', 'Performance'],
     daysInStage: 4,
+    matchScore: 48,
     scorecards: [],
   },
 
@@ -157,6 +164,7 @@ export const mockCandidates: Candidate[] = [
     source: 'LinkedIn',
     tags: ['Design System', 'Figma', 'Referral'],
     daysInStage: 4,
+    matchScore: 95,
     hasOverdueFeedback: true,
     phone: '+1 (555) 234-5678',
     location: 'San Francisco, CA',
@@ -191,6 +199,7 @@ export const mockCandidates: Candidate[] = [
     source: 'Careers Site',
     tags: ['Persona Research', 'Usability Audits', 'Analytics'],
     daysInStage: 3,
+    matchScore: 86,
     scorecards: [
       {
         id: 'sc3',
@@ -217,6 +226,7 @@ export const mockCandidates: Candidate[] = [
     source: 'LinkedIn',
     tags: ['TypeScript', 'GraphQL', 'Tailwind'],
     daysInStage: 5,
+    matchScore: 64,
     hasOverdueFeedback: true,
     scorecards: [],
   },
@@ -232,6 +242,7 @@ export const mockCandidates: Candidate[] = [
     source: 'Agency',
     tags: ['Product Strategy', 'SaaS Growth', 'PRD Specs'],
     daysInStage: 2,
+    matchScore: 71,
     scorecards: [],
   },
 
@@ -248,6 +259,7 @@ export const mockCandidates: Candidate[] = [
     source: 'Referral',
     tags: ['React', 'TypeScript', 'Tailwind'],
     daysInStage: 1,
+    matchScore: 91,
     scorecards: [
       {
         id: 'sc2',
@@ -275,6 +287,7 @@ export const mockCandidates: Candidate[] = [
     source: 'LinkedIn',
     tags: ['Design Systems', 'Leadership', 'UI Kit'],
     daysInStage: 2,
+    matchScore: 83,
     scorecards: [],
     notes: ['Verbal offer accepted. Formal document pending sign-off.'],
   },
@@ -290,7 +303,7 @@ export const mockCandidates: Candidate[] = [
     source: 'LinkedIn',
     tags: ['Go-to-Market', 'Enterprise SaaS', 'Strategy'],
     daysInStage: 4,
-    matchScore: 80,
+    matchScore: 77,
     scorecards: [],
   },
 
@@ -322,7 +335,7 @@ export const mockCandidates: Candidate[] = [
     source: 'Referral',
     tags: ['Python', 'Machine Learning', 'SQL'],
     daysInStage: 12,
-    matchScore: 89,
+    matchScore: 58,
     scorecards: [],
   },
 ];

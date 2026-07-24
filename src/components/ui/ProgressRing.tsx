@@ -100,31 +100,34 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
             />
           ))}
 
-          {/* Leader Lines and Midpoint Percentage Labels */}
-          {segmentsWithLabels.map((item, idx) => (
-            <g key={`label-${idx}`}>
-              <line
-                x1={item.x1}
-                y1={item.y1}
-                x2={item.x2}
-                y2={item.y2}
-                stroke={item.color}
-                strokeWidth="1.5"
-                strokeDasharray="2 2"
-              />
-              <text
-                x={item.textX}
-                y={item.textY}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="#1C1917"
-                fontSize="11"
-                fontWeight="700"
-              >
-                {item.percentage}%
-              </text>
-            </g>
-          ))}
+          {/* Leader Lines and Midpoint Percentage Labels (>= 5% only) */}
+          {segmentsWithLabels.map((item, idx) => {
+            if (item.percentage < 5) return null;
+            return (
+              <g key={`label-${idx}`}>
+                <line
+                  x1={item.x1}
+                  y1={item.y1}
+                  x2={item.x2}
+                  y2={item.y2}
+                  stroke={item.color}
+                  strokeWidth="1.5"
+                  strokeDasharray="2 2"
+                />
+                <text
+                  x={item.textX}
+                  y={item.textY}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fill="#1C1917"
+                  fontSize="11"
+                  fontWeight="700"
+                >
+                  {item.percentage}%
+                </text>
+              </g>
+            );
+          })}
         </svg>
         
         {/* Center Text */}

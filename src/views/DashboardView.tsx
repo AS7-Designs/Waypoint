@@ -78,30 +78,34 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     }
   };
 
-  // Top 4 prioritized quick actions
+  // Top 4 prioritized quick actions (CATEGORICAL mode colors)
   const primaryQuickActions = [
     {
       id: 'qa-schedule',
       label: 'Schedule Interview',
       icon: <CalendarIcon className="w-5 h-5" />,
+      bgColor: 'bg-primary-tint text-primary',
       onClick: onNavigateToPipeline,
     },
     {
       id: 'qa-add',
       label: 'Add Candidate',
       icon: <UserPlus className="w-5 h-5" />,
+      bgColor: 'bg-accent-teal/15 text-accent-teal',
       onClick: onNavigateToPipeline,
     },
     {
       id: 'qa-onboard',
       label: 'Assign Onboarding',
       icon: <FileCheck className="w-5 h-5" />,
+      bgColor: 'bg-accent-amber/15 text-accent-amber',
       onClick: onNavigateToOnboarding,
     },
     {
       id: 'qa-post',
       label: 'Post a Job',
       icon: <Briefcase className="w-5 h-5" />,
+      bgColor: 'bg-accent-violet/15 text-accent-violet',
       onClick: () => onNavigateToJobs ? onNavigateToJobs() : alert('Post a Job action'),
     },
   ];

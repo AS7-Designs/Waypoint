@@ -56,6 +56,22 @@ export const JobsView: React.FC<JobsViewProps> = ({ onViewPipelineForRole }) => 
     setTitle('');
   };
 
+  const getDepartmentColor = (dept: string) => {
+    switch (dept) {
+      case 'Engineering':
+        return 'bg-primary-tint text-primary border-primary/20';
+      case 'Product':
+        return 'bg-accent-teal/15 text-accent-teal border-accent-teal/30';
+      case 'Marketing':
+        return 'bg-accent-amber/15 text-accent-amber border-accent-amber/30';
+      case 'Sales':
+        return 'bg-accent-rose/15 text-accent-rose border-accent-rose/30';
+      case 'Design':
+      default:
+        return 'bg-accent-violet/15 text-accent-violet border-accent-violet/30';
+    }
+  };
+
   return (
     <div className="space-y-6 pb-12">
       {/* Page Header Bar */}
@@ -88,7 +104,7 @@ export const JobsView: React.FC<JobsViewProps> = ({ onViewPipelineForRole }) => 
             <div>
               {/* Header pills & title */}
               <div className="flex items-center justify-between gap-2 mb-3">
-                <span className="px-2.5 py-0.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold text-text-secondary">
+                <span className={`px-2.5 py-0.5 rounded-full border text-[11px] font-semibold ${getDepartmentColor(job.department)}`}>
                   {job.department}
                 </span>
                 <div className="flex items-center gap-1.5">
