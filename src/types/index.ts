@@ -14,6 +14,7 @@ export interface Candidate {
   source: string;
   tags: string[];
   daysInStage: number;
+  matchScore?: number;
   hasOverdueFeedback?: boolean;
   scorecards: Scorecard[];
   phone?: string;
@@ -96,3 +97,21 @@ export interface QuickActionItem {
   iconColor: string;
   actionKey: string;
 }
+
+export interface JobOpening {
+  id: string;
+  title: string;
+  department: string;
+  location: string;
+  type: 'Full-time' | 'Contract' | 'Remote';
+  isUrgent?: boolean;
+  isActive?: boolean;
+  candidateCount: number;
+  funnel: {
+    applied: number;
+    screening: number;
+    interview: number;
+    offer: number;
+  };
+}
+

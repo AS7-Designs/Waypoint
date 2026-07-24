@@ -5,6 +5,7 @@ import { StatusPill } from '../components/ui/StatusPill';
 import { Button } from '../components/ui/Button';
 import { Tabs } from '../components/ui/Tabs';
 import { Timeline, TimelineItem } from '../components/ui/Timeline';
+import { MatchScore } from '../components/ui/MatchScore';
 import { Candidate } from '../types';
 import { 
   ArrowLeft, 
@@ -170,11 +171,14 @@ export const CandidateProfileView: React.FC<CandidateProfileViewProps> = ({
           <div className="flex items-center gap-5">
             <Avatar src={candidate.avatar} name={candidate.name} size="lg" roleRing="recruiter" />
             <div>
-              <div className="flex items-center gap-3 flex-wrap">
+              <div className="flex items-center gap-4 flex-wrap">
                 <h1 className="text-[28px] leading-[36px] font-bold text-text-primary">
                   {candidate.name}
                 </h1>
                 <StatusPill variant="progress" label={candidate.stage} />
+                <div className="w-36">
+                  <MatchScore score={candidate.matchScore || 88} size="md" />
+                </div>
                 {candidate.hasOverdueFeedback && (
                   <StatusPill variant="danger" label="Scorecard Overdue" />
                 )}

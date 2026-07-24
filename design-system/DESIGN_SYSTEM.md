@@ -1,16 +1,20 @@
 # Design System — LOCKED
 
+> **Changelog**:
+> - 2026-07 refresh: warmed the neutral palette, added StatCard/MatchScore/SegmentedControl as locked components.
+> - 2026-07 initial lock: consolidated 13 ad hoc font sizes and stray radiuses into 3-tier token scale.
+
 ## 1. Brand direction
-Calm, competent, "guided journey" feeling — a trusted co-pilot for hiring, not a corporate HR tool. Visual language: soft indigo/violet as the hero color, generous whitespace, rounded surfaces, pastel-tinted status pills, low-contrast data visualizations that don't compete with content. Directly inspired by the reference dashboard: light lavender-grey canvas, white elevated cards, a single saturated primary color used sparingly (charts, active states, primary buttons only) against a mostly neutral palette.
+Calm, competent, "guided journey" feeling — a trusted co-pilot for hiring, not a corporate HR tool. Visual language: soft indigo/violet as the hero color, generous whitespace, rounded surfaces, warm neutral background tones, low-contrast data visualizations that don't compete with content. Warm off-white canvas, white elevated cards, a single saturated primary color used sparingly (charts, active states, primary buttons only) against a warm neutral palette.
 
 ## 2. Color tokens
 
 ```css
 :root {
-  --color-bg-canvas:      #F5F5FA;   /* page background, light lavender-grey */
-  --color-surface:        #FFFFFF;   /* cards, sidebar, modals */
-  --color-surface-muted:  #F8F9FC;   /* nested panels inside cards */
-  --color-border:         #ECECF3;   /* hairline borders on cards/inputs */
+  --color-bg-canvas:      #FAF8F4;   /* warm off-white, not lavender-gray */
+  --color-surface:        #FFFFFF;   /* unchanged - white cards should still pop */
+  --color-surface-muted:  #F5F2ED;   /* was #F8F9FC */
+  --color-border:         #EAE5DC;   /* was #ECECF3 */
 
   --color-primary:        #4F46E5;   /* indigo — primary actions, active nav, bars */
   --color-primary-dark:   #4338CA;   /* hover/pressed state */
@@ -20,17 +24,18 @@ Calm, competent, "guided journey" feeling — a trusted co-pilot for hiring, not
   --color-accent-teal:    #14B8A6;   /* "remote"/secondary status, secondary charts */
   --color-accent-amber:   #F59E0B;   /* scheduled/in-progress highlight card */
   --color-accent-rose:    #FB7185;   /* destructive/at-risk sparingly */
+  --color-accent-violet:  #8B5CF6;   /* violet accent */
 
-  --color-text-primary:   #111827;   /* headings, primary text */
-  --color-text-secondary: #6B7280;   /* metadata, timestamps, labels */
-  --color-text-disabled:  #9CA3AF;
+  --color-text-primary:   #1C1917;   /* warm near-black, not cool slate */
+  --color-text-secondary: #78716C;   /* was #6B7280 */
+  --color-text-disabled:  #A8A29E;   /* was #9CA3AF */
 
   --color-success-bg:     #DCFCE7;
   --color-success-text:   #16A34A;
   --color-progress-bg:    #E0E7FF;
   --color-progress-text:  #4F46E5;
-  --color-neutral-bg:     #F3F4F6;
-  --color-neutral-text:   #6B7280;
+  --color-neutral-bg:     #F1EEE8;   /* was #F3F4F6 */
+  --color-neutral-text:   #78716C;   /* was #6B7280, now matches text-secondary */
   --color-danger-bg:      #FEE2E2;
   --color-danger-text:    #DC2626;
 }
@@ -42,7 +47,7 @@ Rule: status pills only ever use one of the four pairs above (success / progress
 
 - Font family: **Inter** (fallback: system-ui, sans-serif).
 - Scale:
-  - `display-lg`: 36px / 44px, Weight: 700 (hero stat numbers, marketing headline only — see audit note below)
+  - `display-lg`: 36px / 44px, Weight: 700 (hero stat numbers, marketing headline only)
   - `display`: 28px / 36px, Weight: 700 ("Dashboard", "Candidate Profile")
   - `h2`: 20px / 28px, Weight: 700 (Card/section titles)
   - `h3`: 16px / 24px, Weight: 600 (Sub-headers, list item titles)
@@ -57,12 +62,31 @@ Rule: status pills only ever use one of the four pairs above (success / progress
   - `rounded-element` (12px) — buttons, inputs, small icon squares, tab pills.
   - `rounded-nested` (16px) — sub-cards/panels embedded *inside* a Card: kanban cards, table wrappers, toasts, info panels, dashed upload zones.
   - `rounded-card` (20px) — the outer Card component itself, and modals.
-  - `rounded-full` — pills, avatars only.
-- Shadow — two tiers, use `shadow-card` / `shadow-elevated` for surfaces (Tailwind's stock `shadow-sm` remains fine for small in-page controls like the search input, tab toggles, and small icon buttons — it is not a card and doesn't need to compete with card elevation):
+  - `rounded-full` — pills, avatars, SegmentedControl track & selected pill.
+- Shadow — two tiers, use `shadow-card` / `shadow-elevated`:
   - `shadow-card`: `0 2px 8px rgba(17,24,39,0.04), 0 1px 2px rgba(17,24,39,0.03)` — every Card, AppTile, and nested panel.
   - `shadow-elevated`: `0 25px 50px -12px rgba(17,24,39,0.25)` — Modal, Drawer, Toast: anything floating above a scrim.
 
-### Audit note (2026-07)
-A pass across the built app found the type scale had drifted to 13 ad hoc font sizes and 3 stray radius values, none wired to these tokens (components were hardcoding raw hex/px instead of the classes below). All of it was consolidated back into this scale, with two deliberate additions kept because they served a real, consistently-used role rather than being noise:
-- `text-display-lg` (36px / 44px / 700) — for true hero moments only: the ProgressRing center stat and the Auth marketing headline. Do not use it for page titles; that's still `text-display` (28px).
-- `rounded-nested` (16px), described above — this was already the de facto standard for embedded sub-surfaces across every screen; it's now a named token instead of a magic number.
+## 5. Additional Locked Components
+
+### 5.1 StatCard
+- **Usage**: Top-line KPI summary card with inline trend visualization.
+- **Track/Container**: `bg-surface rounded-card shadow-card p-6 flex justify-between items-start border border-border`.
+- **Left Content**: `text-caption-ui text-text-secondary` label top, `text-display text-text-primary` number below, optional `text-caption-ui text-text-secondary` helper text underneath.
+- **Delta Badge**: Top-right corner, `text-caption-ui font-bold`, colored text (`text-status-successText` with ↑ or `text-status-dangerText` with ↓). No pill background.
+- **Sparkline**: Right side, 72x36px mini bar chart (5-7 thin bars, `rounded-full` caps, `bg-primary-tint2` for historical bars, `bg-primary` for the latest bar).
+
+### 5.2 MatchScore
+- **Usage**: Candidate or job fit percentage visualization.
+- **Label Row**: `text-caption-ui text-text-secondary` left, score percentage right.
+- **Progress Track**: `h-1.5` or `h-2` height, `rounded-full bg-status-neutralBg`.
+- **Fill Bar**: `rounded-full` with 500ms ease-out width transition. Color-coded:
+  - 85%+ : `bg-status-successText`
+  - 60–84% : `bg-primary`
+  - Below 60% : `bg-accent-amber`
+
+### 5.3 SegmentedControl
+- **Usage**: Multi-option inline switch (Login/Signup, role picker, filters, Move Stage pills, chart period).
+- **Outer Track**: `bg-surface-muted rounded-full p-1 inline-flex items-center gap-1`.
+- **Selected Option**: `bg-white rounded-full px-4 py-2 text-text-primary shadow-sm`.
+- **Unselected Option**: `bg-transparent rounded-full px-4 py-2 text-text-secondary hover:text-text-primary`.

@@ -23,14 +23,14 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   className,
 }) => {
   const sizeStyles = {
-    sm: 'px-3 py-1.5 text-caption-ui',
+    sm: 'px-3 py-1 text-caption-ui',
     md: 'px-4 py-2 text-body-ui',
   };
 
   return (
     <div
       className={twMerge(
-        clsx('bg-surface-muted rounded-element p-1 inline-flex flex-wrap gap-1'),
+        clsx('bg-surface-muted rounded-full p-1 inline-flex items-center gap-1'),
         className
       )}
     >
@@ -42,11 +42,11 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
             type="button"
             onClick={() => onChange(option.value)}
             className={clsx(
-              'rounded-lg font-semibold transition-all cursor-pointer select-none whitespace-nowrap',
+              'rounded-full font-semibold transition-all cursor-pointer select-none whitespace-nowrap',
               sizeStyles[size],
               isSelected
                 ? 'bg-white text-text-primary shadow-sm'
-                : 'bg-transparent text-text-secondary hover:bg-white/60'
+                : 'bg-transparent text-text-secondary hover:text-text-primary'
             )}
           >
             {option.label}

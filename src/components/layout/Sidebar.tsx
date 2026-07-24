@@ -1,6 +1,7 @@
 import React from 'react';
 import { 
   LayoutDashboard, 
+  Briefcase,
   Users, 
   CheckSquare, 
   Calendar, 
@@ -10,7 +11,7 @@ import {
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
-export type NavView = 'dashboard' | 'pipeline' | 'onboarding' | 'candidate-profile';
+export type NavView = 'dashboard' | 'jobs' | 'pipeline' | 'onboarding' | 'candidate-profile';
 
 export interface SidebarProps {
   currentView: NavView;
@@ -20,6 +21,7 @@ export interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => {
   const mainMenu = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'jobs', label: 'Jobs', icon: Briefcase },
     { id: 'pipeline', label: 'Pipeline & Hiring', icon: Users },
     { id: 'onboarding', label: 'Onboarding Tasks', icon: CheckSquare },
     { id: 'calendar', label: 'Schedule', icon: Calendar },
@@ -41,7 +43,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
           <circle cx="18" cy="14" r="2.5" fill="#C7D2FE"/>
           <circle cx="26" cy="22" r="3.5" fill="#14B8A6" stroke="white" strokeWidth="1.5"/>
         </svg>
-        <span className="text-h3 text-text-primary tracking-tight">
+        <span className="text-h3 text-text-primary tracking-tight font-bold">
           Waypoint
         </span>
       </div>
@@ -63,7 +65,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
                   key={item.id}
                   onClick={() => onNavigate(item.id as NavView)}
                   className={clsx(
-                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold transition-all duration-150',
+                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold transition-all duration-150 cursor-pointer',
                     isActive
                       ? 'bg-primary-tint text-primary'
                       : 'text-text-secondary hover:text-text-primary hover:bg-surface-muted'
@@ -89,7 +91,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
                 <button
                   key={item.id}
                   onClick={() => alert(`Navigating to ${item.label}`)}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold text-text-secondary hover:text-text-primary hover:bg-surface-muted transition-all duration-150"
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold text-text-secondary hover:text-text-primary hover:bg-surface-muted transition-all duration-150 cursor-pointer"
                 >
                   <Icon className="w-5 h-5 text-text-secondary" />
                   <span>{item.label}</span>
@@ -104,7 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
       <div className="p-4 border-t border-border">
         <button
           onClick={() => onNavigate('auth' as any)}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold text-text-secondary hover:text-status-dangerText hover:bg-status-dangerBg/50 transition-all duration-150"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold text-text-secondary hover:text-status-dangerText hover:bg-status-dangerBg/50 transition-all duration-150 cursor-pointer"
         >
           <LogOut className="w-5 h-5" />
           <span>Log Out</span>

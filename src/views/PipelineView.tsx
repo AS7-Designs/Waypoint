@@ -7,6 +7,7 @@ import { Drawer } from '../components/ui/Drawer';
 import { SegmentedControl } from '../components/ui/SegmentedControl';
 import { Modal } from '../components/ui/Modal';
 import { EmptyState } from '../components/ui/EmptyState';
+import { MatchScore } from '../components/ui/MatchScore';
 import { Candidate, PipelineStage } from '../types';
 import { mockCandidates } from '../data/mockData';
 import { 
@@ -289,7 +290,7 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                         </div>
 
                         {/* Tags */}
-                        <div className="flex flex-wrap gap-1 mb-3">
+                        <div className="flex flex-wrap gap-1 mb-2">
                           {candidate.tags.slice(0, 2).map((tag, idx) => (
                             <span
                               key={idx}
@@ -299,6 +300,9 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                             </span>
                           ))}
                         </div>
+
+                        {/* Match Score */}
+                        <MatchScore score={candidate.matchScore || 75} size="sm" className="mb-2" />
 
                         {/* Attention Pill if overdue feedback */}
                         {candidate.hasOverdueFeedback && (

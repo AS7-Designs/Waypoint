@@ -3,6 +3,7 @@ import { Sidebar, NavView } from './components/layout/Sidebar';
 import { TopBar } from './components/layout/TopBar';
 import { AuthView } from './views/AuthView';
 import { DashboardView } from './views/DashboardView';
+import { JobsView } from './views/JobsView';
 import { PipelineView } from './views/PipelineView';
 import { CandidateProfileView } from './views/CandidateProfileView';
 import { OnboardingView } from './views/OnboardingView';
@@ -67,6 +68,8 @@ export function App() {
     switch (currentView) {
       case 'dashboard':
         return 'Dashboard';
+      case 'jobs':
+        return 'Active Job Openings';
       case 'pipeline':
         return 'Hiring Pipeline';
       case 'candidate-profile':
@@ -105,6 +108,13 @@ export function App() {
             }}
             onNavigateToPipeline={() => setCurrentView('pipeline')}
             onNavigateToOnboarding={() => setCurrentView('onboarding')}
+            onNavigateToJobs={() => setCurrentView('jobs')}
+          />
+        )}
+
+        {currentView === 'jobs' && (
+          <JobsView
+            onViewPipelineForRole={() => setCurrentView('pipeline')}
           />
         )}
 

@@ -4,8 +4,8 @@ import { AppTile } from '../components/ui/AppTile';
 import { StatusPill } from '../components/ui/StatusPill';
 import { Avatar } from '../components/ui/Avatar';
 import { ProgressRing } from '../components/ui/ProgressRing';
+import { StatCard } from '../components/ui/StatCard';
 import { 
-  mockQuickActions, 
   mockHiringFunnelData, 
   mockTodoList, 
   mockActiveInterviews, 
@@ -45,12 +45,14 @@ export interface DashboardViewProps {
   onNavigateToCandidate: (candidateId: string) => void;
   onNavigateToPipeline: () => void;
   onNavigateToOnboarding: () => void;
+  onNavigateToJobs?: () => void;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({
   onNavigateToCandidate,
   onNavigateToPipeline,
   onNavigateToOnboarding,
+  onNavigateToJobs,
 }) => {
   const [todos, setTodos] = useState<TodoItem[]>(mockTodoList);
 
@@ -67,17 +69,6 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     );
   };
 
-  const getQuickIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'Briefcase': return <Briefcase className="w-5 h-5 text-primary" />;
-      case 'Calendar': return <CalendarIcon className="w-5 h-5 text-accent-amber" />;
-      case 'UserPlus': return <UserPlus className="w-5 h-5 text-accent-teal" />;
-      case 'FileCheck': return <FileCheck className="w-5 h-5 text-primary-dark" />;
-      case 'MessageSquare': return <MessageSquare className="w-5 h-5 text-accent-rose" />;
-      default: return <Send className="w-5 h-5 text-primary" />;
-    }
-  };
-
   const getPillVariant = (status: string): StatusPillVariant => {
     switch (status) {
       case 'Done': return 'success';
@@ -87,9 +78,69 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     }
   };
 
+  // Top 4 prioritized quick actions
+  const primaryQuickActions = [
+    {
+      id: 'qa-schedule',
+      label: 'Schedule Interview',
+      icon: <CalendarIcon className="w-5 h-5" />,
+      onClick: onNavigateToPipeline,
+    },
+    {
+      id: 'qa-add',
+      label: 'Add Candidate',
+      icon: <UserPlus className="w-5 h-5" />,
+      onClick: onNavigateToPipeline,
+    },
+    {
+      id: 'qa-onboard',
+      label: 'Assign Onboarding',
+      icon: <FileCheck className="w-5 h-5" />,
+      onClick: onNavigateToOnboarding,
+    },
+    {
+      id: 'qa-post',
+      label: 'Post a Job',
+      icon: <Briefcase className="w-5 h-5" />,
+      onClick: () => onNavigateToJobs ? onNavigateToJobs() : alert('Post a Job action'),
+    },
+  ];
+
   return (
     <div className="space-y-6 pb-12">
-      {/* Row 1: Quick Actions AppTiles */}
+      {/* Row 0: Top-line StatCard KPI summary row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatCard
+          label="Open Roles"
+          value={12}
+          delta={{ value: "2 this month", isPositive: true }}
+          helperText="vs last month"
+          sparklineData={[8, 9, 10, 11, 10, 12]}
+        />
+        <StatCard
+          label="Active Candidates"
+          value={48}
+          delta={{ value: "8 this month", isPositive: true }}
+          helperText="vs last month"
+          sparklineData={[32, 35, 40, 42, 45, 48]}
+        />
+        <StatCard
+          label="Interviews Scheduled"
+          value={18}
+          delta={{ value: "4 this month", isPositive: true }}
+          helperText="vs last month"
+          sparklineData={[12, 14, 13, 16, 15, 18]}
+        />
+        <StatCard
+          label="Offers Sent"
+          value={6}
+          delta={{ value: "1 this month", isPositive: true }}
+          helperText="vs last month"
+          sparklineData={[4, 3, 5, 4, 5, 6]}
+        />
+      </div>
+
+      {/* Row 1: Quick Actions (4 prioritized items) */}
       <Card
         title={
           <div className="flex items-center gap-2">
@@ -105,22 +156,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </button>
         }
       >
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {mockQuickActions.map((action) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {primaryQuickActions.map((action) => (
             <AppTile
               key={action.id}
               label={action.label}
-              icon={getQuickIcon(action.iconName)}
-              bgColor={action.bgColor}
-              onClick={() => {
-                if (action.actionKey === 'add-candidate' || action.actionKey === 'schedule') {
-                  onNavigateToPipeline();
-                } else if (action.actionKey === 'assign-onboarding') {
-                  onNavigateToOnboarding();
-                } else {
-                  alert(`Quick action: ${action.label}`);
-                }
-              }}
+              icon={action.icon}
+              onClick={action.onClick}
             />
           ))}
         </div>
@@ -145,21 +187,21 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   dataKey="month"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: '#6B7280', fontSize: 12, fontWeight: 500 }}
+                  tick={{ fill: '#78716C', fontSize: 12, fontWeight: 500 }}
                 />
                 <YAxis
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: '#6B7280', fontSize: 12, fontWeight: 500 }}
+                  tick={{ fill: '#78716C', fontSize: 12, fontWeight: 500 }}
                   domain={[0, 80]}
                 />
                 <Tooltip
-                  cursor={{ fill: 'rgba(245, 245, 250, 0.6)' }}
+                  cursor={{ fill: 'rgba(245, 242, 237, 0.6)' }}
                   contentStyle={{
                     backgroundColor: '#FFFFFF',
                     borderRadius: '12px',
-                    borderColor: '#ECECF3',
-                    boxShadow: '0 4px 12px rgba(17,24,39,0.08)',
+                    borderColor: '#EAE5DC',
+                    boxShadow: '0 4px 12px rgba(28,25,23,0.08)',
                     fontSize: '13px',
                   }}
                 />
@@ -206,7 +248,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         {todo.title}
                       </h4>
                       <p className="text-[12px] text-text-secondary flex items-center gap-1 mt-0.5">
-                        <Clock className="w-3 h-3" />
+                        <Clock className="w-3 h-3 text-text-disabled" />
                         {todo.timestamp}
                       </p>
                     </div>
@@ -258,7 +300,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                       ({interview.type}) {interview.candidateName}
                     </h4>
                     <p className="text-[12px] text-text-secondary flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
+                      <Clock className="w-3 h-3 text-text-disabled" />
                       {interview.time}
                     </p>
                   </div>
