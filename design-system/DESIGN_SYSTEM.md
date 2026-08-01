@@ -1,6 +1,7 @@
 # Design System — LOCKED
 
 > **Changelog**:
+> - 2026-08 typography update: switched primary font family to Plus Jakarta Sans globally.
 > - 2026-07 bg-hierarchy pass: lightened canvas tone to #FBF9F6, aliased surface-muted to bg-canvas (#FBF9F6) creating a strict 2-tone surface hierarchy, removed external donut ring labels in favor of legend inline percentages, explicitly wired Quick Action categorical tile tints.
 > - 2026-07 polish pass: fixed duplicate mock match-scores, fixed Login/Signup label overlap, formalized Sequential vs Categorical color modes, applied categorical coloring to Quick Actions and Jobs department tags.
 > - 2026-07 refresh: warmed the neutral palette, added StatCard/MatchScore/SegmentedControl as locked components.
@@ -75,7 +76,7 @@ Color has exactly two modes in this application, and every chart, tag, or tile s
 
 ## 5. Typography
 
-- Font family: **Inter** (fallback: system-ui, sans-serif).
+- Font family: **Plus Jakarta Sans** (fallback: system-ui, sans-serif).
 - Scale:
   - `display-lg`: 36px / 44px, Weight: 700 (hero stat numbers, marketing headline only)
   - `display`: 28px / 36px, Weight: 700 ("Dashboard", "Candidate Profile")

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -21,21 +21,21 @@
   --color-accent-violet:  #8B5CF6;   /* violet accent */
 
   --color-text-primary:   #1C1917;   /* warm near-black, not cool slate */
-  --color-text-secondary: #78716C;   /* was #6B7280 */
-  --color-text-disabled:  #A8A29E;   /* was #9CA3AF */
+  --color-text-secondary: #78716C;   /* metadata, timestamps, labels */
+  --color-text-disabled:  #A8A29E;
 
   --color-success-bg:     #DCFCE7;
   --color-success-text:   #16A34A;
   --color-progress-bg:    #E0E7FF;
   --color-progress-text:  #4F46E5;
-  --color-neutral-bg:     #F1EEE8;   /* was #F3F4F6 */
-  --color-neutral-text:   #78716C;   /* was #6B7280, now matches text-secondary */
+  --color-neutral-bg:     #F1EEE8;   /* neutral pill background */
+  --color-neutral-text:   #78716C;   /* matches text-secondary */
   --color-danger-bg:      #FEE2E2;
   --color-danger-text:    #DC2626;
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   background-color: var(--color-bg-canvas);
   color: var(--color-text-primary);
   margin: 0;
