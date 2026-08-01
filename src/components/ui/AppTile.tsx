@@ -23,7 +23,7 @@ export const AppTile: React.FC<AppTileProps> = ({
       onClick={onClick}
       className={twMerge(
         clsx(
-          'flex items-center justify-between p-3.5 bg-white hover:bg-surface-muted border border-border rounded-nested transition-all duration-150 ease-out group text-left w-full shadow-card',
+          'flex items-center justify-between p-3.5 bg-white hover:bg-surface-muted border border-border rounded-nested transition-all duration-150 ease-out group text-left w-full',
           className
         )
       )}

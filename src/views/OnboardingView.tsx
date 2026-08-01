@@ -178,7 +178,7 @@ export const OnboardingView: React.FC = () => {
                   onClick={() => setSelectedHireId(hire.id)}
                   className={`p-3 rounded-nested border cursor-pointer transition-all flex items-center gap-3 ${
                     isSelected
-                      ? 'bg-primary-tint border-primary shadow-sm'
+                      ? 'bg-primary-tint border-primary font-semibold'
                       : 'bg-white border-border hover:bg-surface-muted'
                   }`}
                 >
@@ -310,7 +310,7 @@ export const OnboardingView: React.FC = () => {
                     className={`group p-3.5 rounded-nested border flex items-center gap-3 cursor-pointer transition-all ${
                       isDone
                         ? 'bg-surface-muted/60 border-border'
-                        : 'bg-white border-border hover:border-primary/40 hover:shadow-sm'
+                        : 'bg-white border-border hover:border-primary/40'
                     }`}
                   >
                     {/* Checkbox */}

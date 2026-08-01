@@ -46,7 +46,7 @@ export const DataTable: React.FC<DataTableProps> = ({
   };
 
   return (
-    <div className="w-full overflow-x-auto rounded-nested border border-border bg-white shadow-card">
+    <div className="w-full overflow-x-auto rounded-nested border border-border bg-white">
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="border-b border-border bg-surface-muted text-[12px] leading-[16px] font-semibold text-text-secondary">

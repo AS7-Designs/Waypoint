@@ -38,7 +38,7 @@ const ScoreRing: React.FC<{
   const r = 28;
   const circ = 2 * Math.PI * r;
   return (
-    <div className="flex flex-col items-center bg-white rounded-nested border border-border p-4 hover:shadow-card transition-shadow">
+    <div className="flex flex-col items-center bg-white rounded-nested border border-border p-4 hover:border-primary/40 transition-colors">
       <svg viewBox="0 0 72 72" className="w-[72px] h-[72px]">
         <circle cx="36" cy="36" r={r} fill="none" stroke="#ECECF3" strokeWidth="6" />
         <circle

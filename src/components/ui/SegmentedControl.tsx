@@ -45,7 +45,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
               'rounded-full font-semibold transition-all cursor-pointer select-none whitespace-nowrap',
               sizeStyles[size],
               isSelected
-                ? 'bg-white text-text-primary shadow-sm'
+                ? 'bg-white text-text-primary border border-border/40'
                 : 'bg-transparent text-text-secondary hover:text-text-primary'
             )}
           >

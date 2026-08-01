@@ -191,7 +191,7 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
               placeholder="Filter pipeline candidates..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-[36px] pl-9 pr-3 bg-white border border-border rounded-full text-[14px] font-medium text-text-primary focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
+              className="h-[36px] pl-9 pr-3 bg-white border border-border rounded-full text-[14px] font-medium text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
@@ -235,8 +235,8 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
               onDrop={(e) => handleDrop(e, stage)}
               className={`p-3.5 rounded-card border transition-all duration-200 min-h-[520px] flex flex-col justify-between ${
                 isTargetStage
-                  ? 'bg-primary-tint/40 border-primary ring-2 ring-primary/40 shadow-md scale-[1.01]'
-                  : 'bg-white border-border shadow-card'
+                  ? 'bg-primary-tint/40 border-primary ring-2 ring-primary/40 scale-[1.01]'
+                  : 'bg-white border-border'
               }`}
             >
               <div>
@@ -268,7 +268,7 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
                         className={`bg-surface-muted p-4 rounded-nested border transition-all cursor-grab active:cursor-grabbing group relative ${
                           isDraggingThis
                             ? 'opacity-40 border-dashed border-primary bg-primary-tint/30 scale-[0.98]'
-                            : 'border-border hover:border-primary/40 hover:bg-white hover:shadow-card'
+                            : 'border-border hover:border-primary/40 hover:bg-white'
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2 mb-2">
@@ -358,7 +358,7 @@ export const PipelineView: React.FC<PipelineViewProps> = ({ onSelectCandidate })
               {/* High-contrast, readable Add candidate button at column bottom */}
               <button
                 onClick={() => setIsAddModalOpen(true)}
-                className="w-full mt-3 py-2.5 px-3 rounded-nested bg-primary-tint/60 text-primary hover:bg-primary-tint hover:border-primary/50 border border-dashed border-primary/40 transition-all flex items-center justify-center gap-1.5 text-[13px] font-semibold shadow-xs cursor-pointer"
+                className="w-full mt-3 py-2.5 px-3 rounded-nested bg-primary-tint/60 text-primary hover:bg-primary-tint hover:border-primary/50 border border-dashed border-primary/40 transition-all flex items-center justify-center gap-1.5 text-[13px] font-semibold cursor-pointer"
               >
                 <Plus className="w-4 h-4 text-primary shrink-0" />
                 <span>Add candidate</span>

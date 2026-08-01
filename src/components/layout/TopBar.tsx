@@ -47,12 +47,12 @@ export const TopBar: React.FC<TopBarProps> = ({
             placeholder="Search candidates, tasks, interviews..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full h-[40px] pl-10 pr-4 bg-white border border-border rounded-full text-[14px] font-medium text-text-primary placeholder-[#A8A29E] focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all"
+            className="w-full h-[40px] pl-10 pr-4 bg-white border border-border rounded-full text-[14px] font-medium text-text-primary placeholder-[#A8A29E] focus:outline-none focus:ring-2 focus:ring-primary transition-all"
           />
         </div>
 
         {/* Notifications Bell */}
-        <button className="relative w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-muted shadow-sm transition-all cursor-pointer">
+        <button className="relative w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-muted transition-all cursor-pointer">
           <Bell className="w-5 h-5" />
           <span className="absolute top-2 right-2 w-2 h-2 bg-accent-rose rounded-full" />
         </button>
@@ -82,7 +82,7 @@ export const TopBar: React.FC<TopBarProps> = ({
 
           {/* Profile Dropdown Menu */}
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-56 bg-white border border-border rounded-nested shadow-elevated py-2 z-30 space-y-1">
+            <div className="absolute right-0 mt-2 w-56 bg-white border border-border rounded-nested py-2 z-30 space-y-1">
               <div className="px-4 py-2 border-b border-border">
                 <p className="text-[14px] font-bold text-text-primary">Eve Baker</p>
                 <p className="text-[12px] text-text-secondary">eve.baker@waypoint.co</p>

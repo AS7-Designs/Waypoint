@@ -26,7 +26,7 @@ export const StatCard: React.FC<StatCardProps> = ({
   return (
     <div
       className={clsx(
-        'bg-surface rounded-card shadow-card p-6 flex justify-between items-start border border-border',
+        'bg-surface rounded-card p-6 flex justify-between items-start border border-border',
         className
       )}
     >

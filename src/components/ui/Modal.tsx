@@ -40,7 +40,7 @@ export const Modal: React.FC<ModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-card shadow-elevated max-w-xl w-full z-10 border border-border animate-scale-up max-h-[90vh] flex flex-col overflow-hidden">
+      <div className="relative bg-white rounded-card max-w-xl w-full z-10 border border-border animate-scale-up max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
         <div className="px-6 py-5 border-b border-border flex items-center justify-between shrink-0">
           <h3 className="text-h2 text-text-primary">

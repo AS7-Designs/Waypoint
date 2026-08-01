@@ -42,7 +42,7 @@ export const Drawer: React.FC<DrawerProps> = ({
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-[420px] bg-white shadow-elevated flex flex-col transform transition-transform ease-out duration-200">
+        <div className="w-screen max-w-[420px] bg-white border-l border-border flex flex-col transform transition-transform ease-out duration-200">
           {/* Header */}
           <div className="px-6 py-5 border-b border-border flex items-center justify-between">
             <h3 className="text-h2 text-text-primary">

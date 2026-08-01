@@ -78,7 +78,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
             <button
               type="button"
               onClick={onLoginSuccess}
-              className="w-full h-[40px] px-4 bg-white border border-border rounded-element text-[14px] font-semibold text-text-primary hover:bg-surface-muted flex items-center justify-center gap-2 shadow-sm transition-all"
+              className="w-full h-[40px] px-4 bg-white border border-border rounded-element text-[14px] font-semibold text-text-primary hover:bg-surface-muted flex items-center justify-center gap-2 transition-all"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -112,7 +112,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
                     onClick={() => setRole('Recruiter')}
                     className={`flex-1 rounded-lg px-4 py-3 text-left transition-all ${
                       role === 'Recruiter'
-                        ? 'bg-white shadow-sm'
+                        ? 'bg-white border border-border/40'
                         : 'bg-transparent hover:bg-white/60'
                     }`}
                   >
@@ -128,7 +128,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
                     onClick={() => setRole('Hiring Manager')}
                     className={`flex-1 rounded-lg px-4 py-3 text-left transition-all ${
                       role === 'Hiring Manager'
-                        ? 'bg-white shadow-sm'
+                        ? 'bg-white border border-border/40'
                         : 'bg-transparent hover:bg-white/60'
                     }`}
                   >
@@ -301,7 +301,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onLoginSuccess }) => {
           {/* Floating card mockup — tilted ProgressRing preview */}
           <div className="flex justify-end pt-4">
             <div
-              className="bg-white/10 backdrop-blur-md border border-white/15 rounded-card p-5 shadow-elevated w-[180px]"
+              className="bg-white/10 backdrop-blur-md border border-white/15 rounded-card p-5 w-[180px]"
               style={{ transform: 'rotate(5deg)', opacity: 0.6 }}
             >
               {/* Mini progress ring SVG */}

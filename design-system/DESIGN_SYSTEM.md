@@ -1,6 +1,7 @@
 # Design System — LOCKED
 
 > **Changelog**:
+> - 2026-08 shadow removal: removed all box-shadows globally across all components for a clean, flat border-defined design system.
 > - 2026-08 typography update: switched primary font family to Plus Jakarta Sans globally.
 > - 2026-07 bg-hierarchy pass: lightened canvas tone to #FBF9F6, aliased surface-muted to bg-canvas (#FBF9F6) creating a strict 2-tone surface hierarchy, removed external donut ring labels in favor of legend inline percentages, explicitly wired Quick Action categorical tile tints.
 > - 2026-07 polish pass: fixed duplicate mock match-scores, fixed Login/Signup label overlap, formalized Sequential vs Categorical color modes, applied categorical coloring to Quick Actions and Jobs department tags.
@@ -50,7 +51,7 @@ Rule: status pills only ever use one of the four pairs above (success / progress
 
 The application uses exactly **two neutral surface tones**:
 
-1. **WHITE (`#FFFFFF`, elevated `shadow-card`)**:
+1. **WHITE (`#FFFFFF`, flat border-defined)**:
    - The outer container card holding an entire section: Dashboard's Hiring Funnel card, To-do list card, Active Interviews card, Onboarding Completion card; Candidate Profile's header card & Overview tab card; Onboarding Journeys' Active New Hires card & hire detail card; each Job card; outer boundary of each Kanban column.
 2. **CANVAS TONE (`#FBF9F6`, `bg-surface-muted`, recessed, no shadow)**:
    - Anything nested one level inside a white card: individual candidate cards inside each Kanban column, To-do list individual task rows, Active Interviews individual rows, "Contact Information" & "Candidate Details & Attributes" boxes on Candidate Profile, individual mini-stat boxes inside Job card Candidate Funnel rows.
@@ -94,15 +95,13 @@ Color has exactly two modes in this application, and every chart, tag, or tile s
   - `rounded-nested` (16px) — sub-cards/panels embedded *inside* a Card: kanban cards, table wrappers, toasts, info panels, dashed upload zones.
   - `rounded-card` (20px) — the outer Card component itself, and modals.
   - `rounded-full` — pills, avatars, SegmentedControl track & selected pill.
-- Shadow — two tiers, use `shadow-card` / `shadow-elevated`:
-  - `shadow-card`: `0 2px 8px rgba(17,24,39,0.04), 0 1px 2px rgba(17,24,39,0.03)` — every Card, AppTile, and nested panel.
-  - `shadow-elevated`: `0 25px 50px -12px rgba(17,24,39,0.25)` — Modal, Drawer, Toast: anything floating above a scrim.
+- Shadow — None: flat design system relying on clean hairline borders (`border border-border`).
 
 ## 7. Additional Locked Components
 
 ### 7.1 StatCard
 - **Usage**: Top-line KPI summary card with inline trend visualization.
-- **Track/Container**: `bg-surface rounded-card shadow-card p-6 flex justify-between items-start border border-border`.
+- **Track/Container**: `bg-surface rounded-card p-6 flex justify-between items-start border border-border`.
 - **Left Content**: `text-caption-ui text-text-secondary` label top, `text-display text-text-primary` number below, optional `text-caption-ui text-text-secondary` helper text underneath.
 - **Delta Badge**: Top-right corner, `text-caption-ui font-bold`, colored text (`text-status-successText` with ↑ or `text-status-dangerText` with ↓). No pill background.
 - **Sparkline**: Right side, 72x36px mini bar chart (5-7 thin bars, `rounded-full` caps, `bg-primary-tint2` for historical bars, `bg-primary` for the latest bar).

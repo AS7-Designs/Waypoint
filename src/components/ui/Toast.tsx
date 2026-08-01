@@ -56,7 +56,7 @@ export const Toast: React.FC<ToastProps> = ({
   return (
     <div
       className={clsx(
-        'fixed bottom-6 right-6 z-50 flex items-start gap-3 p-4 rounded-nested border shadow-elevated max-w-sm w-full animate-slide-up',
+        'fixed bottom-6 right-6 z-50 flex items-start gap-3 p-4 rounded-nested border max-w-sm w-full animate-slide-up',
         activeVariant.bg
       )}
     >

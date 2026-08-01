@@ -44,7 +44,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, className }) => {
             {/* Indicator Circle */}
             <div className="shrink-0 z-10">
               {isCompleted ? (
-                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
                   <Check className="w-4 h-4" />
                 </div>
               ) : isActive ? (

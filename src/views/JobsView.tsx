@@ -75,7 +75,7 @@ export const JobsView: React.FC<JobsViewProps> = ({ onViewPipelineForRole }) => 
   return (
     <div className="space-y-6 pb-12">
       {/* Page Header Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-6 rounded-card border border-border shadow-card">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-6 rounded-card border border-border">
         <div>
           <div className="flex items-center gap-3">
             <h2 className="text-display text-text-primary">Active Job Openings</h2>
