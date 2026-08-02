@@ -463,9 +463,96 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
         </Card>
 
-        {/* Onboarding Completion Donut */}
-        <Card title="Onboarding Completion">
-          <ProgressRing percentage={77} title="Onboarded" />
+        {/* Onboarding Completion Card (matches Attendance Rate reference design) */}
+        <Card
+          title={
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-element border border-border bg-white flex items-center justify-center text-text-primary shrink-0">
+                <FileCheck className="w-5 h-5 text-primary" />
+              </div>
+              <h2 className="text-[18px] leading-[26px] font-bold text-text-primary">
+                Onboarding Completion
+              </h2>
+            </div>
+          }
+          action={
+            <button
+              onClick={onNavigateToOnboarding}
+              className="text-[14px] font-semibold text-primary hover:underline cursor-pointer"
+            >
+              View Tasks
+            </button>
+          }
+        >
+          {/* 2-Column Content: Left Donut Ring, Right Stacked Metric Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center pt-1">
+            {/* Left Column: Clean Donut Chart with Center Text */}
+            <div className="relative flex items-center justify-center">
+              <svg viewBox="0 0 160 160" className="w-[145px] h-[145px]">
+                {/* Donut background track */}
+                <circle
+                  cx="80"
+                  cy="80"
+                  r="62"
+                  stroke="#EEF2FF"
+                  strokeWidth="18"
+                  fill="transparent"
+                />
+                {/* Donut progress fill */}
+                <circle
+                  cx="80"
+                  cy="80"
+                  r="62"
+                  stroke="#6366F1"
+                  strokeWidth="18"
+                  strokeDasharray={`${0.77 * 2 * Math.PI * 62} ${2 * Math.PI * 62}`}
+                  strokeLinecap="round"
+                  fill="transparent"
+                  transform="rotate(-90 80 80)"
+                  className="transition-all duration-500 ease-out"
+                />
+              </svg>
+
+              {/* Center Text */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span className="text-[28px] font-bold text-text-primary leading-none mb-1">
+                  77%
+                </span>
+                <span className="text-[12px] font-medium text-text-secondary">
+                  Completion Rate
+                </span>
+              </div>
+            </div>
+
+            {/* Right Column: Stacked Metric Cards matching reference image */}
+            <div className="space-y-3">
+              {/* Card 1: Completed Tasks */}
+              <div className="p-3.5 rounded-nested border border-border bg-white flex flex-col justify-between">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2.5 h-2.5 rounded-full bg-primary shrink-0" />
+                  <span className="text-[13px] font-medium text-text-secondary">
+                    Completed Tasks
+                  </span>
+                </div>
+                <span className="text-[22px] font-bold text-text-primary leading-tight">
+                  1,175
+                </span>
+              </div>
+
+              {/* Card 2: Pending Tasks */}
+              <div className="p-3.5 rounded-nested border border-border bg-white flex flex-col justify-between">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span className="text-[13px] font-medium text-text-secondary">
+                    Pending Tasks
+                  </span>
+                </div>
+                <span className="text-[22px] font-bold text-text-primary leading-tight">
+                  65
+                </span>
+              </div>
+            </div>
+          </div>
         </Card>
 
         {/* Work Calendar Card */}
