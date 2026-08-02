@@ -7,6 +7,7 @@ import { ProgressRing } from '../components/ui/ProgressRing';
 import { StatCard } from '../components/ui/StatCard';
 import { 
   mockHiringFunnelData, 
+  mockHiringSummaryData,
   mockTodoList, 
   mockActiveInterviews, 
   mockScheduleItems 
@@ -30,13 +31,17 @@ import {
   Building2,
   Users,
   Phone,
-  Presentation
+  Presentation,
+  TrendingUp
 } from 'lucide-react';
 import { 
+  AreaChart,
+  Area,
   BarChart, 
   Bar, 
   XAxis, 
   YAxis, 
+  CartesianGrid,
   Tooltip, 
   ResponsiveContainer 
 } from 'recharts';
@@ -223,55 +228,150 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
       {/* Row 2: Hiring Funnel Chart (2/3) + To-do List (1/3) */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Hiring Funnel Bar Chart */}
+        {/* Hiring Funnel Summary Area Chart (matches Attendance Summary reference design) */}
         <Card
           className="lg:col-span-2 flex flex-col justify-between"
-          title="Hiring Funnel"
+          title={
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-element border border-border bg-white flex items-center justify-center text-text-primary shrink-0">
+                <TrendingUp className="w-5 h-5 text-primary" />
+              </div>
+              <h2 className="text-[18px] leading-[26px] font-bold text-text-primary">
+                Hiring Funnel Summary
+              </h2>
+            </div>
+          }
           action={
-            <button className="text-[14px] font-semibold text-primary hover:bg-primary-tint px-3 py-1.5 rounded-element transition-colors">
-              Month ▾
+            <button
+              onClick={onNavigateToPipeline}
+              className="text-[14px] font-semibold text-primary hover:underline cursor-pointer"
+            >
+              See Detail
             </button>
           }
         >
-          <div className="h-[280px] w-full pt-2">
+          {/* Metrics & Legend Top Row */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-2 border-b border-border/40">
+            {/* KPI 1 & KPI 2 */}
+            <div className="flex items-center gap-8 flex-wrap">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[24px] font-bold text-text-primary leading-none">75.4%</span>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200/60 text-[12px] font-bold">
+                    2.8% ↑
+                  </span>
+                </div>
+                <span className="text-[12px] font-medium text-text-secondary mt-1 block">
+                  Offer Acceptance Rate
+                </span>
+              </div>
+
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[24px] font-bold text-text-primary leading-none">1,349</span>
+                  <span className="text-text-disabled text-[14px] font-medium">/ 1,597</span>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200/60 text-[12px] font-bold">
+                    1.2% ↑
+                  </span>
+                </div>
+                <span className="text-[12px] font-medium text-text-secondary mt-1 block">
+                  Active Pipeline Total
+                </span>
+              </div>
+            </div>
+
+            {/* Right Legend Items with Top Pill Markers */}
+            <div className="flex items-center gap-6 sm:ml-auto">
+              <div className="text-center">
+                <div className="w-7 h-1.5 rounded-full bg-primary mx-auto mb-1" />
+                <span className="text-[11px] font-medium text-text-secondary block">Applied</span>
+                <span className="text-[14px] font-bold text-text-primary">65%</span>
+              </div>
+              <div className="text-center">
+                <div className="w-7 h-1.5 rounded-full bg-emerald-500 mx-auto mb-1" />
+                <span className="text-[11px] font-medium text-text-secondary block">Screened</span>
+                <span className="text-[14px] font-bold text-text-primary">25%</span>
+              </div>
+              <div className="text-center">
+                <div className="w-7 h-1.5 rounded-full bg-amber-500 mx-auto mb-1" />
+                <span className="text-[11px] font-medium text-text-secondary block">Hired</span>
+                <span className="text-[14px] font-bold text-text-primary">10%</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Smooth Wave Area Chart */}
+          <div className="h-[220px] w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={mockHiringFunnelData} barGap={8} barSize={14}>
+              <AreaChart data={mockHiringSummaryData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="appliedGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#6366F1" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#6366F1" stopOpacity={0.0} />
+                  </linearGradient>
+                  <linearGradient id="screenedGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10B981" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#10B981" stopOpacity={0.0} />
+                  </linearGradient>
+                  <linearGradient id="hiredGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#F59E0B" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#F59E0B" stopOpacity={0.0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" vertical={false} />
                 <XAxis
                   dataKey="month"
                   stroke="#E2E8F0"
+                  tickLine={false}
+                  axisLine={false}
                   tick={{ fill: '#64748B', fontSize: 12, fontWeight: 500 }}
                 />
                 <YAxis
                   stroke="#E2E8F0"
+                  tickLine={false}
+                  axisLine={false}
                   tick={{ fill: '#64748B', fontSize: 12, fontWeight: 500 }}
-                  domain={[0, 80]}
+                  domain={[0, 800]}
                 />
                 <Tooltip
-                  cursor={{ fill: 'rgba(248, 250, 252, 0.8)' }}
                   contentStyle={{
                     backgroundColor: '#FFFFFF',
                     borderRadius: '12px',
                     borderColor: '#E2E8F0',
                     boxShadow: 'none',
                     fontSize: '13px',
+                    padding: '10px 14px',
                   }}
                 />
-                <Bar dataKey="applied" fill="#6366F1" radius={[6, 6, 0, 0]} name="Applied" />
-                <Bar dataKey="hired" fill="#C7D2FE" radius={[6, 6, 0, 0]} name="Hired" />
-              </BarChart>
+                <Area
+                  type="monotone"
+                  dataKey="applied"
+                  stroke="#6366F1"
+                  strokeWidth={2.5}
+                  fillOpacity={1}
+                  fill="url(#appliedGrad)"
+                  name="Applied"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="screened"
+                  stroke="#10B981"
+                  strokeWidth={2.5}
+                  fillOpacity={1}
+                  fill="url(#screenedGrad)"
+                  name="Screened"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="hired"
+                  stroke="#F59E0B"
+                  strokeWidth={2.5}
+                  fillOpacity={1}
+                  fill="url(#hiredGrad)"
+                  name="Hired"
+                />
+              </AreaChart>
             </ResponsiveContainer>
-          </div>
-
-          {/* Chart Legend */}
-          <div className="flex items-center gap-6 mt-4 pt-4 border-t border-border">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-primary" />
-              <span className="text-[12px] font-medium text-text-secondary">Applied</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-primary-tint2" />
-              <span className="text-[12px] font-medium text-text-secondary">Hired</span>
-            </div>
           </div>
         </Card>
 

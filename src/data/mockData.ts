@@ -19,6 +19,21 @@ export const mockHiringFunnelData = [
   { month: 'Jul', applied: 55, hired: 12 },
 ];
 
+export const mockHiringSummaryData = [
+  { month: 'Jan', applied: 560, screened: 300, hired: 120 },
+  { month: 'Feb', applied: 510, screened: 280, hired: 100 },
+  { month: 'Mar', applied: 620, screened: 350, hired: 160 },
+  { month: 'Apr', applied: 580, screened: 310, hired: 130 },
+  { month: 'May', applied: 720, screened: 410, hired: 210 },
+  { month: 'Jun', applied: 600, screened: 330, hired: 150 },
+  { month: 'Jul', applied: 680, screened: 390, hired: 180 },
+  { month: 'Aug', applied: 750, screened: 430, hired: 220 },
+  { month: 'Sep', applied: 710, screened: 380, hired: 190 },
+  { month: 'Oct', applied: 630, screened: 320, hired: 140 },
+  { month: 'Nov', applied: 480, screened: 260, hired: 110 },
+  { month: 'Dec', applied: 520, screened: 290, hired: 135 },
+];
+
 export const mockTodoList: TodoItem[] = [
   { id: 't1', title: 'Review Interview Scorecard — Sarah Jenkins', timestamp: '10 AM, 7 Jul 2025', status: 'Done', category: 'hiring', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100' },
   { id: 't2', title: 'Send Mobile App Dev Laptop Request', timestamp: '12 AM, 7 Jul 2025', status: 'Done', category: 'onboarding', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100' },
