@@ -29,7 +29,8 @@ import {
   ChevronLeft,
   Building2,
   Users,
-  Phone
+  Phone,
+  Presentation
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -55,6 +56,53 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   onNavigateToJobs,
 }) => {
   const [todos, setTodos] = useState<TodoItem[]>(mockTodoList);
+  const [selectedCalendarDay, setSelectedCalendarDay] = useState('3');
+
+  const calendarDays = [
+    { num: '1', name: 'Mo' },
+    { num: '2', name: 'Tu' },
+    { num: '3', name: 'We' },
+    { num: '4', name: 'Th' },
+    { num: '5', name: 'Fr' },
+    { num: '6', name: 'Sa' },
+    { num: '7', name: 'Su' },
+  ];
+
+  const workCalendarEvents = [
+    {
+      id: 'e1',
+      title: 'Employee Safety Workshop',
+      location: 'Online',
+      time: '01:30 PM',
+      icon: (
+        <div className="w-10 h-10 rounded-element bg-blue-50 border border-blue-200/70 flex items-center justify-center shrink-0">
+          <Video className="w-5 h-5 text-blue-600" />
+        </div>
+      ),
+    },
+    {
+      id: 'e2',
+      title: 'Team Huddle',
+      location: 'Online',
+      time: '08:30 AM',
+      icon: (
+        <div className="w-10 h-10 rounded-element bg-emerald-50 border border-emerald-200/70 flex items-center justify-center shrink-0">
+          <Video className="w-5 h-5 text-emerald-600" />
+        </div>
+      ),
+    },
+    {
+      id: 'e3',
+      title: 'Business Presentation',
+      location: 'Conference Room',
+      time: '11:00 AM',
+      icon: (
+        <div className="w-10 h-10 rounded-element bg-violet-50 border border-violet-200/70 flex items-center justify-center shrink-0">
+          <Presentation className="w-5 h-5 text-violet-600" />
+        </div>
+      ),
+    },
+  ];
 
   const toggleTodo = (id: string) => {
     setTodos((prev) =>
@@ -320,74 +368,82 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <ProgressRing percentage={77} title="Onboarded" />
         </Card>
 
-        {/* Calendar & Schedule Card */}
-        <Card title="Calendar">
-          {/* Mini Calendar Header */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[14px] font-bold text-text-primary">July 2025</span>
-              <div className="flex items-center gap-1 text-text-secondary">
-                <button className="p-1 hover:bg-status-neutralBg rounded-full">
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button className="p-1 hover:bg-status-neutralBg rounded-full">
-                  <ChevronRight className="w-4 h-4" />
-                </button>
+        {/* Work Calendar Card */}
+        <Card
+          title={
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-element border border-border bg-white flex items-center justify-center text-text-primary shrink-0">
+                <CalendarIcon className="w-5 h-5" />
               </div>
+              <h2 className="text-[18px] leading-[26px] font-bold text-text-primary">
+                Work Calendar
+              </h2>
             </div>
-
-            {/* Days strip */}
-            <div className="grid grid-cols-7 text-center gap-1 text-[12px] font-semibold text-text-secondary">
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
-              <span>Sun</span>
-            </div>
-            <div className="grid grid-cols-7 text-center gap-1 text-[12px] font-medium text-text-primary mt-2">
-              <span className="py-1">5</span>
-              <span className="py-1">6</span>
-              <span className="py-1">7</span>
-              <span className="py-1 bg-primary text-white rounded-full font-bold">8</span>
-              <span className="py-1">9</span>
-              <span className="py-1">10</span>
-              <span className="py-1">11</span>
+          }
+        >
+          {/* Days Strip with Day Numbers on top and Day Names below */}
+          <div className="border-b border-border pb-3 mb-4">
+            <div className="grid grid-cols-7 text-center">
+              {calendarDays.map((d) => {
+                const isSelected = d.num === selectedCalendarDay;
+                return (
+                  <button
+                    key={d.num}
+                    onClick={() => setSelectedCalendarDay(d.num)}
+                    className="flex flex-col items-center py-0.5 cursor-pointer group select-none"
+                  >
+                    <span
+                      className={`w-8 h-8 rounded-element flex items-center justify-center text-[14px] font-semibold transition-all mb-1 ${
+                        isSelected
+                          ? 'bg-primary-tint text-primary font-bold'
+                          : 'text-text-secondary group-hover:text-text-primary'
+                      }`}
+                    >
+                      {d.num}
+                    </span>
+                    <span
+                      className={`text-[12px] font-semibold transition-all relative pb-2 ${
+                        isSelected
+                          ? 'text-primary font-bold'
+                          : 'text-text-disabled group-hover:text-text-secondary'
+                      }`}
+                    >
+                      {d.name}
+                      {isSelected && (
+                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-primary rounded-full" />
+                      )}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          {/* Daily Schedule */}
-          <div className="border-t border-border pt-4">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[14px] font-bold text-text-primary">Schedule</h3>
-              <button className="p-1 text-primary hover:bg-primary-tint rounded-full">
-                <Plus className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="space-y-3">
-              {mockScheduleItems.map((item) => (
-                <div
-                  key={item.id}
-                  className={`p-3 rounded-nested flex items-center justify-between border transition-all ${
-                    item.type === 'interview'
-                      ? 'bg-primary-tint border-primary-tint2 text-primary'
-                      : 'bg-accent-amber/15 border-accent-amber/30 text-accent-amber'
-                  }`}
-                >
-                  <div>
-                    <h4 className="text-[14px] font-bold text-text-primary">
-                      {item.title}
+          {/* Event Cards List */}
+          <div className="space-y-3">
+            {workCalendarEvents.map((event) => (
+              <div
+                key={event.id}
+                onClick={() => alert(`Opening event: ${event.title}`)}
+                className="p-3.5 rounded-nested border border-border bg-white hover:border-primary/40 flex items-center justify-between transition-all cursor-pointer group"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  {event.icon}
+                  <div className="min-w-0">
+                    <h4 className="text-[14px] font-bold text-text-primary truncate group-hover:text-primary transition-colors">
+                      {event.title}
                     </h4>
-                    <p className="text-[12px] font-medium opacity-80 mt-0.5">
-                      {item.time}
+                    <p className="text-[12px] font-medium text-text-secondary mt-0.5 flex items-center gap-1.5 truncate">
+                      <span>{event.location}</span>
+                      <span className="w-1 h-1 rounded-full bg-text-disabled shrink-0" />
+                      <span>{event.time}</span>
                     </p>
                   </div>
-                  <ChevronRight className="w-4 h-4 shrink-0 opacity-60" />
                 </div>
-              ))}
-            </div>
+
+                <ChevronRight className="w-4 h-4 text-text-disabled group-hover:text-text-secondary group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+              </div>
+            ))}
           </div>
         </Card>
       </div>

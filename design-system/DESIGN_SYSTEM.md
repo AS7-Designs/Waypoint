@@ -1,6 +1,7 @@
 # Design System — LOCKED
 
 > **Changelog**:
+> - 2026-08 work calendar update: updated Dashboard Work Calendar component to match reference layout with header icon square, top day-numbers/bottom day-names selector row, and stroke-bordered event cards.
 > - 2026-08 pure white & stroke-bordered theme: updated application canvas to pure white (#FFFFFF), slate hairline stroke borders (#E2E8F0), high-contrast slate typography (#0F172A), and vibrant purple/indigo primary accent (#6366F1).
 > - 2026-08 shadow removal: removed all box-shadows globally across all components for a clean, flat border-defined design system.
 > - 2026-08 typography update: switched primary font family to Plus Jakarta Sans globally.
