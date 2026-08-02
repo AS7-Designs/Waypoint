@@ -17,10 +17,10 @@ export const StatusPill: React.FC<StatusPillProps> = ({
   className,
 }) => {
   const styles = {
-    success: 'bg-status-successBg text-status-successText',
-    progress: 'bg-status-progressBg text-primary',
-    neutral: 'bg-status-neutralBg text-text-secondary',
-    danger: 'bg-status-dangerBg text-status-dangerText',
+    success: 'bg-status-successBg text-status-successText border border-emerald-500/30',
+    progress: 'bg-status-progressBg text-primary border border-primary/30',
+    neutral: 'bg-status-neutralBg text-text-secondary border border-slate-300/60',
+    danger: 'bg-status-dangerBg text-status-dangerText border border-rose-500/30',
   };
 
   return (

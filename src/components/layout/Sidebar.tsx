@@ -37,11 +37,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
       {/* Brand Header */}
       <div className="h-[72px] px-6 flex items-center gap-3 border-b border-border">
         <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="36" height="36" rx="10" fill="#4F46E5"/>
+          <rect width="36" height="36" rx="10" fill="#6366F1"/>
           <path d="M10 22C10 22 13 14 18 14C23 14 26 22 26 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="0.1 5"/>
           <circle cx="10" cy="22" r="2.5" fill="white"/>
           <circle cx="18" cy="14" r="2.5" fill="#C7D2FE"/>
-          <circle cx="26" cy="22" r="3.5" fill="#14B8A6" stroke="white" strokeWidth="1.5"/>
+          <circle cx="26" cy="22" r="3.5" fill="#10B981" stroke="white" strokeWidth="1.5"/>
         </svg>
         <span className="text-h3 text-text-primary tracking-tight font-bold">
           Waypoint
@@ -65,10 +65,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate }) => 
                   key={item.id}
                   onClick={() => onNavigate(item.id as NavView)}
                   className={clsx(
-                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold transition-all duration-150 cursor-pointer',
+                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-element text-[14px] font-semibold transition-all duration-150 cursor-pointer border',
                     isActive
-                      ? 'bg-primary-tint text-primary'
-                      : 'text-text-secondary hover:text-text-primary hover:bg-surface-muted'
+                      ? 'bg-primary-tint text-primary border-primary/20'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-surface-muted border-transparent'
                   )}
                 >
                   <Icon className={clsx('w-5 h-5', isActive ? 'text-primary' : 'text-text-secondary')} />

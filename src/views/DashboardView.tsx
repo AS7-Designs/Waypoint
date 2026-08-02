@@ -190,27 +190,25 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <BarChart data={mockHiringFunnelData} barGap={8} barSize={14}>
                 <XAxis
                   dataKey="month"
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fill: '#78716C', fontSize: 12, fontWeight: 500 }}
+                  stroke="#E2E8F0"
+                  tick={{ fill: '#64748B', fontSize: 12, fontWeight: 500 }}
                 />
                 <YAxis
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fill: '#78716C', fontSize: 12, fontWeight: 500 }}
+                  stroke="#E2E8F0"
+                  tick={{ fill: '#64748B', fontSize: 12, fontWeight: 500 }}
                   domain={[0, 80]}
                 />
                 <Tooltip
-                  cursor={{ fill: 'rgba(245, 242, 237, 0.6)' }}
+                  cursor={{ fill: 'rgba(248, 250, 252, 0.8)' }}
                   contentStyle={{
                     backgroundColor: '#FFFFFF',
                     borderRadius: '12px',
-                    borderColor: '#EAE5DC',
-                    boxShadow: '0 4px 12px rgba(28,25,23,0.08)',
+                    borderColor: '#E2E8F0',
+                    boxShadow: 'none',
                     fontSize: '13px',
                   }}
                 />
-                <Bar dataKey="applied" fill="#4F46E5" radius={[6, 6, 0, 0]} name="Applied" />
+                <Bar dataKey="applied" fill="#6366F1" radius={[6, 6, 0, 0]} name="Applied" />
                 <Bar dataKey="hired" fill="#C7D2FE" radius={[6, 6, 0, 0]} name="Hired" />
               </BarChart>
             </ResponsiveContainer>

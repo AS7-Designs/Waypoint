@@ -31,7 +31,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   }, []);
 
   return (
-    <header className="h-[72px] bg-bgCanvas pl-[292px] pr-8 flex items-center justify-between fixed top-0 left-0 right-0 z-20 border-b border-border/50">
+    <header className="h-[72px] bg-white pl-[292px] pr-8 flex items-center justify-between fixed top-0 left-0 right-0 z-20 border-b border-border">
       {/* Page Title */}
       <h1 className="text-[28px] leading-[36px] font-bold text-text-primary">
         {title}

@@ -1,6 +1,7 @@
 # Design System — LOCKED
 
 > **Changelog**:
+> - 2026-08 pure white & stroke-bordered theme: updated application canvas to pure white (#FFFFFF), slate hairline stroke borders (#E2E8F0), high-contrast slate typography (#0F172A), and vibrant purple/indigo primary accent (#6366F1).
 > - 2026-08 shadow removal: removed all box-shadows globally across all components for a clean, flat border-defined design system.
 > - 2026-08 typography update: switched primary font family to Plus Jakarta Sans globally.
 > - 2026-07 bg-hierarchy pass: lightened canvas tone to #FBF9F6, aliased surface-muted to bg-canvas (#FBF9F6) creating a strict 2-tone surface hierarchy, removed external donut ring labels in favor of legend inline percentages, explicitly wired Quick Action categorical tile tints.
@@ -9,77 +10,70 @@
 > - 2026-07 initial lock: consolidated 13 ad hoc font sizes and stray radiuses into 3-tier token scale.
 
 ## 1. Brand direction
-Calm, competent, "guided journey" feeling — a trusted co-pilot for hiring, not a corporate HR tool. Visual language: soft indigo/violet as the hero color, generous whitespace, rounded surfaces, warm neutral background tones, low-contrast data visualizations that don't compete with content. Light warm off-white canvas, white elevated cards, a single saturated primary color used sparingly (charts, active states, primary buttons only) against a warm neutral palette.
+Calm, competent, "guided journey" feeling — a trusted co-pilot for hiring, not a corporate HR tool. Visual language: vibrant modern purple/indigo as the hero color (`#6366F1`), generous whitespace, rounded surfaces, crisp pure white canvas background (`#FFFFFF`), high contrast slate typography (`#0F172A`), and explicit slate hairline stroke borders (`#E2E8F0`) defining all cards, sections, and nested panels.
 
 ## 2. Color tokens
 
 ```css
 :root {
-  --color-bg-canvas:      #FBF9F6;   /* warm off-white canvas tone */
-  --color-surface:        #FFFFFF;   /* elevated white cards */
-  --color-surface-muted:  #FBF9F6;   /* alias of bg-canvas for recessed nested panels */
-  --color-border:         #EAE5DC;   /* hairline border */
+  --color-bg-canvas:      #FFFFFF;   /* pure white application canvas */
+  --color-surface:        #FFFFFF;   /* pure white card surface */
+  --color-surface-muted:  #F8FAFC;   /* slate-50 background for sub-panels & table headers */
+  --color-border:         #E2E8F0;   /* slate-200 hairline stroke border */
 
-  --color-primary:        #4F46E5;   /* indigo — primary actions, active nav, bars */
+  --color-primary:        #6366F1;   /* indigo — primary actions, active nav, progress */
   --color-primary-dark:   #4338CA;   /* hover/pressed state */
-  --color-primary-tint:   #EEF0FD;   /* active nav background, light chart bars */
-  --color-primary-tint-2: #C7D2FE;   /* secondary chart series, subtle fills */
+  --color-primary-tint:   #EEF2FF;   /* active nav background, light chart fills */
+  --color-primary-tint-2: #C7D2FE;   /* secondary chart series */
 
-  --color-accent-teal:    #14B8A6;   /* "remote"/secondary status, secondary charts */
-  --color-accent-amber:   #F59E0B;   /* scheduled/in-progress highlight card */
-  --color-accent-rose:    #EC4899;   /* vivid pink/magenta for categorical distinctions */
+  --color-accent-teal:    #10B981;   /* emerald accent */
+  --color-accent-amber:   #F59E0B;   /* amber accent */
+  --color-accent-rose:    #F43F5E;   /* rose accent */
   --color-accent-violet:  #8B5CF6;   /* violet accent */
 
-  --color-text-primary:   #1C1917;   /* warm near-black, not cool slate */
-  --color-text-secondary: #78716C;   /* metadata, timestamps, labels */
-  --color-text-disabled:  #A8A29E;
+  --color-text-primary:   #0F172A;   /* slate-900 high contrast dark text */
+  --color-text-secondary: #64748B;   /* slate-500 metadata text */
+  --color-text-disabled:  #94A3B8;   /* slate-400 placeholder text */
 
-  --color-success-bg:     #DCFCE7;
-  --color-success-text:   #16A34A;
-  --color-progress-bg:    #E0E7FF;
+  --color-success-bg:     #ECFDF5;
+  --color-success-text:   #059669;
+  --color-progress-bg:    #EEF2FF;
   --color-progress-text:  #4F46E5;
-  --color-neutral-bg:     #F1EEE8;   /* neutral pill background */
-  --color-neutral-text:   #78716C;   /* matches text-secondary */
-  --color-danger-bg:      #FEE2E2;
-  --color-danger-text:    #DC2626;
+  --color-neutral-bg:     #F1F5F9;
+  --color-neutral-text:   #475569;
+  --color-danger-bg:      #FFF1F2;
+  --color-danger-text:    #E11D48;
 }
 ```
 
-Rule: status pills only ever use one of the four pairs above (success / progress / neutral / danger). Never invent a fifth pill color.
+Rule: status pills use one of the four stroke-bordered pill pairs above (success / progress / neutral / danger).
 
-## 3. Surface & Background Hierarchy (Two-Tone Rule)
+## 3. Surface & Background Hierarchy (White Canvas + Stroke System)
 
-The application uses exactly **two neutral surface tones**:
-
-1. **WHITE (`#FFFFFF`, flat border-defined)**:
-   - The outer container card holding an entire section: Dashboard's Hiring Funnel card, To-do list card, Active Interviews card, Onboarding Completion card; Candidate Profile's header card & Overview tab card; Onboarding Journeys' Active New Hires card & hire detail card; each Job card; outer boundary of each Kanban column.
-2. **CANVAS TONE (`#FBF9F6`, `bg-surface-muted`, recessed, no shadow)**:
-   - Anything nested one level inside a white card: individual candidate cards inside each Kanban column, To-do list individual task rows, Active Interviews individual rows, "Contact Information" & "Candidate Details & Attributes" boxes on Candidate Profile, individual mini-stat boxes inside Job card Candidate Funnel rows.
+1. **WHITE CANVAS (`#FFFFFF`)**: The root application background.
+2. **CARD SURFACES (`#FFFFFF`, `border border-[#E2E8F0]`)**: Every major UI container card is rendered in crisp white demarcated by a hairline stroke border (`#E2E8F0`).
+3. **SUB-PANELS & NESTED ROWS (`#F8FAFC`, `border border-[#E2E8F0]`)**: Sub-sections, table headers, nested stat boxes, and list items sit flush inside cards with a subtle slate-50 background tint and hairline stroke border.
 
 ## 4. Color Modes (Sequential vs Categorical)
 
-Color has exactly two modes in this application, and every chart, tag, or tile set must declare which mode it uses:
-
 ### 4.1 SEQUENTIAL Mode (Single-hue metric variation)
-- **Usage**: Use when data represents different states or tiers of the **SAME** underlying metric (e.g. Applied vs Hired bars, progress bar fill, single progress ring, Match Score tiering).
+- **Usage**: Metric variation or tiering (Applied vs Hired, progress bar fill, single progress ring, Match Score tiering).
 - **Palette**: Indigo-only (`primary` / `primary-tint` / `primary-tint2`).
-- **Rule**: Do not add extra hues here. Keep metrics visually coherent.
 
 ### 4.2 CATEGORICAL Mode (Multi-hue category distinction)
-- **Usage**: Use when data represents genuinely **different, unrelated categories** (job departments, onboarding task owners, evaluation dimensions, quick action tile types).
+- **Usage**: Department distinction, onboarding owners, evaluation dimensions, quick action tile types.
 - **Palette & Fixed Cycling Order**:
-  1. `primary` (`#4F46E5` / indigo) — Schedule Interview
-  2. `accent-teal` (`#14B8A6` / teal) — Add Candidate, Product dept
+  1. `primary` (`#6366F1` / indigo) — Schedule Interview
+  2. `accent-teal` (`#10B981` / emerald) — Add Candidate, Product dept
   3. `accent-amber` (`#F59E0B` / amber) — Assign Onboarding, Marketing dept
-  4. `accent-rose` (`#EC4899` / magenta) — Sales dept
+  4. `accent-rose` (`#F43F5E` / rose) — Sales dept
   5. `accent-violet` (`#8B5CF6` / violet) — Post a Job, Design dept
-- **Rule**: Always assign colors in this fixed order for the same category set across every screen so "Design" or a specific department remains identical everywhere it appears.
 
 ## 5. Typography
 
 - Font family: **Plus Jakarta Sans** (fallback: system-ui, sans-serif).
 - Scale:
-  - `display-lg`: 36px / 44px, Weight: 700 (hero stat numbers, marketing headline only)
+  - `display-lg`: 36px / 44px, Weight: 700 (hero stat numbers, marketing headline)
   - `display`: 28px / 36px, Weight: 700 ("Dashboard", "Candidate Profile")
   - `h2`: 20px / 28px, Weight: 700 (Card/section titles)
   - `h3`: 16px / 24px, Weight: 600 (Sub-headers, list item titles)
@@ -88,35 +82,18 @@ Color has exactly two modes in this application, and every chart, tag, or tile s
   - `caption`: 12px / 16px, Weight: 500 (Timestamps, metadata, pill labels)
 
 ## 6. Spacing & radius (8px base grid)
-- Spacing scale: `4, 8, 12, 16, 20, 24, 32, 40, 48, 64` px only.
-- Card padding: 24px. Card-to-card gutter: 24px. Page margin: 32px.
-- Radius — three tiers, use `rounded-element` / `rounded-nested` / `rounded-card` (no raw `rounded-[Npx]` anywhere):
+- Radius — three tiers:
   - `rounded-element` (12px) — buttons, inputs, small icon squares, tab pills.
-  - `rounded-nested` (16px) — sub-cards/panels embedded *inside* a Card: kanban cards, table wrappers, toasts, info panels, dashed upload zones.
-  - `rounded-card` (20px) — the outer Card component itself, and modals.
+  - `rounded-nested` (16px) — sub-cards/panels embedded *inside* a Card.
+  - `rounded-card` (20px) — outer Card containers and modals.
   - `rounded-full` — pills, avatars, SegmentedControl track & selected pill.
-- Shadow — None: flat design system relying on clean hairline borders (`border border-border`).
+- Shadow — None: flat design system relying on clean hairline stroke borders (`border border-[#E2E8F0]`).
 
 ## 7. Additional Locked Components
 
 ### 7.1 StatCard
-- **Usage**: Top-line KPI summary card with inline trend visualization.
 - **Track/Container**: `bg-surface rounded-card p-6 flex justify-between items-start border border-border`.
-- **Left Content**: `text-caption-ui text-text-secondary` label top, `text-display text-text-primary` number below, optional `text-caption-ui text-text-secondary` helper text underneath.
-- **Delta Badge**: Top-right corner, `text-caption-ui font-bold`, colored text (`text-status-successText` with ↑ or `text-status-dangerText` with ↓). No pill background.
-- **Sparkline**: Right side, 72x36px mini bar chart (5-7 thin bars, `rounded-full` caps, `bg-primary-tint2` for historical bars, `bg-primary` for the latest bar).
 
-### 7.2 MatchScore
-- **Usage**: Candidate or job fit percentage visualization.
-- **Label Row**: `text-caption-ui text-text-secondary` left, score percentage right.
-- **Progress Track**: `h-1.5` or `h-2` height, `rounded-full bg-status-neutralBg`.
-- **Fill Bar**: `rounded-full` with 500ms ease-out width transition. Color-coded:
-  - 85%+ : `bg-status-successText`
-  - 60–84% : `bg-primary`
-  - Below 60% : `bg-accent-amber`
-
-### 7.3 SegmentedControl
-- **Usage**: Multi-option inline switch (Login/Signup, role picker, filters, Move Stage pills, chart period).
-- **Outer Track**: `bg-surface-muted rounded-full p-1 inline-flex items-center gap-1`.
-- **Selected Option**: `bg-white rounded-full px-4 py-2 text-text-primary shadow-sm`.
-- **Unselected Option**: `bg-transparent rounded-full px-4 py-2 text-text-secondary hover:text-text-primary`.
+### 7.2 SegmentedControl
+- **Outer Track**: `bg-surface-muted rounded-full p-1 inline-flex items-center gap-1 border border-border`.
+- **Selected Option**: `bg-white rounded-full px-4 py-2 text-text-primary border border-border font-semibold`.

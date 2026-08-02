@@ -30,7 +30,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   return (
     <div
       className={twMerge(
-        clsx('bg-surface-muted rounded-full p-1 inline-flex items-center gap-1'),
+        clsx('bg-surface-muted rounded-full p-1 inline-flex items-center gap-1 border border-border'),
         className
       )}
     >
@@ -45,8 +45,8 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
               'rounded-full font-semibold transition-all cursor-pointer select-none whitespace-nowrap',
               sizeStyles[size],
               isSelected
-                ? 'bg-white text-text-primary border border-border/40'
-                : 'bg-transparent text-text-secondary hover:text-text-primary'
+                ? 'bg-white text-text-primary border border-border font-semibold'
+                : 'bg-transparent text-text-secondary hover:text-text-primary border border-transparent'
             )}
           >
             {option.label}
